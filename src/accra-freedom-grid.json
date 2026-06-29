@@ -98,6 +98,17 @@
     "reachableAfterMission": 10,
     "assetThemes": ["crossroads-checkpoint"]
   },
+  "strategyMap": {
+    "image": "images/leonardo export/artifacts/strategy_map_of_coastal_Accra_Ghana_in_1-1.jpg",
+    "alt": "Coastal Accra strategy map — west local hubs to east colonial citadels",
+    "pins": [
+      { "sectorId": "sector_1", "x": 16, "y": 64, "label": "Ussher" },
+      { "sectorId": "sector_2", "x": 34, "y": 50, "label": "Makola" },
+      { "sectorId": "sector_3", "x": 56, "y": 44, "label": "Victoriaborg" },
+      { "sectorId": "sector_4", "x": 74, "y": 40, "label": "Crossroads" },
+      { "strongholdId": "osu_castle", "x": 90, "y": 36, "label": "Castle" }
+    ]
+  },
   "levelFlow": [
     { "step": 1, "phase": "mobilization", "sectors": ["sector_2", "sector_1"], "missions": [1, 2, 3, 4, 5, 6, 7], "label": "Boycott & Mobilization" },
     { "step": 2, "phase": "peaceful_march", "route": "march_route", "sectors": ["sector_2", "sector_4"], "missions": [8, 9], "label": "The Peaceful March" },

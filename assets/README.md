@@ -2,11 +2,14 @@
 
 Drop Leonardo.ai exports here using the filenames in `manifest.json`. The game loads textures from `textures/` and falls back to procedural geometry when a file is missing.
 
+**Leonardo export folder:** Raw JPG/PNG outputs live in `images/leonardo export/`. Paths are mapped in [`leonardo-export-map.json`](leonardo-export-map.json). After updating images there, bump `version` in that file so browsers reload textures.
+
 ## Quick start
 
-1. Export each Leonardo image as **WebP** or **PNG** (WebP preferred for mobile).
-2. Save to the path listed in `manifest.json` → `path` (under `textures/`).
-3. Reload the game — mission landmarks and props pick up textures automatically.
+1. Export each Leonardo image as **WebP** or **PNG** (WebP preferred for mobile) — **or** place JPGs in `images/leonardo export/` per the export map.
+2. Save baked assets to the path listed in `manifest.json` → `path` (under `textures/`), **or** update `leonardo-export-map.json` to point at your export filenames.
+3. Bump `version` in `leonardo-export-map.json` when exports change.
+4. Reload the game — mission landmarks, briefings, and Freedom Grid pick up textures automatically.
 
 ## Folder layout
 

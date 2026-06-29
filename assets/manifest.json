@@ -4,15 +4,16 @@
   "textureFormat": ["webp", "png"],
   "recommendedSize": { "props": 512, "environments": 1024, "hero": 2048 },
   "missionAssets": {
-    "1": ["accra-evening-news", "veteran-marcher"],
+    "1": ["accra-evening-news", "veteran-marcher", "veteran-squad", "shipping-crate"],
+    "6": ["veteran-attipoe", "veteran-lamptey", "accra-evening-news"],
     "8": ["veteran-marcher", "accra-evening-news"],
     "9": ["veteran-marcher", "crossroads-checkpoint"],
-    "10": ["crossroads-checkpoint", "lee-enfield-no4", "webley-mk4", "sten-mk2", "veteran-marcher", "curfew-broadside", "bedford-oy-truck"],
-    "11": ["salaga-market", "market-woman"],
-    "12": ["salaga-market", "awam-store-front", "hooked-iron-rod", "market-woman", "lee-enfield-no4"],
-    "13": ["kaneshie-warehouse", "dane-gun", "mammy-truck", "accra-evening-news"],
-    "14": ["colonial-secretariat", "curfew-broadside", "accra-evening-news", "yaw-toolkit"],
-    "15": ["ussher-workshop", "mammy-truck", "yaw-toolkit", "bedford-oy-truck", "austin-police-car"]
+    "10": ["crossroads-checkpoint", "lee-enfield-no4", "webley-mk4", "sten-mk2", "veteran-marcher", "veteran-adjetey", "veteran-attipoe", "veteran-lamptey", "curfew-broadside", "bedford-oy-truck"],
+    "11": ["salaga-market", "market-woman", "kojo", "araba", "accra-aerial-map"],
+    "12": ["salaga-market", "awam-store-front", "hooked-iron-rod", "market-woman", "araba", "lee-enfield-no4"],
+    "13": ["kaneshie-warehouse", "dane-gun", "mammy-truck", "accra-evening-news", "kofi"],
+    "14": ["colonial-secretariat", "curfew-broadside", "accra-evening-news", "yaw-toolkit", "kwesi", "planning-room"],
+    "15": ["ussher-workshop", "ussher-garage", "mammy-truck", "yaw-toolkit", "bedford-oy-truck", "austin-police-car", "kojo", "araba", "kofi", "kwesi", "yaw"]
   },
   "assets": [
     {
@@ -223,6 +224,123 @@
       "historicalNote": "Faded khaki, no weapons — rolled white petition only.",
       "polyBudget": "billboard",
       "leonardoPrompt": "3D character concept sheet, 1940s West African World War II veteran, faded khaki Gold Coast Regiment uniform shirt, shorts, dark woolen puttees wrapped around calves, holding a rolled white paper petition document, solemn expression, game asset sheet"
+    },
+    {
+      "id": "veteran-adjetey",
+      "category": "characters",
+      "faction": "resistance",
+      "path": "characters/veteran-adjetey.webp",
+      "label": "Sergeant Adjetey",
+      "gameUse": "Veteran squad leader portrait; M10 tribute",
+      "polyBudget": "billboard"
+    },
+    {
+      "id": "veteran-attipoe",
+      "category": "characters",
+      "faction": "resistance",
+      "path": "characters/veteran-attipoe.webp",
+      "label": "Corporal Attipoe",
+      "gameUse": "Veteran squad; M6 wounded beat",
+      "polyBudget": "billboard"
+    },
+    {
+      "id": "veteran-lamptey",
+      "category": "characters",
+      "faction": "resistance",
+      "path": "characters/veteran-lamptey.webp",
+      "label": "Private Odartey Lamptey",
+      "gameUse": "Veteran squad demolition; martyrs arc",
+      "polyBudget": "billboard"
+    },
+    {
+      "id": "veteran-squad",
+      "category": "characters",
+      "faction": "resistance",
+      "path": "characters/veteran-squad.webp",
+      "label": "Ex-Servicemen Trio",
+      "gameUse": "M1 Kingsway mobilization",
+      "polyBudget": "billboard"
+    },
+    {
+      "id": "shipping-crate",
+      "category": "props",
+      "faction": "resistance",
+      "path": "props/shipping-crate.webp",
+      "label": "Ledger Crate",
+      "gameUse": "M1 Kingsway depot prop",
+      "polyBudget": "billboard"
+    },
+    {
+      "id": "kojo",
+      "category": "characters",
+      "faction": "resistance",
+      "path": "characters/kojo.webp",
+      "label": "Kojo — Cell Leader",
+      "gameUse": "Phase IV playable; war board",
+      "polyBudget": "billboard"
+    },
+    {
+      "id": "araba",
+      "category": "characters",
+      "faction": "resistance",
+      "path": "characters/araba.webp",
+      "label": "Araba — Enforcer",
+      "gameUse": "Phase IV Riot Rally",
+      "polyBudget": "billboard"
+    },
+    {
+      "id": "kofi",
+      "category": "characters",
+      "faction": "resistance",
+      "path": "characters/kofi.webp",
+      "label": "Kofi — Fast Learner",
+      "gameUse": "Phase IV rookie growth arc",
+      "polyBudget": "billboard"
+    },
+    {
+      "id": "kwesi",
+      "category": "characters",
+      "faction": "resistance",
+      "path": "characters/kwesi.webp",
+      "label": "Kwesi — Clerk",
+      "gameUse": "Phase IV non-combat infiltration",
+      "polyBudget": "billboard"
+    },
+    {
+      "id": "yaw",
+      "category": "characters",
+      "faction": "resistance",
+      "path": "characters/yaw.webp",
+      "label": "Yaw Mensah — Mentor",
+      "gameUse": "Hub mentor; Ussher yard",
+      "polyBudget": "billboard"
+    },
+    {
+      "id": "ussher-garage",
+      "category": "environments",
+      "faction": "resistance",
+      "path": "environments/ussher-garage.webp",
+      "label": "Ussher Motor Yard",
+      "gameUse": "M15 exterior garage facade",
+      "polyBudget": "hero"
+    },
+    {
+      "id": "accra-aerial-map",
+      "category": "environments",
+      "faction": "resistance",
+      "path": "environments/accra-aerial-map.webp",
+      "label": "Accra Aerial Map",
+      "gameUse": "M11 Makola routes overview",
+      "polyBudget": "hero"
+    },
+    {
+      "id": "planning-room",
+      "category": "environments",
+      "faction": "resistance",
+      "path": "environments/planning-room.webp",
+      "label": "Resistance Planning Room",
+      "gameUse": "M14 Secretariat infiltration",
+      "polyBudget": "hero"
     }
   ]
 }

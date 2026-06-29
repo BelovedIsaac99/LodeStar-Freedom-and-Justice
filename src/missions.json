@@ -469,6 +469,10 @@
       ],
       "kwesiMission": true,
       "defaultCharacter": "kwesi",
+      "kwesiCapture": {
+        "exposeSec": 45,
+        "rescueWindowSec": 60
+      },
       "cellEvent": {
         "message": "Kwesi: 'Sorry doesn't read curfew times. This does.'",
         "triggerOnStart": true

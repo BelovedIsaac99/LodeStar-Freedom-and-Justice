@@ -4,6 +4,8 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
   <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="theme-color" content="#006b3f">
+  <link rel="manifest" href="manifest.webmanifest">
   <title>LODESTAR_FREEDOM AND JUSTICE</title>
   <style>
     * { margin: 0; padding: 0; box-sizing: border-box; }
@@ -44,6 +46,12 @@
       letter-spacing: 0.06em; text-align: center; line-height: 1.35;
       max-width: 420px;
     }
+    #menu-cover-art {
+      display: none; width: 100%; max-width: 420px; max-height: 160px;
+      object-fit: cover; border-radius: 6px; border: 2px solid #c9a227;
+      margin: 0.5rem 0 0.75rem; box-shadow: 0 4px 20px rgba(0, 0, 0, 0.45);
+    }
+    #menu-cover-art.visible { display: block; }
     #mission-menu .subtitle {
       color: #8a9a8a; font-size: 0.85rem; margin-bottom: 1rem; text-align: center;
     }
@@ -157,6 +165,36 @@
       border-left: 2px solid #2d4a2d;
     }
     .grid-flow-step.done { color: #006b3f; border-left-color: #006b3f; }
+    .grid-strategy-map {
+      position: relative; width: 100%; margin-bottom: 0.75rem;
+      border: 1px solid #2d4a2d; border-radius: 6px; overflow: hidden;
+      background: #0a120a;
+    }
+    .grid-strategy-map img {
+      display: block; width: 100%; height: auto; max-height: 220px;
+      object-fit: cover; opacity: 0.92;
+    }
+    .grid-strategy-map .map-pin {
+      position: absolute; transform: translate(-50%, -50%);
+      width: 10px; height: 10px; border-radius: 50%;
+      border: 2px solid #e8e4d4; box-shadow: 0 0 6px rgba(0,0,0,0.8);
+      pointer-events: none;
+    }
+    .grid-strategy-map .map-pin.resistance { background: #006b3f; }
+    .grid-strategy-map .map-pin.british { background: #1a1a4e; }
+    .grid-strategy-map .map-pin.sacred { background: #8b0000; }
+    .grid-strategy-map .map-pin.stronghold { background: #c9a227; }
+    .grid-strategy-map .map-pin.locked { opacity: 0.35; }
+    .grid-strategy-map .map-pin.done { box-shadow: 0 0 8px #c9a227; }
+    .grid-strategy-map .map-pin-label {
+      position: absolute; transform: translate(-50%, -140%);
+      font-size: 0.55rem; color: #e8e4d4; white-space: nowrap;
+      text-shadow: 0 1px 3px #000; pointer-events: none;
+    }
+    .grid-strategy-caption {
+      font-size: 0.65rem; color: #6a8a9a; text-align: center;
+      margin-bottom: 0.5rem; font-style: italic;
+    }
     .grid-node {
       display: grid; grid-template-columns: 6px 1fr;
       grid-template-rows: auto auto auto auto;
@@ -245,6 +283,14 @@
     }
     .hub-item button:disabled { background: #333; cursor: not-allowed; }
     .hub-item button.secondary { background: transparent; border: 1px solid #555; color: #aaa; }
+    .hub-mission-thumb {
+      width: 100%; height: 72px; object-fit: cover; border-radius: 3px;
+      margin-bottom: 0.35rem; border: 1px solid #2d4a2d;
+    }
+    .mission-btn .m-thumb {
+      width: 48px; height: 48px; object-fit: cover; border-radius: 4px;
+      flex-shrink: 0; border: 1px solid #2d4a2d;
+    }
     .hub-footer {
       margin-top: 1rem; display: flex; gap: 0.75rem; flex-wrap: wrap; justify-content: center;
     }
@@ -270,6 +316,12 @@
       border: 2px solid #c9a227; border-radius: 8px;
       max-width: 440px; padding: 1.5rem; color: #e8e4d4; text-align: center;
     }
+    #overlay-box.has-image { max-width: 520px; }
+    #overlay-image {
+      display: none; width: 100%; max-height: 180px; object-fit: cover;
+      border-radius: 4px; margin-bottom: 0.75rem; border: 1px solid #2d4a2d;
+    }
+    #overlay-image.visible { display: block; }
     #overlay-box h2 { color: #c9a227; font-size: 1.1rem; margin-bottom: 0.75rem; }
     #overlay-box p { font-size: 0.95rem; line-height: 1.55; margin-bottom: 0.5rem; }
     #overlay-subtitle {
@@ -404,6 +456,7 @@
 
   <div id="mission-menu">
     <h1>LODESTAR_FREEDOM AND JUSTICE</h1>
+    <img id="menu-cover-art" alt="LodeStar — 1948 Accra campaign cover art" />
     <p class="subtitle">1948 Accra Campaign — Mission Select</p>
     <div class="campaign-stats">
       <div>Independence: <span id="meter-display">0</span>%</div>
@@ -451,6 +504,7 @@
 
   <div id="overlay">
     <div id="overlay-box">
+      <img id="overlay-image" alt="" />
       <h2 id="overlay-title">Briefing</h2>
       <p id="overlay-subtitle"></p>
       <p id="overlay-text"></p>

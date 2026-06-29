@@ -1,0 +1,18 @@
+{
+  "name": "LodeStar Freedom and Justice",
+  "short_name": "LodeStar",
+  "description": "1948 Accra campaign — peaceful march, witness, and resistance.",
+  "start_url": "./index.html",
+  "display": "standalone",
+  "orientation": "landscape",
+  "background_color": "#0a0f0a",
+  "theme_color": "#006b3f",
+  "icons": [
+    {
+      "src": "images/leonardo export/cover art/cover art1.jpg",
+      "sizes": "512x512",
+      "type": "image/jpeg",
+      "purpose": "any"
+    }
+  ]
+}

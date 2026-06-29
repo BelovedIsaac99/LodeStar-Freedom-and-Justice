@@ -61,7 +61,7 @@ import {
   getIntelDialogue,
 } from './conversations.js';
 import { canCharacterFire } from './kwesi-mechanics.js';
-import { loadAssetManifest, loadMissionTextures, countLoadedTextures } from './asset-loader.js';
+import { loadAssetManifest, loadLeonardoExportMap, loadMissionTextures, countLoadedTextures, getMissionSceneUrl, getStrategyMapUrl, getCoverArtUrl, clearTextureCache } from './asset-loader.js';
 import {
   getSectorStatus,
   getRouteStatus,
@@ -91,6 +91,13 @@ import {
   markKofiFirstShot,
   RIOT_RALLY,
 } from './phase-iv-mechanics.js';
+import {
+  initKwesiCapture,
+  updateKwesiCapture,
+  tryRescueKwesi,
+  canRescueKwesi,
+  handleKwesiHit,
+} from './kwesi-capture.js';
 
 import {
   sfxShoot, sfxHit, sfxIntel, sfxOrder, sfxComplete, sfxFail, sfxInteract, sfxTribute,
@@ -151,6 +158,8 @@ const state = {
   squadUnits: [],
   playerSlot: 0,
   assetManifest: null,
+  leonardoExportMap: null,
+  kwesiStatusHint: '',
   freedomGrid: null,
   yawHubData: null,
   yawHubSelectedMission: null,
@@ -325,6 +334,13 @@ function spawnPhaseIvSquad(mission, ps) {
   refreshSquadPointers();
 }
 
+function assetUrl(rel) {
+  if (!rel) return null;
+  const v = state.leonardoExportMap?.version ?? 1;
+  const path = `./${rel.split('/').map((p) => encodeURIComponent(p)).join('/')}`;
+  return `${path}?v=${v}`;
+}
+
 function getBark(key) {
   return state.conversations?.barks?.[key] ?? null;
 }
@@ -450,13 +466,24 @@ function renderWarBoard() {
       + (entry.done ? ' done' : '')
       + (!entry.unlocked ? ' locked' : '')
       + (entry.missionId === state.yawHubSelectedMission ? ' selected' : '');
-    card.innerHTML = `
+    const sceneUrl = getMissionSceneUrl(state.leonardoExportMap, entry.missionId);
+    if (sceneUrl) {
+      const thumb = document.createElement('img');
+      thumb.className = 'hub-mission-thumb';
+      thumb.src = sceneUrl;
+      thumb.alt = '';
+      thumb.loading = 'lazy';
+      card.appendChild(thumb);
+    }
+    const body = document.createElement('div');
+    body.innerHTML = `
       <strong>${entry.label}</strong>
       ${sector ? `<span class="meta">Sector ${sector.number}: ${sector.subtitle}</span>` : ''}
       <span class="meta">M${entry.missionId} — ${entry.missionTitle}</span>
       <span class="meta">${entry.summary}</span>
       ${entry.done ? '<span class="meta">✓ District secured</span>' : ''}
       ${entry.recommended ? '<span class="meta">★ Kojo recommends next</span>' : ''}`;
+    card.appendChild(body);
     if (entry.unlocked) {
       const btn = document.createElement('button');
       btn.type = 'button';
@@ -574,6 +601,7 @@ function loadMission(missionId) {
   const { Matter } = state;
   state.currentMissionId = missionId;
   state.missionRuntime = createMissionRuntime(mission, state.campaign);
+  if (mission.kwesiMission) initKwesiCapture(state.missionRuntime);
   state.campaign.currentMission = missionId;
   writeSave(state.campaign);
   state.squadState = SQUAD_STATE.FOLLOW;
@@ -586,6 +614,7 @@ function loadMission(missionId) {
   state.wiretapCooldown = 0;
   state.barkText = '';
   state.barkTimer = 0;
+  state.kwesiStatusHint = '';
 
   const ps = mission.playerStart;
   if (mission.phaseIv || isPhaseIvMission(missionId)) {
@@ -666,7 +695,7 @@ function loadMission(missionId) {
 
   loadAssetManifest().then((manifest) => {
     state.assetManifest = manifest;
-    return loadMissionTextures(manifest, missionId);
+    return loadMissionTextures(manifest, missionId, state.leonardoExportMap);
   }).then((textures) => {
     state.view3d?.setMissionTextures(textures);
     const n = countLoadedTextures(textures);
@@ -682,6 +711,7 @@ function showMissionIntro(mission) {
   const controls = state.phaseIvActive
     ? '\n\n1–4 switch character | Kwesi cannot fire'
     : '';
+  const sceneUrl = getMissionSceneUrl(state.leonardoExportMap, mission.id);
   showOverlay(
     `Mission ${mission.id}: ${mission.title}`,
     body + controls,
@@ -708,7 +738,8 @@ function showMissionIntro(mission) {
       if (msg) showOverlay(msg.title ?? 'Briefing', msg.text);
     },
     mission.subtitle ? `${cmd} — ${mission.subtitle}` : cmd,
-    mission.historicalNote
+    mission.historicalNote,
+    sceneUrl
   );
 }
 
@@ -822,6 +853,13 @@ function updateCommandButtonLabel() {
 function tryInteract() {
   const rt = state.missionRuntime;
   if (!rt) return;
+  if (tryRescueKwesi(state, rt)) {
+    sfxInteract();
+    refreshSquadPointers();
+    const bark = getBark('kwesi_document');
+    if (bark) showBark(state, bark, 4);
+    return;
+  }
   const pos = { x: state.player.body.position.x, y: state.player.body.position.y };
   const result = interactNode(rt, pos, state.nodes, state.player.radius);
   if (!result) return;
@@ -850,7 +888,20 @@ function setTouchUiVisible(visible) {
   updateJoystickEnabled();
 }
 
-function showOverlay(title, text, onClose, subtitle, historicalNote) {
+function showOverlay(title, text, onClose, subtitle, historicalNote, imageUrl) {
+  const imgEl = document.getElementById('overlay-image');
+  const box = document.getElementById('overlay-box');
+  if (imgEl && box) {
+    if (imageUrl) {
+      imgEl.src = imageUrl;
+      imgEl.classList.add('visible');
+      box.classList.add('has-image');
+    } else {
+      imgEl.removeAttribute('src');
+      imgEl.classList.remove('visible');
+      box.classList.remove('has-image');
+    }
+  }
   state.overlayTitle.textContent = title;
   state.overlayText.textContent = text;
   if (state.overlaySubtitle) {
@@ -927,6 +978,57 @@ function renderFreedomGrid() {
     coast.className = 'grid-coast';
     coast.textContent = `▸ ${geo.coast} — ${geo.directionNote ?? 'west → east'}`;
     el.appendChild(coast);
+  }
+
+  const sm = grid.strategyMap;
+  if (sm?.image || state.leonardoExportMap?.strategyMap) {
+    const caption = document.createElement('p');
+    caption.className = 'grid-strategy-caption';
+    caption.textContent = sm?.alt ?? 'Coastal Accra — west local hubs to east colonial citadels';
+    el.appendChild(caption);
+
+    const mapWrap = document.createElement('div');
+    mapWrap.className = 'grid-strategy-map';
+    const img = document.createElement('img');
+    img.src = getStrategyMapUrl(state.leonardoExportMap)
+      ?? assetUrl(sm.image);
+    img.alt = sm?.alt ?? 'Accra strategy map';
+    img.loading = 'lazy';
+    mapWrap.appendChild(img);
+
+    for (const pin of sm.pins ?? []) {
+      let pinClass = 'resistance';
+      let locked = true;
+      let done = false;
+      if (pin.sectorId) {
+        const sector = (grid.sectors ?? []).find((s) => s.id === pin.sectorId);
+        if (sector) {
+          const st = getSectorStatus(sector, state.campaign);
+          pinClass = sector.faction ?? 'resistance';
+          locked = st.locked;
+          done = st.allDone;
+        }
+      } else if (pin.strongholdId && grid.stronghold) {
+        const ss = getStrongholdStatus(grid.stronghold, state.campaign);
+        pinClass = 'stronghold';
+        locked = !ss.reachable;
+        done = state.campaign.completedMissions.includes(15);
+      }
+      const dot = document.createElement('span');
+      dot.className = `map-pin ${pinClass}${locked ? ' locked' : ''}${done ? ' done' : ''}`;
+      dot.style.left = `${pin.x}%`;
+      dot.style.top = `${pin.y}%`;
+      mapWrap.appendChild(dot);
+      if (pin.label) {
+        const lbl = document.createElement('span');
+        lbl.className = 'map-pin-label';
+        lbl.style.left = `${pin.x}%`;
+        lbl.style.top = `${pin.y}%`;
+        lbl.textContent = pin.label;
+        mapWrap.appendChild(lbl);
+      }
+    }
+    el.appendChild(mapWrap);
   }
 
   const map = document.createElement('div');
@@ -1008,6 +1110,18 @@ function renderMissionMenu() {
   const list = document.getElementById('mission-list');
   list.innerHTML = '';
 
+  const coverUrl = getCoverArtUrl(state.leonardoExportMap);
+  const coverEl = document.getElementById('menu-cover-art');
+  if (coverEl) {
+    if (coverUrl) {
+      coverEl.src = coverUrl;
+      coverEl.classList.add('visible');
+    } else {
+      coverEl.removeAttribute('src');
+      coverEl.classList.remove('visible');
+    }
+  }
+
   for (const phase of state.campaignPhases) {
     if (!phase.missionIds?.length) continue;
     const header = document.createElement('div');
@@ -1020,10 +1134,12 @@ function renderMissionMenu() {
       if (!m) continue;
       const unlocked = isMissionUnlocked(state.campaign, m.id);
       const done = state.campaign.completedMissions.includes(m.id);
+      const sceneUrl = getMissionSceneUrl(state.leonardoExportMap, m.id);
       const btn = document.createElement('button');
       btn.type = 'button';
       btn.className = 'mission-btn' + (unlocked ? '' : ' locked') + (done ? ' done' : '');
-      btn.innerHTML = `<span class="m-num">${m.id}</span><span class="m-title">${m.title}</span>${done ? ' ✓' : ''}`;
+      const thumbHtml = sceneUrl ? `<img class="m-thumb" src="${sceneUrl}" alt="" loading="lazy" />` : '';
+      btn.innerHTML = `${thumbHtml}<span class="m-num">${m.id}</span><span class="m-title">${m.title}</span>${done ? ' ✓' : ''}`;
       btn.disabled = !unlocked;
       btn.addEventListener('click', () => requestLoadMission(m.id));
       list.appendChild(btn);
@@ -1111,6 +1227,14 @@ function handleCollision(a, b) {
         state.gameOver = true;
         sfxFail();
         showOverlay('Mission Failed', `${squadUnit.name} fell — Yaw needed all four alive.`, () => {});
+      } else if (handleKwesiHit(state, squadUnit, state.missionRuntime)) {
+        refreshSquadPointers();
+        state.paused = true;
+        showOverlay(
+          'Kwesi Captured',
+          'The clerk is down — constables are closing in. Switch to Kojo, Araba, or Kofi and press E at Kwesi\'s position to extract him.',
+          () => {}
+        );
       }
     }
     for (const esc of state.escorts) {
@@ -1352,7 +1476,41 @@ function updateMissionLogic(dt) {
     }
   }
 
+  const kwesiEvt = updateKwesiCapture(state, dt);
+  if (kwesiEvt.failed) {
+    state.gameOver = true;
+    sfxFail();
+    showOverlay(
+      'Kwesi Lost',
+      'The clerk vanishes into Creasy\'s files. Without his manifests, the cell goes blind.',
+      () => {}
+    );
+    return;
+  }
+  if (kwesiEvt.captured && !rt.kwesiCaptureAnnounced) {
+    rt.kwesiCaptureAnnounced = true;
+    refreshSquadPointers();
+    state.paused = true;
+    showOverlay(
+      'Kwesi Captured',
+      'Constables have him. Switch to Kojo, Araba, or Kofi — reach Kwesi and press E to extract him before the window closes.',
+      () => {}
+    );
+  }
+  if (kwesiEvt.bark) state.kwesiStatusHint = kwesiEvt.bark;
+  else if (!rt.kwesiCaptured) state.kwesiStatusHint = '';
+
   if (state.player.hp <= 0) {
+    if (handleKwesiHit(state, state.player, rt)) {
+      refreshSquadPointers();
+      state.paused = true;
+      showOverlay(
+        'Kwesi Down',
+        'Extract him with another cell member — press E at his position.',
+        () => {}
+      );
+      return;
+    }
     state.gameOver = true;
     sfxFail();
     return;
@@ -1387,7 +1545,7 @@ function update(dt) {
   updatePlayer(dt);
 
   state.followers.forEach((f, i) => {
-    if (f.hp <= 0) return;
+    if (f.hp <= 0 || f.captured) return;
     const result = updateFollower(f, state.player, i, state.squadState, state.enemies, dt, state.Matter);
     if (result.shoot && f.canFireWeapons !== false && canCharacterFire(f.id)) {
       const pos = f.body.position;
@@ -1479,6 +1637,57 @@ function wrapText(str, max) {
   return lines;
 }
 
+function drawMinimap() {
+  const mw = 108;
+  const mh = 81;
+  const mx = W - mw - 12;
+  const my = 44;
+  const sx = mw / GAME_W;
+  const sy = mh / GAME_H;
+  rectfill(mx, my, mw, mh, 0);
+  rectfill(mx, my, mw, 1, 1);
+  rectfill(mx, my + mh - 1, mw, 1, 1);
+  rectfill(mx, my, 1, mh, 1);
+  rectfill(mx + mw - 1, my, 1, mh, 1);
+
+  const m = state.missionRuntime?.data;
+  const ex = m?.extraction ?? m?.altExtraction;
+  if (ex) circfill(mx + ex.x * sx, my + ex.y * sy, 3, 2);
+
+  if (m?.holdZone) {
+    const hz = m.holdZone;
+    circfill(mx + hz.x * sx, my + hz.y * sy, Math.max(2, hz.radius * sx * 0.35), 4);
+  }
+
+  for (const e of state.enemies) {
+    if (e.dead) continue;
+    const ex = e.x ?? e.body?.position.x ?? 0;
+    const ey = e.y ?? e.body?.position.y ?? 0;
+    circfill(mx + ex * sx, my + ey * sy, 2, e.revealed ? 9 : 8);
+  }
+
+  for (const item of state.intelItems) {
+    if (item.collected || item.locked) continue;
+    circfill(mx + item.x * sx, my + item.y * sy, 2, 3);
+  }
+
+  if (state.squadUnits?.length) {
+    for (const u of state.squadUnits) {
+      if (u.hp <= 0) continue;
+      const ux = u.body.position.x;
+      const uy = u.body.position.y;
+      const isPlayer = u === state.player;
+      circfill(mx + ux * sx, my + uy * sy, isPlayer ? 3 : 2, isPlayer ? 3 : 7);
+    }
+  } else if (state.player?.body) {
+    const px = state.player.body.position.x;
+    const py = state.player.body.position.y;
+    circfill(mx + px * sx, my + py * sy, 3, 3);
+  }
+
+  text(mx + 3, my + 10, 'MAP', 6);
+}
+
 function drawHUD() {
   const rt = state.missionRuntime;
   if (!rt) return;
@@ -1496,6 +1705,11 @@ function drawHUD() {
     if (state.player.id === 'kwesi') text(130, 84, 'NO COMBAT', 9);
     if (state.player.id === 'kojo') text(130, 84, 'Tab orders', 6);
     if (state.player.id === 'kwesi') text(200, 84, state.wiretapCooldown > 0 ? 'Q wait' : 'Q wiretap', 6);
+    if (rt.kwesiCaptured && !rt.kwesiRescued) {
+      text(12, 98, `RESCUE KWESI ${Math.ceil(rt.kwesiRescueTimer)}s`, 9);
+    } else if (state.kwesiStatusHint) {
+      text(12, 98, state.kwesiStatusHint.slice(0, 42), 8);
+    }
   } else {
     text(12, 84, `Asare Trust: ${state.campaign.asareTrust}`, 3);
   }
@@ -1514,6 +1728,7 @@ function drawHUD() {
   const squadColors = { FOLLOW: 2, DEFEND: 8, ATTACK: 9 };
   rectfill(W - 130, 8, 122, 28, squadColors[state.squadState] ?? 2);
   text(W - 120, 22, `SQUAD: ${state.squadState}`, 7);
+  drawMinimap();
 
   if (rt.holdRequired > 0) {
     const pct = Math.min(1, rt.holdTimer / rt.holdRequired);
@@ -1529,6 +1744,7 @@ function drawHUD() {
     : 'WASD / center joystick (360°) | F fire | E interact | Space squad', 3);
 
   if (state.interactHint) text(W / 2 - 50, H - 50, state.interactHint, 6);
+  if (canRescueKwesi(state, rt)) text(W / 2 - 70, H - 66, 'Press E — rescue Kwesi', 3);
 
   if (state.missionComplete) {
     text(W / 2 - 80, H - 50, '[Continue] returns to mission select', 3);
@@ -1560,7 +1776,8 @@ function init() {
     fetch('./src/accra-freedom-grid.json').then((r) => r.json()).catch(() => null),
     fetch('./src/yaw-hub.json').then((r) => r.json()).catch(() => null),
     loadAssetManifest(),
-  ]).then(([missionsData, history, youthSquad, conversations, freedomGrid, yawHubData, assetManifest]) => {
+    loadLeonardoExportMap(),
+  ]).then(([missionsData, history, youthSquad, conversations, freedomGrid, yawHubData, assetManifest, leonardoExportMap]) => {
     state.missions = missionsData.missions;
     state.asareConfig = missionsData.asare;
     state.campaignPhases = missionsData.campaignPhases ?? [];
@@ -1570,11 +1787,17 @@ function init() {
     state.conversations = conversations;
     state.freedomGrid = freedomGrid;
     state.yawHubData = yawHubData;
+    state.leonardoExportMap = leonardoExportMap;
+    clearTextureCache();
     state.assetManifest = assetManifest;
     state.campaign = loadSave(missionsData.asare);
     document.title = missionsData.campaignTitle ?? history.title;
     playPrologueThenMenu();
   });
+
+  if ('serviceWorker' in navigator) {
+    navigator.serviceWorker.register('./sw.js').catch(() => {});
+  }
 
   setupInput();
   setStateRef(state);

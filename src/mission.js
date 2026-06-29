@@ -37,6 +37,11 @@ export function createMissionRuntime(mission, campaignSave) {
     kofiFirstShotDone: false,
     radioFired: false,
     dialogueFlags: {},
+    kwesiSpotTimer: 0,
+    kwesiExposeTimer: 0,
+    kwesiCaptured: false,
+    kwesiRescued: false,
+    kwesiRescueTimer: 0,
   };
 }
 

@@ -456,6 +456,15 @@ export function createMissionLandmarks(missionId, worldW, worldH, sampleHeight, 
         group.add(createLandmarkSign(650, 300, 'Crossroads', LANDMARK_COLORS.secretariat, sampleHeight, 52));
         group.add(createStructure(580, 280, 16, 80, sampleHeight));
       }
+      if (tex('veteran-adjetey')) {
+        group.add(createTexturedBillboard(120, 280, 10, 20, tex('veteran-adjetey'), sampleHeight));
+      }
+      if (tex('veteran-attipoe')) {
+        group.add(createTexturedBillboard(135, 310, 10, 20, tex('veteran-attipoe'), sampleHeight, 0.15));
+      }
+      if (tex('veteran-lamptey')) {
+        group.add(createTexturedBillboard(105, 320, 10, 20, tex('veteran-lamptey'), sampleHeight, -0.1));
+      }
       addBritishProps(group, tex, sampleHeight, 520, 260);
       if (tex('veteran-marcher')) {
         group.add(createTexturedBillboard(150, 300, 12, 22, tex('veteran-marcher'), sampleHeight));
@@ -465,6 +474,9 @@ export function createMissionLandmarks(missionId, worldW, worldH, sampleHeight, 
       }
     },
     11: () => {
+      if (tex('accra-aerial-map')) {
+        group.add(createTexturedBillboard(worldW * 0.5, worldH * 0.48, worldW * 0.75, worldH * 0.42, tex('accra-aerial-map'), sampleHeight, 0));
+      }
       if (tex('salaga-market')) {
         group.add(createTexturedBillboard(worldW * 0.45, worldH * 0.42, 95, 52, tex('salaga-market'), sampleHeight));
       } else {
@@ -512,7 +524,9 @@ export function createMissionLandmarks(missionId, worldW, worldH, sampleHeight, 
       }
     },
     14: () => {
-      if (tex('colonial-secretariat')) {
+      if (tex('planning-room')) {
+        group.add(createTexturedBillboard(450, 300, 100, 55, tex('planning-room'), sampleHeight));
+      } else if (tex('colonial-secretariat')) {
         group.add(createTexturedBillboard(450, 300, 105, 58, tex('colonial-secretariat'), sampleHeight));
       } else {
         group.add(createLandmarkSign(450, 300, 'Secretariat', LANDMARK_COLORS.secretariat, sampleHeight, 50));
@@ -526,7 +540,16 @@ export function createMissionLandmarks(missionId, worldW, worldH, sampleHeight, 
     },
     15: () => {
       group.add(createMotorYard(400, 300, sampleHeight, tex('ussher-workshop'), tex('mammy-truck')));
+      if (tex('ussher-garage')) {
+        group.add(createTexturedBillboard(400, 300, 110, 60, tex('ussher-garage'), sampleHeight));
+      }
       group.add(createLandmarkSign(400, 380, 'Ussher Yard', LANDMARK_COLORS.yard, sampleHeight, 42));
+      if (tex('kojo')) {
+        group.add(createTexturedBillboard(360, 320, 10, 20, tex('kojo'), sampleHeight));
+      }
+      if (tex('araba')) {
+        group.add(createTexturedBillboard(440, 320, 10, 20, tex('araba'), sampleHeight, 0.2));
+      }
       if (tex('bedford-oy-truck')) {
         group.add(createTexturedBillboard(150, 200, 48, 26, tex('bedford-oy-truck'), sampleHeight, 0.6));
       }
