@@ -2,7 +2,8 @@
 
 > **Canon:** [`STORYLINE.md`](STORYLINE.md)  
 > **Full roadmap:** [`ROADMAP.md`](ROADMAP.md)  
-> **Mission data:** [`src/missions.json`](src/missions.json)
+> **Mission data:** [`src/missions.json`](src/missions.json)  
+> **Mission targets M1–M12:** [`docs/narrative/mission-targets-m1-m12.md`](docs/narrative/mission-targets-m1-m12.md)
 
 Use this file to draft scenes, conversations, and the prologue before moving text into `src/conversations.json` or `missions.json`.
 
@@ -58,15 +59,29 @@ Use this file to draft scenes, conversations, and the prologue before moving tex
 | M9 | Column chant / Nkrumah radio | 🟩 | `triggers.radio` + `onWaypoint` |
 | M10 | Witness nodes ×3 | 🟩 | Imray / Creasy referenced |
 | M10 | Tribute cinematic | 🟩 | Overlay in `game.js` |
+| M1–M12 | Start / mid / victory / triggers | 🟩 | [`mission-targets-m1-m12.md`](docs/narrative/mission-targets-m1-m12.md) + `conversations.json` |
 | M1–M15 | Start / mid / victory dialogue | 🟩 | `conversations.json` → `missions` |
 | M15 / campaign | Watson Commission / 1957 epilogue | 🟩 | `epilogue` block |
 | Squad barks (veteran + Phase IV) | 🟩 | `barks` + combat triggers |
 
 ### Squad barks (combat — 🟩)
 
-- **Adjetey:** Orders, cover calls, protect civilians — `adjetey_contact`, `adjetey_cover`, `adjetey_orders`
-- **Attipoe:** Contact reports, route clear — `attipoe_clear`, `attipoe_contact`, `attipoe_escort`
-- **Lamptey:** Demolition ready, intel found — `lamptey_charges`, `lamptey_demolition`, `lamptey_intel`
+- **Adjetey:** Orders, cover calls, protect civilians — `adjetey_contact`, `adjetey_cover`, `adjetey_orders`, `adjetey_low_hp`, `adjetey_extraction_rush`, `adjetey_hold_pressure`
+- **Attipoe:** Contact reports, route clear — `attipoe_clear`, `attipoe_contact`, `attipoe_escort`, `attipoe_escort_endangered`, `attipoe_low_hp`
+- **Lamptey:** Demolition ready, intel found — `lamptey_charges`, `lamptey_demolition`, `lamptey_intel`, `lamptey_under_fire`
+- **Phase IV:** `kojo_low_hp`, `kojo_extraction_rush`, `araba_hold_pressure`, `kwesi_spotted`, `kofi_under_fire`
+- **Tension one-liners:** `tensionBarks` → ambush, extraction, handoff, holdZone (wired in `game.js`)
+
+### Narrative pacing (🟩)
+
+| Beat | Status | Data / trigger |
+|------|--------|----------------|
+| Character backstories (10 keys) | 🟩 | `conversations.json` → `characterBackstories` |
+| First-mission backstory unlock | 🟩 | M1 Adjetey, M2 Attipoe, M3 Lamptey, M5 Asare, M8 Nkrumah, M11–14 Phase IV |
+| Yaw hub snippet (first visit) | 🟩 | `getYawHubBackstorySnippet` + `backstoriesSeen` in save |
+| Mission `mid` tension lines | 🟩 | M1–M11 enriched — risk, deadlines, canon locks |
+| Combat barks under fire | 🟩 | `firstContact`, low HP ≤30%, extraction proximity, VIP hurt, hold zone 50% |
+| Sharp pause dialogue | 🟩 | Ambush/extraction/handoff → overlay + `tensionBarks` bark |
 
 ## Phase IV squad — command structure
 

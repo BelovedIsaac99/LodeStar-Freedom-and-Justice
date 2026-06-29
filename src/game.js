@@ -59,6 +59,12 @@ import {
   fireMissionTrigger,
   formatDialogueLines,
   getIntelDialogue,
+  getTriggerLines,
+  getMissionTarget,
+  queueCharacterBackstory,
+  getBackstoryKeyForMission,
+  getYawHubBackstorySnippet,
+  getTensionBark,
 } from './conversations.js';
 import { canCharacterFire } from './kwesi-mechanics.js';
 import { loadAssetManifest, loadLeonardoExportMap, loadMissionTextures, countLoadedTextures, getMissionSceneUrl, getStrategyMapUrl, getCoverArtUrl, clearTextureCache } from './asset-loader.js';
@@ -89,6 +95,7 @@ import {
   tickBark,
   checkKofiFirstShot,
   markKofiFirstShot,
+  countNearbyEnemies,
   RIOT_RALLY,
 } from './phase-iv-mechanics.js';
 import {
@@ -345,6 +352,80 @@ function getBark(key) {
   return state.conversations?.barks?.[key] ?? null;
 }
 
+function pickLowHpBark(unit) {
+  if (!unit) return null;
+  const byId = {
+    adjetey: 'adjetey_low_hp',
+    attipoe: 'attipoe_low_hp',
+    lamptey: 'lamptey_under_fire',
+    kojo: 'kojo_low_hp',
+    kofi: 'kofi_under_fire',
+  };
+  const key = byId[unit.id] ?? (unit === state.player ? 'adjetey_low_hp' : null);
+  return key ? getBark(key) : getBark('adjetey_low_hp');
+}
+
+function checkCombatBarks(rt, playerPos) {
+  if (!rt) return;
+  if (!rt.dialogueFlags) rt.dialogueFlags = {};
+  const flags = rt.dialogueFlags;
+  const m = rt.data;
+
+  if (!flags.lowHpBark) {
+    const units = [state.player, ...state.followers].filter((u) => u?.hp > 0);
+    const low = units.find((u) => u.hp / (u.maxHp ?? 100) <= 0.3);
+    if (low) {
+      flags.lowHpBark = true;
+      const bark = pickLowHpBark(low);
+      if (bark) showBark(state, bark, 3);
+    }
+  }
+
+  let ex = m.extraction;
+  if (ex?.requiresTrust && state.campaign.asareTrust < ex.requiresTrust) {
+    ex = m.altExtraction ?? ex;
+  }
+  if (ex && !flags.extractionNear) {
+    const d = dist(playerPos, ex);
+    if (d <= ex.radius + 90 && d > ex.radius) {
+      flags.extractionNear = true;
+      const barkKey = state.phaseIvActive ? 'kojo_extraction_rush' : 'adjetey_extraction_rush';
+      const bark = getBark(barkKey);
+      if (bark) showBark(state, bark, 3);
+    }
+  }
+
+  if (!flags.escortEndangered) {
+    const vip = state.escorts.find((e) => e.vip && !e.dead && e.hp / e.maxHp <= 0.4);
+    if (vip) {
+      flags.escortEndangered = true;
+      const bark = getBark('attipoe_escort_endangered');
+      if (bark) showBark(state, bark, 3.5);
+    }
+  }
+
+  if (m.holdZone && rt.holdActive && rt.holdRequired > 0 && !flags.holdPressure) {
+    if (rt.holdTimer >= rt.holdRequired * 0.5) {
+      flags.holdPressure = true;
+      const barkKey = state.phaseIvActive ? 'araba_hold_pressure' : 'adjetey_hold_pressure';
+      const bark = getBark(barkKey) ?? getTensionBark(state.conversations, 'holdZone');
+      if (bark) showBark(state, bark, 3);
+    }
+  }
+
+  if (state.phaseIvActive && !flags.kwesiSpotted) {
+    const kwesi = state.squadUnits?.find((u) => u.id === 'kwesi' && u.hp > 0);
+    if (kwesi) {
+      const kpos = { x: kwesi.body.position.x, y: kwesi.body.position.y };
+      if (countNearbyEnemies(kpos, state.enemies, 140) >= 1) {
+        flags.kwesiSpotted = true;
+        const bark = getBark('kwesi_spotted');
+        if (bark) showBark(state, bark, 3.5);
+      }
+    }
+  }
+}
+
 function playPrologueThenMenu() {
   const p = state.conversations?.prologue;
   if (state.campaign.prologueSeen || !p?.lines?.length) {
@@ -440,6 +521,11 @@ function openYawHub(opts = {}) {
     if (tag) tag.textContent = state.youthSquad.mentor.tagline;
   }
   renderYawHub();
+
+  const yawSnippet = getYawHubBackstorySnippet(state.conversations, state.campaign);
+  if (yawSnippet) {
+    showOverlay(yawSnippet.title, yawSnippet.text, () => {});
+  }
 }
 
 function renderYawHub() {
@@ -731,6 +817,15 @@ function showMissionIntro(mission) {
         'start',
         `Mission ${mission.id}`
       );
+      const backKey = getBackstoryKeyForMission(mission.id);
+      if (backKey) {
+        queueCharacterBackstory(
+          state.missionRuntime,
+          state.conversations,
+          state.campaign,
+          backKey
+        );
+      }
       if (mission.woundAttipoe) {
         fireMissionTrigger(state.missionRuntime, state.conversations, mission.id, 'onWoundAttipoe', 'Wounded');
       }
@@ -867,12 +962,20 @@ function tryInteract() {
   if (result.type === 'witness') {
     sfxIntel();
     state.paused = true;
-    showOverlay('Witness Account', result.node.text, () => {
-      if (rt.data.id === 7) {
+    const mId = rt.data.id;
+    const witnessKey = mId === 10 ? `witness${rt.witnessesDone}` : null;
+    const witnessLines = witnessKey
+      ? getTriggerLines(state.conversations, mId, witnessKey)
+      : null;
+    const overlayText = witnessLines?.length
+      ? formatDialogueLines(witnessLines, 'Witness Account')?.text
+      : result.node.text;
+    showOverlay('Witness Account', overlayText ?? result.node.text, () => {
+      if (mId === 7) {
         rt.asareWitnessed = true;
         applyAsareEvent(rt, state.campaign, 'witness', state.conversations);
       }
-      if (rt.data.id === 10) {
+      if (mId === 10) {
         if (rt.witnessesDone >= 2) applyAsareEvent(rt, state.campaign, 'witness', state.conversations);
       }
     });
@@ -1296,7 +1399,18 @@ function updatePlayer(dt) {
       state.interactHint = '';
       showOverlay('Demolition', `${r.node.label} — charges planted.`, () => {});
       if (state.missionRuntime.data.id === 3 && state.missionRuntime.demolitionDone === 1) {
-        fireMissionTrigger(state.missionRuntime, state.conversations, 3, 'onFirstDemolition', 'Demolition');
+        if (fireMissionTrigger(state.missionRuntime, state.conversations, 3, 'onFirstDemolition', 'Demolition')) {
+          state.paused = true;
+          const demoMsg = popMessage(state.missionRuntime);
+          if (demoMsg) showOverlay(demoMsg.title, demoMsg.text, () => {});
+        }
+      }
+      if (state.missionRuntime.data.id === 12 && state.missionRuntime.demolitionDone === 1) {
+        if (fireMissionTrigger(state.missionRuntime, state.conversations, 12, 'onFirstDemolition', 'Demolition')) {
+          state.paused = true;
+          const demoMsg = popMessage(state.missionRuntime);
+          if (demoMsg) showOverlay(demoMsg.title, demoMsg.text, () => {});
+        }
       }
       if (!state.phaseIvActive) {
         const bark = getBark('lamptey_demolition');
@@ -1389,6 +1503,8 @@ function updateMissionLogic(dt) {
   if (checkAmbush(rt, playerPos)) {
     applyAsareEvent(rt, state.campaign, 'ambush', state.conversations);
     queueMissionDialogue(rt, state.conversations, m.id, 'mid', 'Ambush');
+    const tension = getTensionBark(state.conversations, 'ambush');
+    if (tension) showBark(state, tension, 3);
     state.paused = true;
     const ambushMsg = popMessage(rt);
     if (ambushMsg) showOverlay(ambushMsg.title, ambushMsg.text, () => {});
@@ -1401,7 +1517,10 @@ function updateMissionLogic(dt) {
       zone = m.altExtraction ?? zone;
     }
     if (zone && inZone(playerPos, zone)) {
-      fireMissionTrigger(rt, state.conversations, m.id, 'onExtraction', 'Safe House');
+      if (fireMissionTrigger(rt, state.conversations, m.id, 'onExtraction', 'Safe House')) {
+        const tension = getTensionBark(state.conversations, 'extraction');
+        if (tension) showBark(state, tension, 3);
+      }
     }
   }
 
@@ -1424,6 +1543,14 @@ function updateMissionLogic(dt) {
     }
   });
 
+  if (m.holdZone && rt.holdActive && !rt.dialogueFlags?.onHoldStart) {
+    if (fireMissionTrigger(rt, state.conversations, m.id, 'onHoldStart', 'Hold Position')) {
+      state.paused = true;
+      const holdMsg = popMessage(rt);
+      if (holdMsg) showOverlay(holdMsg.title, holdMsg.text, () => {});
+    }
+  }
+
   advanceWaypoints(rt, playerPos, m, state.campaign, state.conversations);
 
   const radio = m.radioEvent;
@@ -1445,7 +1572,10 @@ function updateMissionLogic(dt) {
     if (dist(playerPos, m.handoff) < 40) {
       rt.handoffDone = true;
       if (m.asareEvent?.trustDelta) adjustAsareTrust(state.campaign, m.asareEvent.trustDelta);
-      fireMissionTrigger(rt, state.conversations, m.id, 'onHandoff', 'Handoff');
+      if (fireMissionTrigger(rt, state.conversations, m.id, 'onHandoff', 'Handoff')) {
+        const tension = getTensionBark(state.conversations, 'handoff');
+        if (tension) showBark(state, tension, 3);
+      }
       const msg = popMessage(rt);
       if (msg) {
         state.paused = true;
@@ -1499,6 +1629,8 @@ function updateMissionLogic(dt) {
   }
   if (kwesiEvt.bark) state.kwesiStatusHint = kwesiEvt.bark;
   else if (!rt.kwesiCaptured) state.kwesiStatusHint = '';
+
+  checkCombatBarks(rt, playerPos);
 
   if (state.player.hp <= 0) {
     if (handleKwesiHit(state, state.player, rt)) {
@@ -1692,26 +1824,30 @@ function drawHUD() {
   const rt = state.missionRuntime;
   if (!rt) return;
 
-  rectfill(8, 8, 240, 62, 0);
+  rectfill(8, 8, 240, 74, 0);
   const phase = getMissionPhase(state.campaignPhases, rt.data.id);
   if (phase) text(12, 14, phase.label, 6);
   text(12, 26, `M${rt.data.id}: ${rt.data.title}`, 7);
-  text(12, 40, getObjectiveSummary(rt), 3);
-  text(12, 52, `Intel ${rt.intelCollected}  KIA ${rt.enemiesKilled}${rt.loadedAssetCount ? `  Art ${rt.loadedAssetCount}` : ''}`, 7);
+  const missionTarget = getMissionTarget(state.conversations, rt.data.id);
+  if (missionTarget) text(12, 38, missionTarget.slice(0, 38), 6);
+  text(12, missionTarget ? 50 : 40, getObjectiveSummary(rt), 3);
+  text(12, missionTarget ? 62 : 52, `Intel ${rt.intelCollected}  KIA ${rt.enemiesKilled}${rt.loadedAssetCount ? `  Art ${rt.loadedAssetCount}` : ''}`, 7);
 
-  rectfill(8, 72, 120, 20, 0);
+  const hudRow2 = missionTarget ? 86 : 72;
+  const hudRow2Text = hudRow2 + 12;
+  rectfill(8, hudRow2, 120, 20, 0);
   if (state.phaseIvActive) {
-    text(12, 84, `Cell: ${state.player.name} (1-4 switch)`, 3);
-    if (state.player.id === 'kwesi') text(130, 84, 'NO COMBAT', 9);
-    if (state.player.id === 'kojo') text(130, 84, 'Tab orders', 6);
-    if (state.player.id === 'kwesi') text(200, 84, state.wiretapCooldown > 0 ? 'Q wait' : 'Q wiretap', 6);
+    text(12, hudRow2Text, `Cell: ${state.player.name} (1-4 switch)`, 3);
+    if (state.player.id === 'kwesi') text(130, hudRow2Text, 'NO COMBAT', 9);
+    if (state.player.id === 'kojo') text(130, hudRow2Text, 'Tab orders', 6);
+    if (state.player.id === 'kwesi') text(200, hudRow2Text, state.wiretapCooldown > 0 ? 'Q wait' : 'Q wiretap', 6);
     if (rt.kwesiCaptured && !rt.kwesiRescued) {
-      text(12, 98, `RESCUE KWESI ${Math.ceil(rt.kwesiRescueTimer)}s`, 9);
+      text(12, hudRow2Text + 14, `RESCUE KWESI ${Math.ceil(rt.kwesiRescueTimer)}s`, 9);
     } else if (state.kwesiStatusHint) {
-      text(12, 98, state.kwesiStatusHint.slice(0, 42), 8);
+      text(12, hudRow2Text + 14, state.kwesiStatusHint.slice(0, 42), 8);
     }
   } else {
-    text(12, 84, `Asare Trust: ${state.campaign.asareTrust}`, 3);
+    text(12, hudRow2Text, `Asare Trust: ${state.campaign.asareTrust}`, 3);
   }
 
   if (rt.riotRallyTimer > 0) {

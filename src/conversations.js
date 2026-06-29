@@ -3,6 +3,22 @@
  */
 
 import { showMissionMessage } from './mission.js';
+import { markBackstorySeen } from './campaign.js';
+
+/** First mission appearance unlocks a one-time character backstory overlay */
+export const BACKSTORY_MISSION_UNLOCKS = {
+  1: 'adjetey',
+  2: 'attipoe',
+  3: 'lamptey',
+  5: 'kofi_asare',
+  8: 'nkrumah',
+  11: 'kojo',
+  12: 'araba',
+  13: 'kofi_rookie',
+  14: 'kwesi',
+};
+
+export const BACKSTORY_HUB_KEY = 'yaw';
 
 export function getScenesForMission(conversations, mission, campaignSave) {
   if (!conversations?.phaseIvOrigin || mission.id !== 11) return [];
@@ -49,6 +65,10 @@ export function getMissionLines(conversations, missionId, phase) {
   const block = conversations?.missions?.[String(missionId)];
   if (!block) return null;
   return block[phase] ?? null;
+}
+
+export function getMissionTarget(conversations, missionId) {
+  return conversations?.missions?.[String(missionId)]?.missionTarget ?? null;
 }
 
 export function getTriggerLines(conversations, missionId, triggerKey) {
@@ -147,4 +167,39 @@ export function fireMissionTrigger(runtime, conversations, missionId, triggerKey
   if (runtime.dialogueFlags[triggerKey]) return false;
   runtime.dialogueFlags[triggerKey] = true;
   return queueTriggerDialogue(runtime, conversations, missionId, triggerKey, title);
+}
+
+export function getCharacterBackstory(conversations, characterKey) {
+  return conversations?.characterBackstories?.[characterKey] ?? null;
+}
+
+export function getBackstoryKeyForMission(missionId) {
+  return BACKSTORY_MISSION_UNLOCKS[missionId] ?? null;
+}
+
+export function hasBackstorySeen(campaignSave, characterKey) {
+  return (campaignSave?.backstoriesSeen ?? []).includes(characterKey);
+}
+
+export function queueCharacterBackstory(runtime, conversations, campaignSave, characterKey) {
+  if (!characterKey || hasBackstorySeen(campaignSave, characterKey)) return false;
+  const story = getCharacterBackstory(conversations, characterKey);
+  if (!story?.lines?.length) return false;
+  markBackstorySeen(campaignSave, characterKey);
+  return pushDialogue(runtime, formatDialogueLines(story.lines, story.title ?? 'Backstory'));
+}
+
+export function getYawHubBackstorySnippet(conversations, campaignSave) {
+  if (hasBackstorySeen(campaignSave, BACKSTORY_HUB_KEY)) return null;
+  const story = getCharacterBackstory(conversations, BACKSTORY_HUB_KEY);
+  if (!story?.lines?.length) return null;
+  markBackstorySeen(campaignSave, BACKSTORY_HUB_KEY);
+  const snippet = story.lines.slice(0, 2);
+  return formatDialogueLines(snippet, story.title ?? 'Yaw Mensah');
+}
+
+export function getTensionBark(conversations, eventKey) {
+  const lines = conversations?.tensionBarks?.[eventKey];
+  if (!lines?.length) return null;
+  return lines[Math.floor(Math.random() * lines.length)];
 }

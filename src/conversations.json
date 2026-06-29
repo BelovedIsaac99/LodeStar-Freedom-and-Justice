@@ -37,7 +37,129 @@
     "lamptey_ready": "Lamptey: \"Demolition kit ready. Point me at steel, not stalls.\"",
     "araba_stall": "Araba: \"AWAM shutters — not Auntie Esi's fish!\"",
     "yaw_rules": "Yaw: \"Hit the monopoly — not the market women.\"",
-    "kwesi_document": "Kwesi: \"Witness this — file it before they file us.\""
+    "kwesi_document": "Kwesi: \"Witness this — file it before they file us.\"",
+    "adjetey_low_hp": "Adjetey: \"Still standing — so is the march. On me!\"",
+    "adjetey_under_fire": "Adjetey: \"They want a riot — give them discipline!\"",
+    "adjetey_extraction_rush": "Adjetey: \"Extraction green — move before the cordon seals!\"",
+    "adjetey_hold_pressure": "Adjetey: \"Hold the square — the petition doesn't read itself!\"",
+    "attipoe_low_hp": "Attipoe: \"Scratch on the arm — route still open!\"",
+    "attipoe_escort_endangered": "Attipoe: \"VIP taking fire — cart between us and the lane!\"",
+    "lamptey_under_fire": "Lamptey: \"Heads down — charges stay dry!\"",
+    "kojo_low_hp": "Kojo: \"Bleeding's fine — the alley isn't. Move!\"",
+    "kojo_extraction_rush": "Kojo: \"Exit's lit — last sprint, no heroics!\"",
+    "araba_hold_pressure": "Araba: \"They want us gone — we plant our feet here!\"",
+    "kwesi_spotted": "Kwesi: \"Constable line of sight — I need smoke or shadow!\"",
+    "kofi_under_fire": "Kofi: \"They're shooting back — I'm still shooting!\""
+  },
+  "tensionBarks": {
+    "ambush": [
+      "Adjetey: \"Ambush — cart first, questions later!\"",
+      "Attipoe: \"Contact east — they're already on the radio!\""
+    ],
+    "extraction": [
+      "Adjetey: \"Safe house in sight — thirty seconds of honest running.\"",
+      "Kojo: \"Cordon's tightening — through the cut, now!\""
+    ],
+    "handoff": [
+      "Lamptey: \"Satchel changes hands — eyes on the rooftops.\"",
+      "Kofi Asare: \"One breath, Sergeant — then I'm gone.\""
+    ],
+    "holdZone": [
+      "Adjetey: \"Wave incoming — hold the line!\"",
+      "Araba: \"Let them come — we owe the martyrs a witness!\""
+    ]
+  },
+  "characterBackstories": {
+    "adjetey": {
+      "title": "Sergeant Adjetey",
+      "lines": [
+        { "speaker": "Sergeant Adjetey", "text": "Burma took my left knee and my patience for colonial arithmetic." },
+        { "speaker": "Sergeant Adjetey", "text": "They promised three million pounds to men who dug graves in Italy. The Treasury paid excuses." },
+        { "speaker": "Sergeant Adjetey", "text": "Nkrumah says ink before iron. I say ledgers before lies — then we march unarmed to Christiansborg." },
+        { "speaker": "Sergeant Adjetey", "text": "Attipoe runs hot. Lamptey runs quiet. I run the squad home alive long enough to be heard." }
+      ]
+    },
+    "attipoe": {
+      "title": "Corporal Attipoe",
+      "lines": [
+        { "speaker": "Corporal Attipoe", "text": "I was fastest in the training yard — fastest into the bush, fastest out of Sicily." },
+        { "speaker": "Corporal Attipoe", "text": "Home they called us heroes until we asked for our pay. Then we were 'agitators.'" },
+        { "speaker": "Corporal Attipoe", "text": "Makola taught me betrayal smells like wet canvas. I still scout first — someone has to see the trap." },
+        { "speaker": "Corporal Attipoe", "text": "Twenty-eighth of February I'll be at Adjetey's shoulder. Unarmed. Visible. Not afraid." }
+      ]
+    },
+    "lamptey": {
+      "title": "Private Odartey Lamptey",
+      "lines": [
+        { "speaker": "Private Odartey Lamptey", "text": "Demolition school in Egypt — they needed Gold Coast hands for steel that wouldn't bend." },
+        { "speaker": "Private Odartey Lamptey", "text": "I don't talk much because fuses don't care about speeches." },
+        { "speaker": "Private Odartey Lamptey", "text": "Radio Hill isn't revenge — it's so their troop maps lie when we march." },
+        { "speaker": "Private Odartey Lamptey", "text": "The petition is paper. My job is making sure the Castle hears it over their own static." }
+      ]
+    },
+    "kofi_asare": {
+      "title": "Kofi Asare — The Clerk",
+      "lines": [
+        { "speaker": "Kofi Asare", "text": "I file in English. I dream in Twi. The Secretariat thinks those are different languages." },
+        { "speaker": "Kofi Asare", "text": "Every false route I feed them buys a true marcher one more hour." },
+        { "speaker": "Kofi Asare", "text": "They'll call me traitor in the market and asset at the Castle. Both are costumes." },
+        { "speaker": "Kofi Asare", "text": "When they arrest me at dawn, the petition copy must already be ink, not hope." }
+      ]
+    },
+    "nkrumah": {
+      "title": "Dr. Kwame Nkrumah — Briefing Voice",
+      "lines": [
+        { "speaker": "Dr. Kwame Nkrumah", "text": "Self-government is not a gift from London — it is a demand we document." },
+        { "speaker": "Dr. Kwame Nkrumah", "text": "Bonne's boycott starved their shops. Our march will starve their excuses." },
+        { "speaker": "Dr. Kwame Nkrumah", "text": "If they answer petition with powder, let witnesses survive to testify." },
+        { "speaker": "Dr. Kwame Nkrumah", "text": "Discipline is your weapon. The Crossroads will judge who struck first." }
+      ]
+    },
+    "kojo": {
+      "title": "Kojo — Cell Leader",
+      "lines": [
+        { "speaker": "Kojo", "text": "I ran messages for the Union before I ran from constables — same legs, different fear." },
+        { "speaker": "Kojo", "text": "I counted the shots at Christiansborg. Three martyrs. One country breaking." },
+        { "speaker": "Kojo", "text": "Bonne cracked the shops. Imray cracked the people. I crack routes — not random rage." },
+        { "speaker": "Kojo", "text": "Araba breaks doors. Kwesi breaks files. I break their timing." }
+      ]
+    },
+    "araba": {
+      "title": "Araba — Second Command",
+      "lines": [
+        { "speaker": "Araba", "text": "AWAM raised prices while veterans bled. Bonne told us close the stalls — we did." },
+        { "speaker": "Araba", "text": "My cousin Kwame marched unarmed. A second volley took his leg, not his life — this time." },
+        { "speaker": "Araba", "text": "I don't whisper politics. I stand where the crowd needs a spine." },
+        { "speaker": "Araba", "text": "When Kojo's trapped, I am the hammer. When innocents stall, I am the shield." }
+      ]
+    },
+    "kofi_rookie": {
+      "title": "Kofi — Rookie Skirmisher",
+      "lines": [
+        { "speaker": "Kofi", "text": "Yesterday I carried loads at Kaneshie. Today I carry a rifle I barely trust." },
+        { "speaker": "Kofi", "text": "I stood frozen at the Crossroads while Adjetey fell. I won't stand still again." },
+        { "speaker": "Kofi", "text": "Not Kofi Asare at the Secretariat — names matter when constables hunt clerks." },
+        { "speaker": "Kofi", "text": "Yaw says hit AWAM, not Auntie Esi. Kojo says learn before you lead. I'm learning fast." }
+      ]
+    },
+    "kwesi": {
+      "title": "Kwesi — Secretariat Clerk",
+      "lines": [
+        { "speaker": "Kwesi", "text": "Private Odartey Lamptey was my father's cousin. I watched him fall on red earth I still see." },
+        { "speaker": "Kwesi", "text": "I don't carry a gun — I carry manifests they think are boring." },
+        { "speaker": "Kwesi", "text": "Imray signed suppression orders in my office. I photocopied them for Accra." },
+        { "speaker": "Kwesi", "text": "When they catch me, the Watson Commission must read what I filed — not what they burned." }
+      ]
+    },
+    "yaw": {
+      "title": "Yaw Mensah — Mentor",
+      "lines": [
+        { "speaker": "Yaw", "text": "My grandfather marched on the twenty-eighth — unarmed, like Adjetey. A volley took his hip, not his memory." },
+        { "speaker": "Yaw", "text": "I run Ussher Yard, not front lines. Tools, routes, and rules keep children from becoming martyrs early." },
+        { "speaker": "Yaw", "text": "Hit AWAM stores. Protect Auntie Esi's fish. That was Bonne's boycott — that's still mine." },
+        { "speaker": "Yaw", "text": "Four of you go out at dusk. Four come back — or don't waste my bolts on a funeral." }
+      ]
+    }
   },
   "phaseIvOrigin": {
     "id": "phase_iv_band_together",
@@ -257,35 +379,66 @@
   },
   "missions": {
     "1": {
+      "missionTarget": "Collect the ledgers — prove the Crown owes veterans.",
       "start": [
         { "speaker": "Sergeant Adjetey", "text": "Kingsway Depot before dawn. Lamptey — side gate. Attipoe — rear cover." },
         { "speaker": "Dr. Kwame Nkrumah", "text": "Three million pounds the Treasury denies. Bring me the ledgers before they burn them." },
-        { "speaker": "Corporal Attipoe", "text": "Copy that. We move quiet — constables rotate at the hour mark." }
+        { "speaker": "Corporal Attipoe", "text": "Copy that. We move quiet — constables rotate at the hour mark." },
+        { "speaker": "Private Odartey Lamptey", "text": "If they torch the records, we march on memory alone. Not today." },
+        { "speaker": "Sergeant Adjetey", "text": "Three ledgers. Extraction east. Ink before iron — always." }
+      ],
+      "mid": [
+        { "speaker": "Corporal Attipoe", "text": "Guard turning the corner — ten seconds, Sergeant!" },
+        { "speaker": "Private Odartey Lamptey", "text": "Second ledger under the floorboard. They almost burned it." }
       ],
       "victory": [
         { "speaker": "Private Odartey Lamptey", "text": "Every page accounted for. They can't say we weren't owed." },
-        { "speaker": "Sergeant Adjetey", "text": "Evidence secured. The debt is public now — whether Creasy reads it or not." }
+        { "speaker": "Sergeant Adjetey", "text": "Evidence secured. The debt is public now — whether Creasy reads it or not." },
+        { "speaker": "Dr. Kwame Nkrumah", "text": "Accounts, not charity. The movement has its first witness." }
       ],
       "triggers": {
         "asareStart": [
           { "speaker": "Kofi Asare", "text": "I clerk nights at Kingsway. Quick — before the guard returns." },
           { "speaker": "Kofi Asare", "text": "Side gate is open. Trust me on this one, Sergeant." }
-        ]
+        ],
+        "intel": {
+          "Ledger A": [
+            { "speaker": "Private Odartey Lamptey", "text": "Three million pounds owed — the Governor's office denies the figure." },
+            { "speaker": "Sergeant Adjetey", "text": "They denied it in public. The ledger doesn't lie." }
+          ],
+          "Ledger B": [
+            { "speaker": "Corporal Attipoe", "text": "Two thousand Union members in Accra alone. That's an army of witnesses." },
+            { "speaker": "Private Odartey Lamptey", "text": "File it. Every name is a vote they can't count." }
+          ],
+          "Ledger C": [
+            { "speaker": "Private Odartey Lamptey", "text": "Colonial Secretary orders all benefit records classified by month's end." },
+            { "speaker": "Sergeant Adjetey", "text": "They're burning the trail. We beat them to the ash." }
+          ]
+        }
       }
     },
     "2": {
+      "missionTarget": "Escort organizers to the safe house — protect the petition draft.",
       "start": [
         { "speaker": "Sergeant Adjetey", "text": "Kaneshie awning — UGCC organizers under the market cloth. We escort, we don't preach." },
         { "speaker": "Corporal Attipoe", "text": "Constabulary has two posts on the north lane. We cut east if pressed." },
-        { "speaker": "Organizer", "text": "The petition draft is in the satchel. If we fall, the words must not." }
+        { "speaker": "Organizer", "text": "The petition draft is in the satchel. If we fall, the words must not." },
+        { "speaker": "Private Odartey Lamptey", "text": "Market women know our faces. Keep the VIPs between us and the road." },
+        { "speaker": "Sergeant Adjetey", "text": "Four souls minimum reach the safe house. No rifles — only cover." }
+      ],
+      "mid": [
+        { "speaker": "Corporal Attipoe", "text": "North post is stirring — keep the awning between us and their line of sight." },
+        { "speaker": "Organizer", "text": "Bonne's boycott closed half these stalls. They still send constables after words." }
       ],
       "victory": [
         { "speaker": "Organizer", "text": "You brought us through the market alive. Nkrumah will hear of this." },
-        { "speaker": "Sergeant Adjetey", "text": "Safe house secured. The petition lives another day." }
+        { "speaker": "Sergeant Adjetey", "text": "Safe house secured. The petition lives another day." },
+        { "speaker": "Dr. Kwame Nkrumah", "text": "Discipline in the market is discipline on the march. Well done." }
       ],
       "triggers": {
         "asareStart": [
-          { "speaker": "Kofi Asare", "text": "Forged curfew pass — show this if stopped. Trust me." }
+          { "speaker": "Kofi Asare", "text": "Forged curfew pass — show this if stopped. Trust me." },
+          { "speaker": "Kofi Asare", "text": "The north lane is hot tonight. East cut is clear for twenty minutes." }
         ],
         "onExtraction": [
           { "speaker": "UGCC Organizer", "text": "We owe you more than thanks. Self-government is not a slogan anymore — it's a schedule." },
@@ -294,11 +447,13 @@
       }
     },
     "3": {
+      "missionTarget": "Blind colonial radio — plant both masts and hold the fuse.",
       "start": [
         { "speaker": "Private Odartey Lamptey", "text": "Two masts, two charges. Alpha first — Beta from the blind side." },
         { "speaker": "Corporal Attipoe", "text": "Hold the arming zone or the fuse dies with us." },
         { "speaker": "Sergeant Adjetey", "text": "Lamptey — how long on the fuse?" },
-        { "speaker": "Private Odartey Lamptey", "text": "Fifteen seconds if I do my job. Don't ask me to do it twice." }
+        { "speaker": "Private Odartey Lamptey", "text": "Fifteen seconds if I do my job. Don't ask me to do it twice." },
+        { "speaker": "Sergeant Adjetey", "text": "Steel falls, we run. No heroics on the ridge." }
       ],
       "mid": [
         { "speaker": "Private Odartey Lamptey", "text": "Alpha's wired. Attipoe — when Beta's set, we run together." },
@@ -307,37 +462,65 @@
       ],
       "victory": [
         { "speaker": "Sergeant Adjetey", "text": "Radio Hill silent. Colonial troop movements go blind tomorrow." },
-        { "speaker": "Private Odartey Lamptey", "text": "Both masts down. They march deaf into the twenty-eighth." }
+        { "speaker": "Private Odartey Lamptey", "text": "Both masts down. They march deaf into the twenty-eighth." },
+        { "speaker": "Corporal Attipoe", "text": "Ridge clear. Extraction west — move before they count the wreckage." }
       ],
       "triggers": {
         "asareStart": [
-          { "speaker": "Kofi Asare", "text": "Patrol shift at zero-four-hundred — note on your crate. Accurate intel." }
+          { "speaker": "Kofi Asare", "text": "Patrol shift at zero-four-hundred — note on your crate. Accurate intel." },
+          { "speaker": "Kofi Asare", "text": "South patrol loops late. You have a window — use it." }
         ],
         "onFirstDemolition": [
           { "speaker": "Private Odartey Lamptey", "text": "First mast wired. One more — then we run like the hill is on fire." },
           { "speaker": "Corporal Attipoe", "text": "Because it will be. Move." }
+        ],
+        "onHoldStart": [
+          { "speaker": "Sergeant Adjetey", "text": "Hold this ground — Lamptey arms the fuse. Nobody crosses the circle." },
+          { "speaker": "Corporal Attipoe", "text": "DEFEND formation. Fifteen seconds is a lifetime under fire." }
         ]
       }
     },
     "4": {
+      "missionTarget": "Clear James Town checkpoint — fish crates carry the pamphlets.",
       "start": [
         { "speaker": "Sergeant Adjetey", "text": "James Town checkpoint — fish crates, not rifles. Clear one hour for the pamphlets." },
-        { "speaker": "Corporal Attipoe", "text": "Fishermen are waiting on the beach road. Don't spook the cart." }
+        { "speaker": "Corporal Attipoe", "text": "Fishermen are waiting on the beach road. Don't spook the cart." },
+        { "speaker": "Private Odartey Lamptey", "text": "Pamphlets under the ice. Constables search for guns — we give them fish." },
+        { "speaker": "Sergeant Adjetey", "text": "Three guards down, cart through, coast road open. One hour." }
+      ],
+      "mid": [
+        { "speaker": "Fisherman", "text": "Patrol boat on the horizon — you have minutes, not an hour!" },
+        { "speaker": "Sergeant Adjetey", "text": "Crates through now. Bonne's boycott taught them to read — let's feed them pages." }
       ],
       "victory": [
         { "speaker": "Fisherman", "text": "Crates through. The coast will read what the Castle won't." },
-        { "speaker": "Sergeant Adjetey", "text": "Checkpoint open. Pamphlets flow — quietly." }
+        { "speaker": "Sergeant Adjetey", "text": "Checkpoint open. Pamphlets flow — quietly." },
+        { "speaker": "Private Odartey Lamptey", "text": "Sealed orders confirm it — peaceful march to Christiansborg. File that." }
       ],
       "triggers": {
         "asareStart": [
-          { "speaker": "Kofi Asare", "text": "Special patrol tonight — so they say. It never arrives. Was I wrong, Sergeant?" }
-        ]
+          { "speaker": "Kofi Asare", "text": "Special patrol tonight — so they say. It never arrives. Was I wrong, Sergeant?" },
+          { "speaker": "Sergeant Adjetey", "text": "…We'll see who's wrong when the crates are through." }
+        ],
+        "intel": {
+          "Sealed Orders": [
+            { "speaker": "Private Odartey Lamptey", "text": "Petition will be presented at Christiansborg — peaceful march, unarmed." },
+            { "speaker": "Sergeant Adjetey", "text": "Even their sealed orders admit we're not rebels. Remember that at the gate." }
+          ]
+        }
       }
     },
     "5": {
+      "missionTarget": "Capture the courier alive — read what Creasy signed.",
       "start": [
         { "speaker": "Sergeant Adjetey", "text": "Ring Road intercept. Wound the courier — seal intact. We need what Creasy signed." },
-        { "speaker": "Corporal Attipoe", "text": "One shot to the leg if you must. Not the chest." }
+        { "speaker": "Corporal Attipoe", "text": "One shot to the leg if you must. Not the chest." },
+        { "speaker": "Private Odartey Lamptey", "text": "Dead courier, dead intelligence. We need his satchel breathing." },
+        { "speaker": "Sergeant Adjetey", "text": "Capture, deliver to Asare at the handoff. Watch what he does with the pages." }
+      ],
+      "mid": [
+        { "speaker": "Corporal Attipoe", "text": "Courier's bleeding but running — leg shot only, Sergeant!" },
+        { "speaker": "Sergeant Adjetey", "text": "Satchel intact or we learn nothing. Corner him at the wall." }
       ],
       "victory": [
         { "speaker": "Sergeant Adjetey", "text": "Orders intercepted — but one page is missing. Asare's eyes didn't meet mine." },
@@ -346,14 +529,24 @@
       "triggers": {
         "onHandoff": [
           { "speaker": "Kofi Asare", "text": "Satchel received. One page is missing — you noticed." },
-          { "speaker": "Kofi Asare", "text": "…Not everything I copy goes to the same desk. Not yet." }
-        ]
+          { "speaker": "Kofi Asare", "text": "…Not everything I copy goes to the same desk. Not yet." },
+          { "speaker": "Sergeant Adjetey", "text": "Trust frays on missing ink. I file that too." }
+        ],
+        "intel": {
+          "Partial Orders": [
+            { "speaker": "Private Odartey Lamptey", "text": "…maintain order by all necessary means… rest redacted — page missing." },
+            { "speaker": "Sergeant Adjetey", "text": "Necessary means. That's the word that keeps me awake." }
+          ]
+        }
       }
     },
     "6": {
+      "missionTarget": "Survive Makola ambush — save the press cart and Attipoe.",
       "start": [
         { "speaker": "Sergeant Adjetey", "text": "Makola corridor — Asare's route. Move the press plates before curfew." },
-        { "speaker": "Corporal Attipoe", "text": "Cart stays between us. Lamptey — rear guard." }
+        { "speaker": "Corporal Attipoe", "text": "Cart stays between us. Lamptey — rear guard." },
+        { "speaker": "Kofi Asare", "text": "East corridor is marked safe on my map. Move now — curfew in forty minutes." },
+        { "speaker": "Private Odartey Lamptey", "text": "Plates are heavy. So is trust. We move anyway." }
       ],
       "mid": [
         { "speaker": "Colonial Radio", "text": "Wrong corridor — false corridor. Intercept at Makola east." },
@@ -362,7 +555,8 @@
       ],
       "victory": [
         { "speaker": "Corporal Attipoe", "text": "Still breathing. Barely. Cart saved." },
-        { "speaker": "Sergeant Adjetey", "text": "Asare's name burns in my memory — betrayal or misdirection, we'll know." }
+        { "speaker": "Sergeant Adjetey", "text": "Asare's name burns in my memory — betrayal or misdirection, we'll know." },
+        { "speaker": "Private Odartey Lamptey", "text": "March date's on the intel we pulled — twenty-eighth, Christ Church. Plates live." }
       ],
       "triggers": {
         "ambush": [
@@ -377,9 +571,16 @@
       }
     },
     "7": {
+      "missionTarget": "Shadow Asare — witness whose desk he truly serves.",
       "start": [
         { "speaker": "Sergeant Adjetey", "text": "I no longer know whose desk Asare serves. Shadow him — don't alert the Castle gate." },
-        { "speaker": "Private Odartey Lamptey", "text": "Stay within a hundred twenty paces. Close enough to see, far enough to deny." }
+        { "speaker": "Private Odartey Lamptey", "text": "Stay within a hundred twenty paces. Close enough to see, far enough to deny." },
+        { "speaker": "Corporal Attipoe", "text": "If he's colonial, we end it at the gate. If he's ours, we march blind no more." },
+        { "speaker": "Sergeant Adjetey", "text": "Witness the exchange. Press E when you see the handoff. No shots unless they fire first." }
+      ],
+      "mid": [
+        { "speaker": "Private Odartey Lamptey", "text": "He's burning a map — real or decoy?" },
+        { "speaker": "Sergeant Adjetey", "text": "Don't break cover. If he's Gold Coast, he'll prove it when it costs him." }
       ],
       "victory": [
         { "speaker": "Dr. Kwame Nkrumah", "text": "Some lies protect true marchers. Asare was always Gold Coast." },
@@ -394,17 +595,31 @@
       }
     },
     "8": {
+      "missionTarget": "Hold Christ Church — hear the petition read aloud.",
       "start": [
         { "speaker": "Sergeant Adjetey", "text": "Christ Church — dawn. Thousands gather. Hold the square until the petition is read." },
-        { "speaker": "Corporal Attipoe", "text": "Speakers on the steps. We protect — we do not provoke." }
+        { "speaker": "Corporal Attipoe", "text": "Speakers on the steps. We protect — we do not provoke." },
+        { "speaker": "Dr. Kwame Nkrumah", "text": "Two thousand unarmed veterans. Let the world see discipline before it sees iron." },
+        { "speaker": "Private Odartey Lamptey", "text": "Forty-five seconds on the steps. Waves will come — hold the square." },
+        { "speaker": "Sergeant Adjetey", "text": "Ink before iron. Protect the speakers. Let them read every word." }
+      ],
+      "mid": [
+        { "speaker": "Speaker", "text": "We march today with empty hands and full hearts — loyal subjects demanding justice!" },
+        { "speaker": "Sergeant Adjetey", "text": "Hold the line — constables are testing the edges. Do not give them cause." }
       ],
       "victory": [
         { "speaker": "Crowd", "text": "Self-government now! Self-government now!" },
-        { "speaker": "Sergeant Adjetey", "text": "Petition read. The crowd swells toward the coast road." }
+        { "speaker": "Sergeant Adjetey", "text": "Petition read. The crowd swells toward the coast road." },
+        { "speaker": "Dr. Kwame Nkrumah", "text": "You held the square. Now hold your nerve on the march." }
       ],
       "triggers": {
         "asareStart": [
-          { "speaker": "Wanted Poster", "text": "Kofi Asare — reward for arrest. He is gone. For now." }
+          { "speaker": "Wanted Poster", "text": "Kofi Asare — reward for arrest. He is gone. For now." },
+          { "speaker": "Corporal Attipoe", "text": "Clerk's face on every wall. He knew this was coming." }
+        ],
+        "onHoldStart": [
+          { "speaker": "Sergeant Adjetey", "text": "Hold the church steps — forty-five seconds. Speakers stay alive." },
+          { "speaker": "Corporal Attipoe", "text": "DEFEND the square. Civilians behind us." }
         ],
         "intel": {
           "Petition Read": [
@@ -416,9 +631,16 @@
       }
     },
     "9": {
+      "missionTarget": "Escort the unarmed column to the Crossroads approach.",
       "start": [
         { "speaker": "Sergeant Adjetey", "text": "Coast road column. Unarmed. Disciplined. Visible. The world is watching." },
-        { "speaker": "Corporal Attipoe", "text": "Escorts in formation. No weapons among us — only dignity." }
+        { "speaker": "Corporal Attipoe", "text": "Escorts in formation. No weapons among us — only dignity." },
+        { "speaker": "Private Odartey Lamptey", "text": "Three waypoints. Petition bearer stays center. We are witnesses with boots." },
+        { "speaker": "Sergeant Adjetey", "text": "Nkrumah's voice on the radio at the second bend. Discipline is the weapon today." }
+      ],
+      "mid": [
+        { "speaker": "Dr. Kwame Nkrumah", "text": "Comrades — the Castle wall is ahead. Discipline is your weapon today." },
+        { "speaker": "Sergeant Adjetey", "text": "Crossroads in sight. Eyes up. We present the petition — we do not provoke." }
       ],
       "victory": [
         { "speaker": "Sergeant Adjetey", "text": "Crossroads approach. The Castle wall ahead. History holds its breath." },
@@ -436,10 +658,18 @@
       }
     },
     "10": {
+      "missionTarget": "Document the Crossroads — extract witnesses, not rewrite history.",
       "start": [
         { "speaker": "Sergeant Adjetey", "text": "Christiansborg Crossroads. Present the petition. Do not provoke." },
         { "speaker": "Superintendent Imray", "text": "Halt! You will not pass. Disperse or face consequences." },
-        { "speaker": "Sergeant Adjetey", "text": "We are unarmed. We demand the Governor receive our petition." }
+        { "speaker": "Sergeant Adjetey", "text": "We are unarmed. We demand the Governor receive our petition." },
+        { "speaker": "Corporal Attipoe", "text": "Seventeen constables at the gate. Document everything — press E at each witness point." },
+        { "speaker": "Private Odartey Lamptey", "text": "We cannot stop what comes. We can make sure the world reads it true." }
+      ],
+      "mid": [
+        { "speaker": "Witness", "text": "They're loading — Imray's giving the order!" },
+        { "speaker": "Sergeant Adjetey", "text": "Get the witnesses out — document what happens here!" },
+        { "speaker": "Dr. Kwame Nkrumah", "text": "You cannot save every name today — save the truth." }
       ],
       "victory": [
         { "speaker": "Narrator", "text": "Accra will remember. The Watson Commission will come." },
@@ -447,15 +677,34 @@
         { "speaker": "Witness", "text": "Three martyrs at the gate. The petition never reached Creasy — but the truth escaped." }
       ],
       "triggers": {
+        "witness1": [
+          { "speaker": "Witness", "text": "Unarmed veterans at the gate — I see no weapons among the marchers." },
+          { "speaker": "Private Odartey Lamptey", "text": "Witness one filed. Keep moving — more eyes needed." }
+        ],
+        "witness2": [
+          { "speaker": "Witness", "text": "Superintendent Imray's constables open fire without warning!" },
+          { "speaker": "Sergeant Adjetey", "text": "Document it. Do not look away." }
+        ],
+        "witness3": [
+          { "speaker": "Witness", "text": "The petition never reached Governor Creasy at the Castle." },
+          { "speaker": "Corporal Attipoe", "text": "Truth out — now extract whoever still breathes." }
+        ],
         "witness": [
           { "speaker": "Kofi Asare", "text": "They'll arrest me at dawn. The petition copy is safe. I was always Gold Coast." }
         ]
       }
     },
     "11": {
+      "missionTarget": "Slip the Makola cordon — reach James Town before dusk closes.",
       "start": [
         { "speaker": "Kojo", "text": "Crossroads dust on my boots. Constables sweep Makola — we slip alleys, not main roads." },
-        { "speaker": "Araba", "text": "Salaga tonight. I know a fishmonger who won't swallow what Imray did." }
+        { "speaker": "Araba", "text": "Salaga tonight. I know a fishmonger who won't swallow what Imray did." },
+        { "speaker": "Kojo", "text": "They want a riot in the open. I give them geometry in the dark." },
+        { "speaker": "Araba", "text": "Cousin Kwame lost a leg today. AWAM raised prices while he bled. Move." }
+      ],
+      "mid": [
+        { "speaker": "Kojo", "text": "Cordon tightening — ninety seconds to the drainage cut!" },
+        { "speaker": "Araba", "text": "Constable pair on the corner — I can break their line or we double back." }
       ],
       "victory": [
         { "speaker": "Kojo", "text": "James Town exit clear. Salaga Market — find Araba's contact before the cordon closes." },
@@ -463,15 +712,19 @@
       ],
       "triggers": {
         "cellStart": [
-          { "speaker": "Kojo", "text": "They expect a riot. I give them a route." }
+          { "speaker": "Kojo", "text": "They expect a riot. I give them a route." },
+          { "speaker": "Araba", "text": "Riot breaks windows. Routes break cordons. Follow the boy who counts alleys." }
         ]
       }
     },
     "12": {
+      "missionTarget": "Hit AWAM's store — protect innocent stalls.",
       "start": [
         { "speaker": "Araba", "text": "AWAM shuttered their store — hired constables to guard hunger. We hit the warehouse." },
         { "speaker": "Kojo", "text": "Not Auntie Esi's fish table. Yaw's rule — every time." },
-        { "speaker": "Kofi", "text": "I'll cover the stalls. I know which awning is innocent." }
+        { "speaker": "Kofi", "text": "I'll cover the stalls. I know which awning is innocent." },
+        { "speaker": "Araba", "text": "Cousin bleeds from Crossroads. AWAM still sells at monopoly prices. Tonight that ends." },
+        { "speaker": "Kojo", "text": "Demolish the store front. Hold the square. Stalls stay standing." }
       ],
       "mid": [
         { "speaker": "Araba", "text": "You shot the men who wore your khaki. You do not get to sell us hunger anymore." },
@@ -483,7 +736,16 @@
       ],
       "triggers": {
         "cellStart": [
-          { "speaker": "Araba", "text": "You shot the men who wore your khaki. You do not get to sell us hunger anymore." }
+          { "speaker": "Araba", "text": "You shot the men who wore your khaki. You do not get to sell us hunger anymore." },
+          { "speaker": "Yaw", "text": "Hit the monopoly — not the market women. My grandfather's rule stands." }
+        ],
+        "onFirstDemolition": [
+          { "speaker": "Araba", "text": "AWAM shutters down! Constables at the warehouse — hold the square!" },
+          { "speaker": "Kojo", "text": "Stalls stay alive. AWAM doesn't. Thirty seconds — move!" }
+        ],
+        "onHoldStart": [
+          { "speaker": "Kojo", "text": "Hold Salaga square — protect the stall VIPs. AWAM hired these constables." },
+          { "speaker": "Kofi", "text": "I know these awnings. Innocent tables stay standing — I swear it." }
         ]
       }
     },

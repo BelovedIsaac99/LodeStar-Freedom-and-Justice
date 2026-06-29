@@ -22,6 +22,7 @@ export function defaultSave(asareConfig) {
     documentsReviewed: [],
     toolsRepaired: false,
     prologueSeen: false,
+    backstoriesSeen: [],
   };
 }
 
@@ -88,6 +89,15 @@ export function markPhaseIvOriginSeen(save) {
 export function markPrologueSeen(save) {
   save.prologueSeen = true;
   writeSave(save);
+}
+
+export function markBackstorySeen(save, characterKey) {
+  if (!characterKey) return;
+  if (!save.backstoriesSeen) save.backstoriesSeen = [];
+  if (!save.backstoriesSeen.includes(characterKey)) {
+    save.backstoriesSeen.push(characterKey);
+    writeSave(save);
+  }
 }
 
 export function markYawBriefingSeen(save, missionId) {
