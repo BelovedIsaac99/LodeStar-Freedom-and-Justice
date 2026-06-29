@@ -1,0 +1,198 @@
+{
+  "title": "The Accra Freedom Grid",
+  "subtitle": "Gulf of Guinea coast — West (local hubs) to East (colonial citadels)",
+  "description": "The map stretches along the coast from dense civilian resistance in the west to militarized British administrative fortresses in the east. Level flow follows historical march routes and post-Crossroads riot sectors.",
+  "geography": {
+    "coast": "Gulf of Guinea",
+    "westLabel": "WEST: LOCAL HUBS",
+    "eastLabel": "EAST: COLONIAL CITADELS",
+    "directionNote": "Coastal axis runs west (James Town / Ussher) → east (Victoriaborg / Osu Castle)"
+  },
+  "factionLegend": {
+    "british": { "label": "Colonial machinery", "color": "#1a1a4e" },
+    "resistance": { "label": "Resourceful resistance", "color": "#006b3f" },
+    "sacred": { "label": "Fixed history", "color": "#8b0000" },
+    "stronghold": { "label": "Final stronghold (epilogue)", "color": "#4a4035" }
+  },
+  "sectors": [
+    {
+      "id": "sector_1",
+      "number": 1,
+      "side": "west",
+      "order": 1,
+      "label": "James Town & Ussher Town",
+      "subtitle": "The Slums",
+      "faction": "resistance",
+      "missionIds": [4, 11, 15],
+      "hub": "yaw_yard",
+      "summary": "Yaw's motor yard, drainage alleys, and the cell's last stand — civilian-heavy resistance heartland.",
+      "assetThemes": ["ussher-workshop", "yaw-toolkit", "mammy-truck"]
+    },
+    {
+      "id": "sector_2",
+      "number": 2,
+      "side": "west",
+      "order": 2,
+      "label": "Salaga & Makola Markets",
+      "subtitle": "Boycott & Riot Square",
+      "faction": "resistance",
+      "missionIds": [1, 2, 6, 12, 13],
+      "summary": "AWAM boycott ground zero — fish tables, market stalls, Kaneshie warehouse fires. Hit monopoly stores, protect Auntie Esi.",
+      "assetThemes": ["salaga-market", "hooked-iron-rod", "market-woman", "kaneshie-warehouse"]
+    },
+    {
+      "id": "sector_3",
+      "number": 3,
+      "side": "east",
+      "order": 1,
+      "label": "Victoriaborg",
+      "subtitle": "Administrative Zone",
+      "faction": "british",
+      "missionIds": [3, 5, 7, 14],
+      "summary": "Colonial Secretariat, Radio Hill intercepts, Castle courier routes — Kwesi's registry desk targets.",
+      "assetThemes": ["colonial-secretariat", "curfew-broadside", "accra-evening-news"]
+    },
+    {
+      "id": "sector_4",
+      "number": 4,
+      "side": "east",
+      "order": 2,
+      "label": "Christiansborg Crossroads",
+      "subtitle": "The Checkpoint",
+      "faction": "sacred",
+      "missionIds": [8, 9, 10],
+      "summary": "Peaceful march terminus — Christ Church to coast road. Imray's constables; martyrs fall; canon locked.",
+      "assetThemes": ["crossroads-checkpoint", "lee-enfield-no4", "veteran-marcher"]
+    }
+  ],
+  "routes": [
+    {
+      "id": "winneba_rowe",
+      "label": "Winneba / Rowe Road Connection",
+      "type": "corridor",
+      "connects": ["sector_1", "sector_3"],
+      "direction": "west_to_east",
+      "summary": "Smuggled intel and night runners link the slums to the administrative quarter.",
+      "missionIds": [14],
+      "unlockedAfterMission": 10
+    },
+    {
+      "id": "march_route",
+      "label": "The March Route",
+      "type": "march",
+      "connects": ["sector_2", "sector_4"],
+      "direction": "west_to_east",
+      "summary": "Unarmed veterans column — Christ Church, coast road, Crossroads gate. Petitions, not rifles.",
+      "missionIds": [8, 9, 10],
+      "unlockedAfterMission": 7
+    }
+  ],
+  "stronghold": {
+    "id": "osu_castle",
+    "label": "Osu Castle",
+    "subtitle": "The Seat — Final Stronghold",
+    "faction": "stronghold",
+    "missionIds": [],
+    "epilogueOnly": true,
+    "summary": "Governor Creasy's seat at Christiansborg. The petition never arrives — but the Watson Commission will.",
+    "reachableAfterMission": 10,
+    "assetThemes": ["crossroads-checkpoint"]
+  },
+  "levelFlow": [
+    { "step": 1, "phase": "mobilization", "sectors": ["sector_2", "sector_1"], "missions": [1, 2, 3, 4, 5, 6, 7], "label": "Boycott & Mobilization" },
+    { "step": 2, "phase": "peaceful_march", "route": "march_route", "sectors": ["sector_2", "sector_4"], "missions": [8, 9], "label": "The Peaceful March" },
+    { "step": 3, "phase": "crossroads", "sectors": ["sector_4"], "missions": [10], "label": "Christiansborg Crossroads — sacred beat" },
+    { "step": 4, "phase": "riots_west", "sectors": ["sector_1", "sector_2"], "missions": [11, 12, 13], "label": "Five-Day Riots — western hubs" },
+    { "step": 5, "phase": "riots_east", "route": "winneba_rowe", "sectors": ["sector_3", "sector_1"], "missions": [14, 15], "label": "Infiltration & Ussher Stand" }
+  ],
+  "nodes": [
+    {
+      "id": "mobilization",
+      "order": 0,
+      "sectorId": "sector_2",
+      "label": "Boycott & Mobilization",
+      "district": "Markets & depots — west Accra",
+      "faction": "resistance",
+      "missionIds": [1, 2, 3, 4, 5, 6, 7],
+      "summary": "Veterans gather evidence; AWAM boycott; Asare trust builds.",
+      "assetThemes": ["accra-evening-news", "veteran-marcher", "curfew-broadside"]
+    },
+    {
+      "id": "peaceful_march",
+      "order": 1,
+      "sectorId": "sector_4",
+      "routeId": "march_route",
+      "label": "The Peaceful March",
+      "district": "March Route → Crossroads approach",
+      "faction": "resistance",
+      "missionIds": [8, 9],
+      "summary": "Unarmed column along the coast road toward Osu Castle.",
+      "assetThemes": ["veteran-marcher", "accra-evening-news"]
+    },
+    {
+      "id": "crossroads",
+      "order": 2,
+      "sectorId": "sector_4",
+      "label": "The Crossroads Massacre",
+      "district": "Sector 4 — Christiansborg Crossroads",
+      "faction": "sacred",
+      "missionIds": [10],
+      "summary": "Imray's constables; three martyrs fall — canon locked.",
+      "assetThemes": ["crossroads-checkpoint", "lee-enfield-no4", "webley-mk4", "veteran-marcher"]
+    },
+    {
+      "id": "salaga_uprising",
+      "order": 3,
+      "sectorId": "sector_2",
+      "label": "Salaga & Makola Uprising",
+      "district": "Sector 2 — market riots",
+      "faction": "resistance",
+      "missionIds": [11, 12],
+      "summary": "Kojo & Araba — AWAM targets, innocent stalls protected.",
+      "assetThemes": ["salaga-market", "hooked-iron-rod", "market-woman", "awam-store-front"]
+    },
+    {
+      "id": "kaneshie_fires",
+      "order": 4,
+      "sectorId": "sector_2",
+      "label": "Kaneshie Lines",
+      "district": "Sector 2 — warehouse fires",
+      "faction": "resistance",
+      "missionIds": [13],
+      "summary": "First riot fires; Kofi rescued; boycott evidence.",
+      "assetThemes": ["kaneshie-warehouse", "dane-gun", "mammy-truck"]
+    },
+    {
+      "id": "victoriaborg_infiltration",
+      "order": 5,
+      "sectorId": "sector_3",
+      "routeId": "winneba_rowe",
+      "label": "Victoriaborg Infiltration",
+      "district": "Sector 3 — Colonial Secretariat",
+      "faction": "british",
+      "missionIds": [14],
+      "summary": "Kwesi steals patrol rosters via Rowe Road intel corridor.",
+      "assetThemes": ["colonial-secretariat", "curfew-broadside", "accra-evening-news"]
+    },
+    {
+      "id": "ussher_stand",
+      "order": 6,
+      "sectorId": "sector_1",
+      "label": "Ussher Yard Stand",
+      "district": "Sector 1 — Yaw's hub",
+      "faction": "resistance",
+      "missionIds": [15],
+      "summary": "Hold the yard; all four survive; Watson Commission arc.",
+      "assetThemes": ["ussher-workshop", "yaw-toolkit", "mammy-truck", "bedford-oy-truck"]
+    }
+  ],
+  "flow": [
+    { "from": "mobilization", "to": "peaceful_march", "via": "march_route" },
+    { "from": "peaceful_march", "to": "crossroads" },
+    { "from": "crossroads", "to": "salaga_uprising" },
+    { "from": "salaga_uprising", "to": "kaneshie_fires" },
+    { "from": "crossroads", "to": "victoriaborg_infiltration", "via": "winneba_rowe" },
+    { "from": "victoriaborg_infiltration", "to": "ussher_stand" },
+    { "from": "kaneshie_fires", "to": "ussher_stand" }
+  ]
+}

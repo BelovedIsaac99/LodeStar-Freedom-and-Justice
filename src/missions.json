@@ -1,0 +1,517 @@
+{
+  "campaignTitle": "LODESTAR_FREEDOM AND JUSTICE",
+  "commander": "Dr. Kwame Nkrumah",
+  "asare": {
+    "name": "Kofi Asare",
+    "codename": "The Clerk",
+    "trustStart": 40,
+    "trustUnlockGate": 50
+  },
+  "campaignPhases": [
+    {
+      "id": "mobilization",
+      "label": "Boycott & Mobilization",
+      "subtitle": "Late 1947 — gather veterans, evade patrols, build the movement",
+      "missionIds": [1, 2, 3, 4, 5, 6, 7]
+    },
+    {
+      "id": "peaceful_march",
+      "label": "The Peaceful March",
+      "subtitle": "28 February 1948 — unarmed column toward Osu Castle",
+      "missionIds": [8, 9]
+    },
+    {
+      "id": "crossroads",
+      "label": "Christiansborg Crossroads",
+      "subtitle": "28 February 1948 — petition blocked; martyrdom at the gate",
+      "missionIds": [10]
+    },
+    {
+      "id": "riots",
+      "label": "Five-Day Accra Riots",
+      "subtitle": "March 1948 — youth cell, AWAM targets, truth as ammunition",
+      "missionIds": [11, 12, 13, 14, 15]
+    }
+  ],
+  "historicalFigures": {
+    "martyrs": ["Sergeant Adjetey", "Corporal Attipoe", "Private Odartey Lamptey"],
+    "governor": "Governor Gerald Creasy",
+    "superintendent": "Superintendent Colin Imray",
+    "boycottLeader": "Nii Kwabena Bonne III",
+    "crossroadsDate": "28 February 1948"
+  },
+  "missions": [
+    {
+      "id": 1,
+      "title": "Ex-Servicemen's Oath",
+      "subtitle": "Old Kingsway Depot",
+      "briefing": "The Crown made promises in the King's name. Collect the benefit ledgers before they are burned.",
+      "historicalNote": "Demobilized Gold Coast veterans organize for unpaid WWII benefits, 1947.",
+      "playerStart": { "x": 80, "y": 300 },
+      "enemies": [[420, 180], [520, 280], [380, 420]],
+      "obstacles": [[250, 300, 60, 16]],
+      "checkpoints": [[420, 180], [520, 280]],
+      "intel": [
+        { "x": 200, "y": 150, "title": "Ledger A", "text": "Three million pounds owed to Gold Coast veterans — the Governor's office denies the figure." },
+        { "x": 350, "y": 250, "title": "Ledger B", "text": "Ex-servicemen's Union registers 2,000 members in Accra alone." },
+        { "x": 600, "y": 380, "title": "Ledger C", "text": "Colonial Secretary orders all benefit records classified by month's end." }
+      ],
+      "escorts": [],
+      "extraction": { "x": 720, "y": 300, "radius": 45 },
+      "objectives": [
+        { "type": "collect_intel", "count": 3, "label": "Collect ledgers" },
+        { "type": "reach_extraction", "label": "Reach extraction point" }
+      ],
+      "asareEvent": {
+        "x": 160, "y": 200,
+        "message": "Asare opens the side gate: 'I clerk nights at Kingsway. Quick — before the guard returns.'",
+        "trustDelta": 10
+      },
+      "victoryText": "Ledgers secured. The debt is now evidence.",
+      "commendation": { "id": "ledger-keeper", "name": "Ledger Keeper", "desc": "Recovered all veteran benefit records." },
+      "meterGain": 8
+    },
+    {
+      "id": 2,
+      "title": "Kaneshie Lines",
+      "subtitle": "Market District",
+      "briefing": "UGCC organizers meet under the market awning. Escort them past the constabulary.",
+      "historicalNote": "Nationalist networks spread through Accra's markets. Nii Kwabena Bonne III's boycott movement fuels anti-colonial organizing, late 1947.",
+      "playerStart": { "x": 100, "y": 450 },
+      "enemies": [[300, 200], [450, 300], [550, 150], [650, 400]],
+      "obstacles": [[400, 350, 16, 80]],
+      "checkpoints": [[300, 200]],
+      "intel": [
+        { "x": 500, "y": 200, "title": "Pamphlet Draft", "text": "Self-government petition drafting begins — target date before dry season ends." }
+      ],
+      "escorts": [
+        { "x": 120, "y": 470, "vip": false }, { "x": 140, "y": 480, "vip": false },
+        { "x": 100, "y": 490, "vip": true }, { "x": 130, "y": 500, "vip": false },
+        { "x": 110, "y": 510, "vip": false }
+      ],
+      "extraction": { "x": 700, "y": 150, "radius": 50 },
+      "objectives": [
+        { "type": "escort_to_zone", "minAlive": 4, "label": "Escort organizers (4+ alive)" },
+        { "type": "reach_extraction", "label": "Reach safe house" }
+      ],
+      "asareEvent": {
+        "message": "Asare passes a forged curfew pass. 'Show this if stopped. Trust me.'",
+        "trustDelta": 10,
+        "triggerOnStart": true
+      },
+      "victoryText": "Organizers safe. The petition lives another day.",
+      "meterGain": 8
+    },
+    {
+      "id": 3,
+      "title": "Radio Hill",
+      "subtitle": "Wireless Station",
+      "briefing": "Colonial troop movements are coordinated from the hill. Plant charges on both masts.",
+      "historicalNote": "Communications infrastructure becomes a strategic target.",
+      "playerStart": { "x": 120, "y": 500 },
+      "enemies": [[350, 250], [500, 200], [600, 350], [450, 450]],
+      "obstacles": [[300, 400, 100, 20], [550, 280, 20, 60]],
+      "checkpoints": [[500, 200]],
+      "intel": [],
+      "nodes": [
+        { "x": 380, "y": 180, "type": "demolition", "label": "Mast Alpha" },
+        { "x": 620, "y": 320, "type": "demolition", "label": "Mast Beta" }
+      ],
+      "escorts": [],
+      "holdZone": { "x": 400, "y": 200, "radius": 60, "duration": 15, "label": "Hold while charges arm" },
+      "extraction": { "x": 80, "y": 100, "radius": 45 },
+      "objectives": [
+        { "type": "demolition", "count": 2, "label": "Plant charges (hold E)" },
+        { "type": "hold_zone", "label": "Defend arming zone" },
+        { "type": "reach_extraction", "label": "Extract from ridge" }
+      ],
+      "asareEvent": {
+        "message": "Asare's note: 'Patrol shift at 0400.' Accurate intel.",
+        "trustDelta": 8,
+        "triggerOnStart": true
+      },
+      "victoryText": "Radio Hill silent. They march blind tomorrow.",
+      "meterGain": 10
+    },
+    {
+      "id": 4,
+      "title": "Checkpoint James Town",
+      "subtitle": "Coastal Road",
+      "briefing": "Fishermen smuggle pamphlets in fish crates. Clear James Town checkpoint for one hour.",
+      "historicalNote": "Coastal checkpoints tighten as nationalist activity grows.",
+      "playerStart": { "x": 80, "y": 300 },
+      "enemies": [[350, 300], [450, 300], [550, 300]],
+      "obstacles": [[350, 200, 16, 120], [350, 400, 16, 120]],
+      "checkpoints": [[450, 300]],
+      "intel": [
+        { "x": 650, "y": 300, "title": "Sealed Orders", "text": "Petition will be presented at Christiansborg — peaceful march, unarmed." }
+      ],
+      "escorts": [{ "x": 100, "y": 320, "vip": false, "cart": true }],
+      "extraction": { "x": 720, "y": 300, "radius": 40 },
+      "objectives": [
+        { "type": "eliminate_enemies", "count": 3, "label": "Clear checkpoint guards" },
+        { "type": "escort_to_zone", "minAlive": 1, "label": "Escort crate cart through" }
+      ],
+      "asareEvent": {
+        "message": "Asare warns of a 'special patrol' — it never arrives. Was he wrong?",
+        "trustDelta": -5,
+        "triggerOnStart": true
+      },
+      "victoryText": "Checkpoint open. Pamphlets flow to the coast.",
+      "meterGain": 8
+    },
+    {
+      "id": 5,
+      "title": "The Governor's Courier",
+      "subtitle": "Ring Road Intercept",
+      "briefing": "Intercept the courier. Do not kill — we need the seal intact.",
+      "historicalNote": "Intelligence war inside the colonial Secretariat.",
+      "playerStart": { "x": 100, "y": 100 },
+      "enemies": [[400, 300, "courier"]],
+      "obstacles": [[250, 250, 80, 16], [550, 350, 80, 16]],
+      "checkpoints": [],
+      "intel": [
+        { "x": 400, "y": 300, "title": "Partial Orders", "text": "...maintain order by all necessary means... [rest redacted — page missing]", "requiresCourier": true }
+      ],
+      "escorts": [],
+      "handoff": { "x": 650, "y": 450, "label": "Deliver to Asare" },
+      "extraction": null,
+      "objectives": [
+        { "type": "capture_courier", "label": "Wound courier to capture (don't kill)" },
+        { "type": "reach_handoff", "label": "Deliver satchel to Asare" }
+      ],
+      "asareEvent": {
+        "x": 650, "y": 450,
+        "message": "Asare takes the satchel. One page is missing. His eyes don't meet yours.",
+        "trustDelta": -15
+      },
+      "victoryText": "Orders intercepted — but something doesn't add up.",
+      "meterGain": 10
+    },
+    {
+      "id": 6,
+      "title": "Ambush at Makola",
+      "subtitle": "The Betrayal",
+      "briefing": "Asare marks a safe corridor through Makola. Move the printing press plates tonight.",
+      "historicalNote": "Urban tension peaks; trust fractures within the cell.",
+      "playerStart": { "x": 80, "y": 300 },
+      "enemies": [[250, 200], [350, 250], [450, 200], [300, 350], [400, 400], [500, 300]],
+      "obstacles": [[200, 250, 16, 100]],
+      "checkpoints": [],
+      "intel": [
+        { "x": 600, "y": 300, "title": "March Date", "text": "March date fixed: 28 February. Assembly at Christ Church." }
+      ],
+      "escorts": [{ "x": 100, "y": 320, "vip": false, "cart": true }],
+      "ambushAt": { "x": 350, "y": 280, "radius": 80 },
+      "extraction": { "x": 700, "y": 300, "radius": 45 },
+      "objectives": [
+        { "type": "survive_ambush", "label": "Survive Makola ambush" },
+        { "type": "escort_to_zone", "minAlive": 1, "label": "Save the press cart" },
+        { "type": "reach_extraction", "label": "Extract wounded" }
+      ],
+      "asareEvent": {
+        "message": "Only Asare knew this route. Colonial radio: 'Wrong corridor — false corridor.'",
+        "trustDelta": -20,
+        "triggerOnAmbush": true,
+        "revealHint": "Was it betrayal — or misdirection?"
+      },
+      "woundAttipoe": true,
+      "victoryText": "Attipoe wounded but alive. Asare's name burns in your memory.",
+      "meterGain": 10
+    },
+    {
+      "id": 7,
+      "title": "Shadow the Clerk",
+      "subtitle": "Castle Approach",
+      "briefing": "I no longer know whose desk Asare serves. Shadow him. You decide what happens at the gate.",
+      "historicalNote": "The double agent's true allegiance hangs in the balance.",
+      "playerStart": { "x": 100, "y": 500 },
+      "enemies": [[450, 200], [550, 250]],
+      "obstacles": [[350, 350, 16, 100], [500, 400, 100, 16]],
+      "checkpoints": [[600, 200]],
+      "intel": [],
+      "asareNpc": { "x": 200, "y": 400, "path": [[300, 350], [450, 280], [580, 220]] },
+      "witnessNodes": [
+        { "x": 480, "y": 260, "text": "You witness Asare burn a real troop map — and hand a fake to the colonial sergeant." }
+      ],
+      "extraction": { "x": 700, "y": 500, "radius": 45 },
+      "objectives": [
+        { "type": "tail_asare", "label": "Follow Asare without alerting (stay within 120px)" },
+        { "type": "witness", "count": 1, "label": "Witness the exchange (press E)" },
+        { "type": "reach_extraction", "label": "Extract with evidence" }
+      ],
+      "asareEvent": {
+        "message": "Nkrumah: 'Some lies protect true marchers.' Asare was always Gold Coast.",
+        "trustDelta": 25,
+        "triggerOnWitness": true
+      },
+      "victoryText": "The Clerk serves the Coast. Trust restored — barely.",
+      "meterGain": 12
+    },
+    {
+      "id": 8,
+      "title": "Hold Christ Church",
+      "subtitle": "28 February — Dawn",
+      "briefing": "Thousands will gather. Hold the square until the petition is read aloud.",
+      "historicalNote": "Assembly at Christ Church before the march. Nearly 2,000 unarmed ex-servicemen prepare to present their petition to Governor Gerald Creasy at Christiansborg Castle.",
+      "playerStart": { "x": 400, "y": 450 },
+      "enemies": [[200, 200], [600, 200], [200, 350], [600, 350]],
+      "obstacles": [[350, 300, 100, 16]],
+      "checkpoints": [],
+      "intel": [
+        { "x": 400, "y": 200, "title": "Petition Read", "text": "Final petition: peaceful, loyal, demanding self-government now." }
+      ],
+      "escorts": [
+        { "x": 380, "y": 420, "vip": true }, { "x": 420, "y": 420, "vip": true },
+        { "x": 400, "y": 440, "vip": true }
+      ],
+      "holdZone": { "x": 400, "y": 300, "radius": 80, "duration": 45, "label": "Hold church steps", "waves": true },
+      "extraction": null,
+      "objectives": [
+        { "type": "hold_zone", "label": "Hold the square (45 sec)" },
+        { "type": "protect_vip", "minAlive": 2, "label": "Protect speakers (2+ alive)" }
+      ],
+      "asareEvent": {
+        "message": "Wanted poster: Kofi Asare. Reward for arrest. He is gone — for now.",
+        "trustDelta": 0,
+        "triggerOnStart": true
+      },
+      "victoryText": "Petition read. The crowd swells toward the coast road.",
+      "meterGain": 10
+    },
+    {
+      "id": 9,
+      "title": "The March Column",
+      "subtitle": "Coast Road",
+      "briefing": "Unarmed. Disciplined. Visible. Escort the column down the coast road toward Osu Castle.",
+      "historicalNote": "The Gold Coast Regiment veterans march peacefully to present their pension petition — no weapons, only dignity.",
+      "playerStart": { "x": 100, "y": 300 },
+      "enemies": [[350, 150], [350, 450], [550, 250], [550, 350]],
+      "obstacles": [[250, 300, 16, 80]],
+      "checkpoints": [[650, 300]],
+      "intel": [],
+      "escorts": [
+        { "x": 80, "y": 280, "vip": false }, { "x": 90, "y": 300, "vip": true },
+        { "x": 80, "y": 320, "vip": false }, { "x": 100, "y": 290, "vip": false },
+        { "x": 100, "y": 310, "vip": false }, { "x": 110, "y": 300, "vip": true }
+      ],
+      "waypoints": [[250, 300], [450, 300], [650, 300]],
+      "extraction": { "x": 720, "y": 300, "radius": 50 },
+      "objectives": [
+        { "type": "escort_waypoints", "label": "Escort column along coast road" },
+        { "type": "reach_extraction", "label": "Reach Crossroads approach" }
+      ],
+      "asareEvent": {
+        "message": "Smoke signal on Castle wall — Asare's mark. Gate counts were falsified.",
+        "trustDelta": 15,
+        "triggerAtWaypoint": 2
+      },
+      "radioEvent": {
+        "speaker": "Dr. Kwame Nkrumah",
+        "message": "Comrades — discipline is your weapon today. Ink before iron. Hold the line with dignity; let them be the ones who strike first.",
+        "triggerAtWaypoint": 1
+      },
+      "victoryText": "Column reaches the Crossroads. The world watches.",
+      "meterGain": 10
+    },
+    {
+      "id": 10,
+      "title": "Christiansborg Crossroads",
+      "subtitle": "28 February 1948",
+      "briefing": "Present the petition. Do not provoke. Get the witnesses out — get the truth out.",
+      "historicalNote": "Superintendent Colin Imray and seventeen armed constables block the path. The shootings that sparked the 1948 Accra riots.",
+      "playerStart": { "x": 150, "y": 300 },
+      "enemies": [[400, 150], [400, 450], [550, 200], [550, 400], [650, 300]],
+      "obstacles": [[300, 300, 16, 100], [500, 250, 16, 80]],
+      "checkpoints": [[650, 300]],
+      "intel": [],
+      "witnessNodes": [
+        { "x": 450, "y": 280, "text": "Witness: unarmed veterans at the gate — no weapons among the marchers." },
+        { "x": 500, "y": 320, "text": "Witness: Superintendent Imray's constables open fire without warning." },
+        { "x": 550, "y": 300, "text": "Witness: the petition never reached Governor Creasy at the Castle." }
+      ],
+      "escorts": [{ "x": 120, "y": 300, "vip": true, "petition": true }],
+      "extraction": { "x": 80, "y": 300, "radius": 45, "requiresTrust": 50 },
+      "altExtraction": { "x": 750, "y": 500, "radius": 45 },
+      "asareGate": { "x": 620, "y": 300, "trustRequired": 50 },
+      "objectives": [
+        { "type": "witness", "count": 3, "label": "Document the incident (E)" },
+        { "type": "reach_extraction", "label": "Extract survivors & evidence" }
+      ],
+      "asareEvent": {
+        "message": "Asare (radio): 'They'll arrest me at dawn. The petition copy is safe. I was always Gold Coast.'",
+        "trustDelta": 20,
+        "triggerOnWitness": 2
+      },
+      "victoryText": "Accra will remember. The Watson Commission will come. Independence is inevitable.",
+      "commendation": { "id": "crossroads-witness", "name": "Witness of History", "desc": "Documented the Crossroads and secured the truth." },
+      "meterGain": 12,
+      "epilogue": "Sergeant Adjetey, Corporal Attipoe, and Private Odartey Lamptey — martyrs of Christiansborg Crossroads, 28 February 1948. Their sacrifice ignited five days of riots across Accra and set a nation on the path to independence.",
+      "unlocksPhaseIv": true
+    },
+    {
+      "id": 11,
+      "phaseIv": true,
+      "title": "Makola Routes",
+      "subtitle": "28 February 1948 — dusk",
+      "landmark": "makola",
+      "briefing": "Crossroads dust still on your boots. Constables sweep Makola — slip through the alleys before the cordon closes.",
+      "historicalNote": "The shootings at Christiansborg Crossroads scatter the city. Organizers who witnessed the martyrdom begin moving in shadow.",
+      "playerStart": { "x": 90, "y": 280 },
+      "enemies": [[320, 180], [420, 220], [380, 420], [520, 350]],
+      "obstacles": [[220, 280, 50, 16], [480, 300, 16, 70]],
+      "checkpoints": [[300, 200], [550, 280]],
+      "intel": [],
+      "escorts": [],
+      "extraction": { "x": 700, "y": 280, "radius": 48 },
+      "objectives": [
+        { "type": "reach_extraction", "label": "Reach James Town alley exit" }
+      ],
+      "cellEvent": {
+        "message": "Kojo (whisper): 'They expect a riot. I give them a route.'",
+        "triggerOnStart": true
+      },
+      "originScenes": ["scene_01_crossroads_dusk", "scene_02_salaga_market_night"],
+      "victoryText": "Salaga Market tonight. Find the fishmonger who won't swallow this.",
+      "meterGain": 8
+    },
+    {
+      "id": 12,
+      "phaseIv": true,
+      "title": "Salaga Stand",
+      "subtitle": "Salaga Market — AWAM shuttered",
+      "landmark": "salaga",
+      "briefing": "Araba's cousin bleeds from Crossroads. AWAM hired constables to guard their shuttered store — hit the warehouse, not Auntie Esi's fish table.",
+      "historicalNote": "Nii Kwabena Bonne III's boycott closed AWAM shops across Accra. Youth cells target colonial commerce, not innocent stallkeepers.",
+      "playerStart": { "x": 100, "y": 320 },
+      "enemies": [[400, 200], [450, 400], [580, 280], [620, 350]],
+      "obstacles": [[280, 300, 16, 90], [350, 180, 60, 16]],
+      "checkpoints": [[350, 320]],
+      "intel": [],
+      "escorts": [
+        { "x": 180, "y": 260, "vip": true, "stall": true },
+        { "x": 200, "y": 380, "vip": true, "stall": true }
+      ],
+      "nodes": [
+        { "x": 520, "y": 300, "type": "demolition", "label": "AWAM store front" }
+      ],
+      "extraction": { "x": 720, "y": 320, "radius": 45 },
+      "objectives": [
+        { "type": "demolition", "count": 1, "label": "Demolish AWAM store (hold E)" },
+        { "type": "hold_zone", "label": "Hold the square (30 sec)" },
+        { "type": "protect_vip", "minAlive": 2, "label": "Protect innocent stalls (2+ alive)" },
+        { "type": "reach_extraction", "label": "Extract through market lane" }
+      ],
+      "holdZone": { "x": 350, "y": 320, "radius": 55, "duration": 30 },
+      "cellEvent": {
+        "message": "Araba: 'You shot the men who wore your khaki. You do not get to sell us hunger anymore.'",
+        "triggerOnStart": true
+      },
+      "victoryText": "AWAM's shutters fall. Kaneshie burns at dawn — a boy runs toward the smoke.",
+      "meterGain": 9
+    },
+    {
+      "id": 13,
+      "phaseIv": true,
+      "title": "Kaneshie Lines",
+      "subtitle": "1 March 1948 — dawn",
+      "landmark": "kaneshie",
+      "briefing": "First riot fires at the AWAM warehouse. Pull Kofi from the constables and get him to the drainage cut.",
+      "historicalNote": "The five-day Accra riots begin. Not every hand holds a weapon — every hand holds something: a stone, a ledger, a brother.",
+      "playerStart": { "x": 80, "y": 350 },
+      "enemies": [[300, 180], [350, 450], [500, 250], [550, 380], [650, 300]],
+      "obstacles": [[250, 300, 70, 16], [450, 350, 16, 60]],
+      "checkpoints": [[400, 300]],
+      "intel": [
+        { "x": 220, "y": 200, "title": "AWAM Ledger", "text": "Price-fixing records — Bonne's boycott evidence against AWAM monopoly." },
+        { "x": 480, "y": 420, "title": "Warehouse Seal", "text": "Colonial import stamp — proof of Crown-backed price gouging." }
+      ],
+      "escorts": [
+        { "x": 320, "y": 380, "vip": true, "kofi": true }
+      ],
+      "waypoints": [[400, 300], [600, 320]],
+      "extraction": { "x": 720, "y": 350, "radius": 50 },
+      "objectives": [
+        { "type": "collect_intel", "count": 2, "label": "Collect riot evidence" },
+        { "type": "escort_waypoints", "minAlive": 1, "label": "Escort Kofi to safety" }
+      ],
+      "cellEvent": {
+        "message": "Kofi: 'I didn't know how to hold a rifle yesterday. I will learn today.'",
+        "triggerOnStart": true
+      },
+      "originScenes": ["scene_03_kaneshie_riot_dawn"],
+      "victoryText": "Kofi runs with you. Ussher Town yard tonight — Yaw waits with roofs and rules.",
+      "meterGain": 10
+    },
+    {
+      "id": 14,
+      "phaseIv": true,
+      "title": "Secretariat Manifest",
+      "subtitle": "Victoriaborg — 2 March 1948",
+      "landmark": "secretariat",
+      "briefing": "Kwesi stole patrol manifests from the Colonial Secretariat. Switch to Kwesi (2) — he does not fight. Collect every page before the night guard returns.",
+      "historicalNote": "Registry clerks risked the gallows for truth. Kwesi's satchel holds curfew times, warehouse keys, and Imray's suppression order.",
+      "playerStart": { "x": 120, "y": 300 },
+      "enemies": [[380, 200], [420, 400], [550, 250], [600, 380]],
+      "obstacles": [[280, 300, 16, 100], [500, 300, 80, 16]],
+      "checkpoints": [[450, 300]],
+      "intel": [
+        { "x": 200, "y": 180, "title": "Patrol Rotation", "text": "Curfew window extended — constables thin on Ring Road after midnight." },
+        { "x": 350, "y": 350, "title": "Warehouse Keys", "text": "AWAM depot lock codes — weak points for the squad assault." },
+        { "x": 520, "y": 220, "title": "Suppression Order", "text": "Imray's signature on a order to block the petition — witness ammunition." },
+        { "x": 650, "y": 320, "title": "Prison Transport", "text": "Arrest schedule — Nkrumah's name circled in red." }
+      ],
+      "escorts": [],
+      "extraction": { "x": 740, "y": 300, "radius": 45 },
+      "objectives": [
+        { "type": "collect_intel", "count": 4, "label": "Collect stolen manifests (Kwesi — no firing)" },
+        { "type": "reach_extraction", "label": "Reach lane exit undetected" }
+      ],
+      "kwesiMission": true,
+      "defaultCharacter": "kwesi",
+      "cellEvent": {
+        "message": "Kwesi: 'Sorry doesn't read curfew times. This does.'",
+        "triggerOnStart": true
+      },
+      "originScenes": ["scene_04_ussher_yard_safehouse", "scene_05_secretariat_manifest"],
+      "victoryText": "Truth is ammunition. The cell swears its chain at Yaw's yard.",
+      "commendation": { "id": "manifest-thief", "name": "Clerk of Conscience", "desc": "Recovered Colonial Secretariat manifests without bloodshed." },
+      "meterGain": 11
+    },
+    {
+      "id": 15,
+      "phaseIv": true,
+      "title": "Ussher Yard Stand",
+      "subtitle": "5 March 1948 — the fifth day",
+      "landmark": "ussher",
+      "briefing": "Constables sweep Ussher Town for riot organizers. Hold Yaw's yard until the Watson Commission word reaches the coast. All four must survive.",
+      "historicalNote": "Five days of Accra riots end; colonial inquiry follows. Independence is not this week — but the path starts here.",
+      "playerStart": { "x": 400, "y": 300 },
+      "enemies": [[150, 150], [650, 150], [150, 450], [650, 450], [400, 120], [400, 480]],
+      "obstacles": [[300, 300, 16, 80], [500, 300, 16, 80], [400, 220, 60, 16]],
+      "checkpoints": [],
+      "intel": [],
+      "escorts": [],
+      "holdZone": { "x": 400, "y": 300, "radius": 70, "duration": 50, "waves": true },
+      "witnessNodes": [
+        { "x": 350, "y": 280, "text": "Witness: youth cell documented AWAM price-fixing and Imray's suppression order." },
+        { "x": 450, "y": 320, "text": "Witness: innocent market stalls protected while AWAM warehouses burned." }
+      ],
+      "extraction": { "x": 400, "y": 300, "radius": 65 },
+      "objectives": [
+        { "type": "hold_zone", "label": "Hold the yard (50 sec)" },
+        { "type": "witness", "count": 2, "label": "Document the stand (E)" },
+        { "type": "reach_extraction", "label": "Survive the final sweep" }
+      ],
+      "cellEvent": {
+        "message": "Yaw: 'Four children and an old man's yard. Independence is not this week — but the path starts here.'",
+        "triggerOnStart": true
+      },
+      "originScenes": ["scene_06_cell_formed"],
+      "victoryText": "Accra burns five days — you burned with purpose. The Watson Commission will come.",
+      "commendation": { "id": "yard-defender", "name": "Keeper of the Yard", "desc": "Held Ussher Town and preserved the cell's witness record." },
+      "meterGain": 15,
+      "epilogue": "Nkrumah will be arrested. The Gold Coast will not forget Christiansborg Crossroads — nor the youths who turned grief into evidence. Independence: 1957."
+    }
+  ]
+}

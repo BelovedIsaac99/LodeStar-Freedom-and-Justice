@@ -1,0 +1,505 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <title>LODESTAR_FREEDOM AND JUSTICE</title>
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    html, body {
+      width: 100%; height: 100%; overflow: hidden;
+      background: #0a0f0a;
+      font-family: 'Segoe UI', system-ui, sans-serif;
+      touch-action: none; user-select: none;
+    }
+    #game-wrapper {
+      position: relative; width: 100vw; height: 100vh;
+      display: flex; align-items: center; justify-content: center;
+      background: radial-gradient(ellipse at center, #1a2a1a 0%, #0a0f0a 70%);
+    }
+    canvas {
+      display: block; max-width: 100vw; max-height: 100vh;
+      border: 2px solid #2d4a2d;
+      box-shadow: 0 0 40px rgba(0, 100, 0, 0.3);
+    }
+    #game-wrapper canvas.lc-overlay {
+      position: absolute; inset: 0; margin: auto;
+      background: transparent !important;
+      pointer-events: none;
+      border: none; box-shadow: none;
+    }
+    #game-wrapper canvas.view3d {
+      position: relative; z-index: 0;
+    }
+    #mission-menu {
+      display: none; position: fixed; inset: 0; z-index: 200;
+      background: rgba(5, 10, 5, 0.96);
+      flex-direction: column; align-items: center;
+      padding: 1rem; overflow-y: auto;
+    }
+    #mission-menu.active { display: flex; }
+    #mission-menu h1 {
+      color: #c9a227; font-size: 1rem; margin: 1rem 0 0.25rem;
+      letter-spacing: 0.06em; text-align: center; line-height: 1.35;
+      max-width: 420px;
+    }
+    #mission-menu .subtitle {
+      color: #8a9a8a; font-size: 0.85rem; margin-bottom: 1rem; text-align: center;
+    }
+    .campaign-stats {
+      display: flex; gap: 1.5rem; margin-bottom: 1rem;
+      color: #e8e4d4; font-size: 0.85rem;
+    }
+    .campaign-stats span { color: #c9a227; font-weight: bold; }
+    #mission-list {
+      display: grid; grid-template-columns: 1fr;
+      gap: 0.5rem; width: 100%; max-width: 420px;
+    }
+    @media (min-width: 600px) {
+      #mission-list { grid-template-columns: 1fr 1fr; max-width: 640px; }
+    }
+    .mission-btn {
+      display: flex; align-items: center; gap: 0.75rem;
+      background: linear-gradient(135deg, #1a2e1a, #0d1a0d);
+      border: 1px solid #2d4a2d; border-radius: 6px;
+      padding: 0.65rem 0.85rem; color: #e8e4d4;
+      cursor: pointer; text-align: left; font-size: 0.85rem;
+    }
+    .mission-btn:hover:not(:disabled) { border-color: #c9a227; }
+    .mission-btn.locked { opacity: 0.35; cursor: not-allowed; }
+    .mission-btn.done { border-color: #006b3f; }
+    .mission-btn .m-num {
+      background: #006b3f; color: #fff; border-radius: 4px;
+      min-width: 1.6rem; text-align: center; font-weight: bold; font-size: 0.75rem;
+      padding: 0.2rem 0;
+    }
+    .mission-btn.locked .m-num { background: #333; }
+    .mission-btn .m-title { flex: 1; line-height: 1.2; }
+    .phase-header {
+      grid-column: 1 / -1;
+      color: #c9a227;
+      font-size: 0.8rem;
+      margin-top: 0.75rem;
+      padding-bottom: 0.25rem;
+      border-bottom: 1px solid #2d4a2d;
+      line-height: 1.35;
+    }
+    .phase-header .phase-sub { color: #8a9a8a; font-size: 0.72rem; font-weight: normal; }
+    #freedom-grid {
+      width: 100%; max-width: 720px; margin-bottom: 1rem;
+      padding: 0.75rem; border: 1px solid #2d4a2d; border-radius: 8px;
+      background: rgba(13, 26, 13, 0.6);
+    }
+    #freedom-grid h2 {
+      color: #c9a227; font-size: 0.85rem; letter-spacing: 0.05em;
+      margin-bottom: 0.25rem; text-align: center;
+    }
+    #freedom-grid .grid-subtitle,
+    #freedom-grid .grid-coast {
+      color: #8a9a8a; font-size: 0.72rem; text-align: center; margin-bottom: 0.5rem;
+    }
+    #freedom-grid .grid-coast { color: #6a8a9a; font-style: italic; margin-bottom: 0.75rem; }
+    .grid-map {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 0.5rem;
+    }
+    @media (min-width: 640px) {
+      .grid-map { grid-template-columns: 1fr auto 1fr; align-items: stretch; }
+    }
+    .grid-column-label {
+      color: #c9a227; font-size: 0.65rem; letter-spacing: 0.08em;
+      text-align: center; margin-bottom: 0.5rem; font-weight: bold;
+    }
+    .grid-column.west .grid-column-label { color: #006b3f; }
+    .grid-column.east .grid-column-label { color: #1a1a4e; }
+    .grid-corridor {
+      display: flex; flex-direction: column; justify-content: center; gap: 0.5rem;
+      padding: 0.35rem 0; min-width: 120px;
+    }
+    @media (max-width: 639px) {
+      .grid-corridor { order: 3; border-top: 1px dashed #2d4a2d; padding-top: 0.65rem; }
+    }
+    .grid-route {
+      background: rgba(0, 0, 0, 0.3); border: 1px dashed #3d5a3d;
+      border-radius: 4px; padding: 0.4rem 0.5rem; font-size: 0.68rem; color: #c9c4b4;
+    }
+    .grid-route.locked { opacity: 0.45; }
+    .grid-route.open { border-color: #c9a227; }
+    .grid-route strong { display: block; color: #e8e4d4; font-size: 0.72rem; }
+    .route-arrow { color: #c9a227; margin-right: 0.25rem; }
+    .grid-sector, .grid-stronghold {
+      display: grid; grid-template-columns: 6px 1fr;
+      grid-template-rows: auto auto auto auto auto;
+      gap: 0.12rem 0.5rem;
+      padding: 0.5rem 0.6rem; margin-bottom: 0.4rem;
+      border: 1px solid #2d4a2d; border-radius: 4px;
+      background: rgba(26, 46, 26, 0.5); color: #e8e4d4; font-size: 0.75rem;
+    }
+    .grid-stronghold { border-color: #4a4035; background: rgba(30, 28, 24, 0.55); margin-top: 0.35rem; }
+    .grid-sector.locked, .grid-stronghold.locked { opacity: 0.45; }
+    .grid-sector.done, .grid-stronghold.reachable { border-color: #006b3f; }
+    .grid-sector.partial { border-color: #c9a227; }
+    .grid-faction { grid-row: 1 / span 6; border-radius: 3px; }
+    .sector-num { color: #8a9a8a; font-size: 0.62rem; letter-spacing: 0.06em; }
+    .grid-hub { color: #c9a227; font-size: 0.65rem; }
+    .grid-district { color: #8a9a8a; font-size: 0.68rem; }
+    .grid-summary { color: #c9c4b4; font-size: 0.68rem; line-height: 1.35; }
+    .grid-missions { color: #c9a227; font-size: 0.65rem; }
+    .grid-flow-title {
+      color: #8a9a8a; font-size: 0.7rem; margin-top: 0.75rem; margin-bottom: 0.35rem;
+      text-align: center; letter-spacing: 0.05em;
+    }
+    .grid-flow-list { display: flex; flex-direction: column; gap: 0.25rem; }
+    .grid-flow-step {
+      font-size: 0.68rem; color: #8a9a8a; padding: 0.25rem 0.5rem;
+      border-left: 2px solid #2d4a2d;
+    }
+    .grid-flow-step.done { color: #006b3f; border-left-color: #006b3f; }
+    .grid-node {
+      display: grid; grid-template-columns: 6px 1fr;
+      grid-template-rows: auto auto auto auto;
+      gap: 0.15rem 0.5rem;
+      padding: 0.5rem 0.6rem; margin-bottom: 0.35rem;
+      border: 1px solid #2d4a2d; border-radius: 4px;
+      background: rgba(26, 46, 26, 0.5); color: #e8e4d4; font-size: 0.75rem;
+    }
+    .grid-node.locked { opacity: 0.45; }
+    .grid-node.done { border-color: #006b3f; }
+    .grid-faction { grid-row: 1 / span 4; border-radius: 3px; }
+    .grid-district { color: #8a9a8a; font-size: 0.68rem; }
+    .grid-summary { color: #c9c4b4; font-size: 0.7rem; line-height: 1.35; }
+    .grid-missions { color: #c9a227; font-size: 0.68rem; }
+    #btn-reset {
+      margin-top: 1rem; background: transparent; border: 1px solid #555;
+      color: #888; padding: 0.4rem 1rem; border-radius: 4px; cursor: pointer;
+      font-size: 0.75rem;
+    }
+    #btn-yaw-hub {
+      margin-top: 0.5rem; background: linear-gradient(135deg, #1a3a2a, #0d2a1a);
+      border: 2px solid #c9a227; color: #e8e4d4;
+      padding: 0.55rem 1.25rem; border-radius: 6px; cursor: pointer;
+      font-size: 0.85rem; font-weight: 600; letter-spacing: 0.04em;
+    }
+    #btn-yaw-hub:disabled { opacity: 0.35; cursor: not-allowed; }
+    #yaw-hub {
+      display: none; position: fixed; inset: 0; z-index: 250;
+      background: rgba(4, 8, 4, 0.97);
+      flex-direction: column; align-items: center;
+      padding: 1rem; overflow-y: auto;
+    }
+    #yaw-hub.active { display: flex; }
+    .hub-header {
+      text-align: center; margin-bottom: 1rem; max-width: 520px;
+    }
+    .hub-header h2 {
+      color: #c9a227; font-size: 1rem; letter-spacing: 0.06em; margin-bottom: 0.35rem;
+    }
+    .hub-header p { color: #8a9a8a; font-size: 0.78rem; line-height: 1.4; font-style: italic; }
+    .hub-meter {
+      color: #e8e4d4; font-size: 0.8rem; margin-top: 0.5rem;
+    }
+    .hub-meter span { color: #c9a227; font-weight: bold; }
+    .hub-stations {
+      display: grid; grid-template-columns: 1fr;
+      gap: 0.75rem; width: 100%; max-width: 960px;
+    }
+    @media (min-width: 720px) {
+      .hub-stations { grid-template-columns: repeat(3, 1fr); align-items: start; }
+    }
+    .hub-station {
+      background: linear-gradient(160deg, #1a2e1a, #0d1a0d);
+      border: 1px solid #2d4a2d; border-radius: 8px;
+      padding: 0.85rem; min-height: 280px;
+      display: flex; flex-direction: column;
+    }
+    .hub-station.war-board { border-top: 3px solid #006b3f; }
+    .hub-station.workshop { border-top: 3px solid #c9a227; }
+    .hub-station.registry { border-top: 3px solid #1a1a4e; }
+    .hub-station h3 {
+      color: #e8e4d4; font-size: 0.88rem; margin-bottom: 0.2rem;
+    }
+    .station-manager {
+      color: #c9a227; font-size: 0.72rem; margin-bottom: 0.5rem;
+    }
+    .station-desc {
+      color: #8a9a8a; font-size: 0.68rem; line-height: 1.35; margin-bottom: 0.65rem;
+    }
+    .hub-station-content {
+      flex: 1; overflow-y: auto; display: flex; flex-direction: column; gap: 0.4rem;
+    }
+    .hub-item {
+      background: rgba(0, 0, 0, 0.25); border: 1px solid #2d4a2d;
+      border-radius: 4px; padding: 0.5rem 0.6rem; font-size: 0.72rem; color: #e8e4d4;
+    }
+    .hub-item.locked { opacity: 0.4; }
+    .hub-item.done { border-color: #006b3f; }
+    .hub-item.selected { border-color: #c9a227; box-shadow: 0 0 8px rgba(201, 162, 39, 0.25); }
+    .hub-item strong { display: block; color: #c9a227; font-size: 0.75rem; margin-bottom: 0.15rem; }
+    .hub-item span.meta { color: #8a9a8a; font-size: 0.65rem; }
+    .hub-item button {
+      margin-top: 0.35rem; background: #006b3f; color: #fff;
+      border: none; border-radius: 3px; padding: 0.3rem 0.6rem;
+      font-size: 0.68rem; cursor: pointer; width: 100%;
+    }
+    .hub-item button:disabled { background: #333; cursor: not-allowed; }
+    .hub-item button.secondary { background: transparent; border: 1px solid #555; color: #aaa; }
+    .hub-footer {
+      margin-top: 1rem; display: flex; gap: 0.75rem; flex-wrap: wrap; justify-content: center;
+    }
+    .hub-footer button {
+      background: #006b3f; color: #fff; border: none;
+      padding: 0.55rem 1.25rem; border-radius: 4px; cursor: pointer; font-size: 0.85rem;
+    }
+    .hub-footer button.secondary {
+      background: transparent; border: 1px solid #555; color: #aaa;
+    }
+    #hub-deploy-btn {
+      background: #c9a227; color: #1a1a1a; font-weight: bold;
+    }
+    #hub-deploy-btn:disabled { opacity: 0.4; cursor: not-allowed; }
+    #overlay {
+      display: none; position: fixed; inset: 0;
+      background: rgba(0, 0, 0, 0.88); z-index: 100;
+      align-items: center; justify-content: center; padding: 1.5rem;
+    }
+    #overlay.active { display: flex; }
+    #overlay-box {
+      background: linear-gradient(135deg, #1a2e1a, #0d1a0d);
+      border: 2px solid #c9a227; border-radius: 8px;
+      max-width: 440px; padding: 1.5rem; color: #e8e4d4; text-align: center;
+    }
+    #overlay-box h2 { color: #c9a227; font-size: 1.1rem; margin-bottom: 0.75rem; }
+    #overlay-box p { font-size: 0.95rem; line-height: 1.55; margin-bottom: 0.5rem; }
+    #overlay-subtitle {
+      color: #8a9a8a; font-size: 0.8rem; font-style: italic;
+      margin-bottom: 0.75rem; line-height: 1.4;
+    }
+    #overlay-commendation {
+      display: none; color: #c9a227; font-size: 0.85rem;
+      border-top: 1px solid #2d4a2d; padding-top: 0.75rem; margin-bottom: 0.75rem;
+    }
+    #overlay-commendation.visible { display: block; }
+    #overlay-box button {
+      background: #006b3f; color: #fff; border: none;
+      padding: 0.6rem 1.5rem; border-radius: 4px; font-size: 1rem; cursor: pointer;
+    }
+    #touch-ui {
+      position: fixed; inset: 0; pointer-events: none; z-index: 50;
+    }
+    #joystick-zone {
+      position: fixed;
+      left: 50%; top: 50%;
+      transform: translate(-50%, -50%);
+      width: 176px; height: 196px;
+      pointer-events: auto;
+      touch-action: none;
+      display: flex; flex-direction: column;
+      align-items: center; gap: 0.35rem;
+      opacity: 0.72;
+      transition: opacity 0.2s ease;
+    }
+    #joystick-zone.active { opacity: 0.95; }
+    #joystick-zone.disabled {
+      opacity: 0.25;
+      pointer-events: none;
+    }
+    .joy-base {
+      position: relative;
+      width: 176px; height: 176px;
+      border-radius: 50%;
+      border: 2px solid rgba(201, 162, 39, 0.55);
+      background: radial-gradient(circle at 50% 45%, rgba(0, 107, 63, 0.35), rgba(8, 12, 8, 0.72));
+      box-shadow: 0 0 24px rgba(0, 107, 63, 0.25), inset 0 0 18px rgba(0, 0, 0, 0.35);
+    }
+    .joy-compass {
+      position: absolute; inset: 10px;
+      border-radius: 50%;
+      border: 1px dashed rgba(201, 162, 39, 0.28);
+      transform: rotate(0deg);
+      transition: transform 0.06s linear;
+    }
+    .joy-tick {
+      position: absolute;
+      left: 50%; top: 4px;
+      width: 2px; height: 10px;
+      margin-left: -1px;
+      background: rgba(232, 228, 212, 0.35);
+      transform-origin: center 68px;
+    }
+    .joy-tick:nth-child(1) { transform: rotate(0deg); height: 14px; background: rgba(201, 162, 39, 0.75); }
+    .joy-tick:nth-child(2) { transform: rotate(45deg); }
+    .joy-tick:nth-child(3) { transform: rotate(90deg); height: 14px; background: rgba(201, 162, 39, 0.75); }
+    .joy-tick:nth-child(4) { transform: rotate(135deg); }
+    .joy-tick:nth-child(5) { transform: rotate(180deg); height: 14px; background: rgba(201, 162, 39, 0.75); }
+    .joy-tick:nth-child(6) { transform: rotate(225deg); }
+    .joy-tick:nth-child(7) { transform: rotate(270deg); height: 14px; background: rgba(201, 162, 39, 0.75); }
+    .joy-tick:nth-child(8) { transform: rotate(315deg); }
+    .joy-arrow {
+      position: absolute;
+      left: 50%; top: 50%;
+      width: 0; height: 0;
+      margin-left: -9px; margin-top: -52px;
+      border-left: 9px solid transparent;
+      border-right: 9px solid transparent;
+      border-bottom: 22px solid rgba(201, 162, 39, 0.9);
+      transform-origin: 9px 52px;
+      transform: rotate(0deg);
+      filter: drop-shadow(0 1px 2px rgba(0, 0, 0, 0.5));
+      transition: transform 0.06s linear;
+    }
+    .joy-knob {
+      position: absolute;
+      left: 50%; top: 50%;
+      width: 48px; height: 48px;
+      margin: -24px 0 0 -24px;
+      border-radius: 50%;
+      background: radial-gradient(circle at 35% 30%, #1a8a55, #006b3f 65%, #004d2d);
+      border: 2px solid #c9a227;
+      box-shadow: 0 3px 12px rgba(0, 0, 0, 0.45);
+      transition: transform 0.05s linear;
+    }
+    .joy-degrees {
+      color: #c9a227;
+      font-size: 0.72rem;
+      font-weight: 700;
+      letter-spacing: 0.08em;
+      text-shadow: 0 1px 3px rgba(0, 0, 0, 0.8);
+      min-height: 1rem;
+    }
+    #command-btn {
+      position: absolute; bottom: 36px; right: 24px;
+      width: 72px; height: 72px; border-radius: 50%;
+      background: rgba(0, 107, 63, 0.9); border: 2px solid #c9a227;
+      color: #fff; font-size: 0.6rem; font-weight: bold;
+      pointer-events: auto; cursor: pointer;
+      display: flex; align-items: center; justify-content: center;
+      text-align: center; line-height: 1.15;
+    }
+    #fire-btn {
+      position: absolute; bottom: 120px; right: 36px;
+      width: 56px; height: 56px; border-radius: 50%;
+      background: rgba(139, 0, 0, 0.85); border: 2px solid #c9a227;
+      color: #fff; font-size: 0.7rem; font-weight: bold;
+      pointer-events: auto; cursor: pointer;
+    }
+    #interact-btn {
+      position: absolute; bottom: 120px; right: 100px;
+      width: 56px; height: 56px; border-radius: 50%;
+      background: rgba(201, 162, 39, 0.85); border: 2px solid #e8e4d4;
+      color: #1a1a1a; font-size: 0.65rem; font-weight: bold;
+      pointer-events: auto; cursor: pointer;
+    }
+    #touch-ui.hidden { display: none; }
+    @media (min-width: 768px) {
+      #joystick-zone { opacity: 0.55; }
+      #joystick-zone.active { opacity: 0.88; }
+      #fire-btn, #command-btn { opacity: 0.95; }
+    }
+  </style>
+</head>
+<body>
+  <div id="game-wrapper"></div>
+
+  <div id="mission-menu">
+    <h1>LODESTAR_FREEDOM AND JUSTICE</h1>
+    <p class="subtitle">1948 Accra Campaign — Mission Select</p>
+    <div class="campaign-stats">
+      <div>Independence: <span id="meter-display">0</span>%</div>
+      <div>Asare Trust: <span id="trust-display">40</span></div>
+      <div>Medals: <span id="medal-display">0</span></div>
+      <div>Kofi XP: <span id="kofi-display">—</span></div>
+    </div>
+    <div id="freedom-grid" aria-label="Accra Freedom Grid tactical map"></div>
+    <div id="mission-list"></div>
+    <button id="btn-yaw-hub" type="button" disabled>Enter Yaw's Yard — Base Hub</button>
+    <button id="btn-reset" type="button">Reset Campaign</button>
+  </div>
+
+  <div id="yaw-hub" aria-label="Yaw's Base Hub">
+    <div class="hub-header">
+      <h2>Yaw's Base Hub — Ussher Town</h2>
+      <p id="hub-tagline">My grandfather marched unarmed. I will not bury four more children in his name.</p>
+      <div class="hub-meter">Independence momentum: <span id="hub-meter-display">0</span>%</div>
+    </div>
+    <div class="hub-stations">
+      <div class="hub-station war-board">
+        <h3>Tactical War Board</h3>
+        <p class="station-manager">Kojo — Cell Leader</p>
+        <p class="station-desc">Select the next district to liberate on the Freedom Grid.</p>
+        <div id="war-board-content" class="hub-station-content"></div>
+      </div>
+      <div class="hub-station workshop">
+        <h3>Workshop Station</h3>
+        <p class="station-manager">Yaw Mensah</p>
+        <p class="station-desc">Upgrade Kofi's gear and repair the cell's tools.</p>
+        <div id="workshop-content" class="hub-station-content"></div>
+      </div>
+      <div class="hub-station registry">
+        <h3>Registry Desk</h3>
+        <p class="station-manager">Kwesi — Clerk</p>
+        <p class="station-desc">Review intercepted colonial documents for the record.</p>
+        <div id="registry-content" class="hub-station-content"></div>
+      </div>
+    </div>
+    <div class="hub-footer">
+      <button id="hub-deploy-btn" type="button" disabled>Deploy — Kojo's Orders</button>
+      <button id="hub-close-btn" type="button" class="secondary">Return to Campaign</button>
+    </div>
+  </div>
+
+  <div id="overlay">
+    <div id="overlay-box">
+      <h2 id="overlay-title">Briefing</h2>
+      <p id="overlay-subtitle"></p>
+      <p id="overlay-text"></p>
+      <p id="overlay-commendation"></p>
+      <button id="overlay-close" type="button">Continue</button>
+    </div>
+  </div>
+
+  <div id="touch-ui">
+    <div id="joystick-zone" aria-label="Movement joystick">
+      <div class="joy-base">
+        <div class="joy-compass" aria-hidden="true">
+          <span class="joy-tick"></span>
+          <span class="joy-tick"></span>
+          <span class="joy-tick"></span>
+          <span class="joy-tick"></span>
+          <span class="joy-tick"></span>
+          <span class="joy-tick"></span>
+          <span class="joy-tick"></span>
+          <span class="joy-tick"></span>
+        </div>
+        <div class="joy-arrow" aria-hidden="true"></div>
+        <div class="joy-knob"></div>
+      </div>
+      <div class="joy-degrees">—</div>
+    </div>
+    <button id="interact-btn" type="button">INTERACT</button>
+    <button id="fire-btn" type="button">FIRE</button>
+    <button id="command-btn" type="button">SQUAD<br>FOLLOW</button>
+  </div>
+
+  <script src="https://cdn.jsdelivr.net/npm/litecanvas"></script>
+  <script src="https://cdn.jsdelivr.net/npm/matter-js@0.20.0/build/matter.min.js"></script>
+  <script type="module" src="src/game.js"></script>
+  <script>
+    function bindHoldKey(code, el) {
+      el.addEventListener('pointerdown', (e) => {
+        e.preventDefault();
+        window.dispatchEvent(new KeyboardEvent('keydown', { code, bubbles: true }));
+      });
+      el.addEventListener('pointerup', () => {
+        window.dispatchEvent(new KeyboardEvent('keyup', { code, bubbles: true }));
+      });
+      el.addEventListener('pointerleave', () => {
+        window.dispatchEvent(new KeyboardEvent('keyup', { code, bubbles: true }));
+      });
+    }
+    bindHoldKey('KeyF', document.getElementById('fire-btn'));
+    bindHoldKey('KeyE', document.getElementById('interact-btn'));
+  </script>
+</body>
+</html>

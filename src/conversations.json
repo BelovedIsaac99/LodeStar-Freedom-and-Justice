@@ -1,0 +1,548 @@
+{
+  "prologue": {
+    "id": "prologue_the_debt",
+    "title": "The Debt",
+    "subtitle": "Gold Coast — late 1947",
+    "historicalNote": "Before the march. Before the Crossroads. Before the riots.",
+    "lines": [
+      { "speaker": "Narrator", "text": "They sent us to Burma, to Italy, to die for a King we never met." },
+      { "speaker": "Narrator", "text": "When we came home, the Treasury said the debt was settled. The ledgers said otherwise." },
+      { "speaker": "Narrator", "text": "In Accra, in '47, we stopped asking politely." },
+      { "speaker": "Narrator", "text": "Dr. Nkrumah spoke of self-government — not with rifles, but with signatures and witnesses." },
+      { "speaker": "Narrator", "text": "On the twenty-eighth of February, we would march to Christiansborg unarmed." },
+      { "speaker": "Narrator", "text": "A petition. A promise kept by the people, if not by the Governor." },
+      { "speaker": "Narrator", "text": "Sergeant Adjetey — you, Attipoe, Lamptey — you do not start a war today." },
+      { "speaker": "Narrator", "text": "You gather truth. You protect the march. You make sure the world is watching." }
+    ]
+  },
+  "barks": {
+    "kojo_order_hold": "Kojo: \"Araba — hold the choke! Nobody passes!\"",
+    "kojo_order_suppress": "Kojo: \"Kofi — suppressing fire! Keep their heads down!\"",
+    "kojo_order_flank": "Kojo: \"On my mark — flank left through the cut!\"",
+    "kojo_smoke": "Kojo: \"Smoke out — move!\"",
+    "araba_riot_rally": "Araba: \"You want a riot? I'll show you a door breaking!\"",
+    "kofi_first_shot": "Kofi: \"I… I hit something! Don't tell Yaw I said that.\"",
+    "kwesi_wiretap": "Kwesi: \"Lines open. I can read their patrol rhythm.\"",
+    "adjetey_contact": "Adjetey: \"Contact — stay behind cover!\"",
+    "adjetey_cover": "Adjetey: \"Down! Civilians behind us — hold fire unless they fire first!\"",
+    "adjetey_orders": "Adjetey: \"Squad — on me. Ink before iron today.\"",
+    "adjetey_civilians": "Adjetey: \"Market women clear the lane — let them pass!\"",
+    "attipoe_clear": "Attipoe: \"Route clear — move!\"",
+    "attipoe_contact": "Attipoe: \"Eyes on the ridge — two constables!\"",
+    "attipoe_reload": "Attipoe: \"Cover me — changing clip!\"",
+    "attipoe_escort": "Attipoe: \"Keep the VIPs between us and the road!\"",
+    "lamptey_intel": "Lamptey: \"Intel secured.\"",
+    "lamptey_charges": "Lamptey: \"Charges set — fuse is yours, Sergeant.\"",
+    "lamptey_demolition": "Lamptey: \"Stand back — mast comes down on three!\"",
+    "lamptey_ready": "Lamptey: \"Demolition kit ready. Point me at steel, not stalls.\"",
+    "araba_stall": "Araba: \"AWAM shutters — not Auntie Esi's fish!\"",
+    "yaw_rules": "Yaw: \"Hit the monopoly — not the market women.\"",
+    "kwesi_document": "Kwesi: \"Witness this — file it before they file us.\""
+  },
+  "phaseIvOrigin": {
+    "id": "phase_iv_band_together",
+    "title": "The Powder Keg — How the Cell Formed",
+    "timeline": "28 February – 2 March 1948",
+    "historicalNote": "After Christiansborg Crossroads. Bonne's AWAM boycott had already strained Accra; the shootings broke the barrier of fear.",
+    "scenes": [
+      {
+        "id": "scene_01_crossroads_dusk",
+        "order": 1,
+        "when": "28 February 1948 — dusk",
+        "where": "Christiansborg Crossroads — laterite dust still in the air",
+        "characters": ["kojo", "narrator"],
+        "unlockCharacter": "kojo",
+        "mood": "shock, silence, decision",
+        "lines": [
+          { "speaker": "Narrator", "text": "Three names the newspapers will spell wrong by morning. Three bodies the Governor will not come down to see." },
+          { "speaker": "Kojo", "text": "I counted the shots. I counted again. You don't need a rifle to know when a country breaks." },
+          { "speaker": "Kojo", "text": "They marched with empty hands. Sergeant Adjetey. Corporal Attipoe. Private Odartey Lamptey." },
+          { "speaker": "Kojo", "text": "The constables reload like it's drill. The crowd scatters. Fear wins — for one hour." },
+          { "speaker": "Kojo", "text": "No. Fear had a long run in this city. Bonne's boycott cracked the shops. Today cracked the people." },
+          { "speaker": "Kojo", "text": "I know every alley from Makola to James Town. If they want a riot, I'll give them something worse — a plan." }
+        ]
+      },
+      {
+        "id": "scene_02_salaga_market_night",
+        "order": 2,
+        "when": "28 February 1948 — late night",
+        "where": "Salaga Market — AWAM store shuttered, oil lamp under awning",
+        "characters": ["kojo", "araba"],
+        "unlockCharacter": "araba",
+        "mood": "grief turning to fury",
+        "lines": [
+          { "speaker": "Araba", "text": "Move. Unless you work for AWAM, move." },
+          { "speaker": "Kojo", "text": "I was at the Crossroads. I'm not police." },
+          { "speaker": "Araba", "text": "Then you saw what they did to men who wore the King's uniform." },
+          { "speaker": "Kojo", "text": "I saw. Who's that?" },
+          { "speaker": "Araba", "text": "My cousin Kwame. He marched unarmed. A second volley took his leg, not his life — this time." },
+          { "speaker": "Araba", "text": "AWAM raised prices while veterans bled. Bonne told us to close our stalls. We closed them. They still shot us." },
+          { "speaker": "Kojo", "text": "I'm looking for people who won't swallow this." },
+          { "speaker": "Araba", "text": "I'm looking for throats that won't stay quiet. What are you offering?" },
+          { "speaker": "Kojo", "text": "Routes. Timing. Smoke when steel fails. Not chaos — pressure." },
+          { "speaker": "Araba", "text": "…When you need a door broken, find me. I don't do whisper politics." },
+          { "speaker": "Kojo", "text": "When I need the ground to shake, I'll know where to stand." }
+        ]
+      },
+      {
+        "id": "scene_03_kaneshie_riot_dawn",
+        "order": 3,
+        "when": "1 March 1948 — dawn",
+        "where": "Kaneshie — smoke from AWAM warehouse, crowd running",
+        "characters": ["kojo", "araba", "kofi"],
+        "unlockCharacter": "kofi",
+        "mood": "first riots, raw courage",
+        "lines": [
+          { "speaker": "Narrator", "text": "The five-day fires begin. Not every hand holds a weapon. Every hand holds something — a stone, a ledger, a brother." },
+          { "speaker": "Kofi", "text": "Leave me — they killed the Sergeant! They killed—" },
+          { "speaker": "Araba", "text": "Down, boy. Constables at the corner." },
+          { "speaker": "Kojo", "text": "Grab his arm. Not the chest — the arm. Run on my count." },
+          { "speaker": "Kofi", "text": "Who are you—" },
+          { "speaker": "Kojo", "text": "Three. Two. One — now." },
+          { "speaker": "Narrator", "text": "They slip through a drainage cut Kojo used since he was fifteen." },
+          { "speaker": "Kofi", "text": "I was at the Crossroads. I couldn't… I just stood there." },
+          { "speaker": "Araba", "text": "Standing is how most people die. You ran today. That counts." },
+          { "speaker": "Kofi", "text": "I want to do more than run." },
+          { "speaker": "Kojo", "text": "You will. But you'll learn before you lead. What's your name?" },
+          { "speaker": "Kofi", "text": "Kofi. Kaneshie. I carry loads at the market." },
+          { "speaker": "Kojo", "text": "Not Kofi Asare at the Secretariat, eh? Good. Names matter this week." },
+          { "speaker": "Araba", "text": "He stays with us until the streets cool." },
+          { "speaker": "Kojo", "text": "He stays until he chooses to leave. Fair?" },
+          { "speaker": "Kofi", "text": "…Fair." }
+        ]
+      },
+      {
+        "id": "scene_04_ussher_yard_safehouse",
+        "order": 4,
+        "when": "1 March 1948 — night",
+        "where": "Ussher Town motor yard — back room, Bedford truck on blocks",
+        "characters": ["kojo", "araba", "kofi", "yaw"],
+        "unlockCharacter": "yaw",
+        "mood": "anchor, history, responsibility",
+        "lines": [
+          { "speaker": "Yaw", "text": "You brought trouble to my yard." },
+          { "speaker": "Kojo", "text": "We brought three hungry people and one angry city." },
+          { "speaker": "Yaw", "text": "Same thing, some weeks." },
+          { "speaker": "Araba", "text": "We need a roof. AWAM hired constables to watch the markets." },
+          { "speaker": "Yaw", "text": "Sit. All of you. Especially the boy — you shake like you still hear shots." },
+          { "speaker": "Kofi", "text": "I hear them." },
+          { "speaker": "Yaw", "text": "My grandfather marched on the twenty-eighth. Unarmed. Like Adjetey. Like Attipoe. Like Lamptey." },
+          { "speaker": "Yaw", "text": "He did not fall — a secondary volley took his hip and his faith in the Crown. He lived crippled. He lived angry. He lived useful." },
+          { "speaker": "Kojo", "text": "You run the boycott runs. The safe routes." },
+          { "speaker": "Yaw", "text": "I run what keeps children from becoming martyrs before their names are written. I do not march with you." },
+          { "speaker": "Araba", "text": "We need more than roofs." },
+          { "speaker": "Yaw", "text": "You'll get tools. Oil. Bolts. A map of who owes the veterans' Union. And my grandfather's rule — hit AWAM stores, not Auntie Esi's fish table." },
+          { "speaker": "Kojo", "text": "We need intelligence. Police manifests. Castle schedules." },
+          { "speaker": "Yaw", "text": "Then you need someone who reads English without blinking. I know one clerk who didn't sleep last night." },
+          { "speaker": "Kofi", "text": "Another Kofi?" },
+          { "speaker": "Yaw", "text": "Kwesi. Different boy. Different courage. You'll meet him when he's ready — or when the city forces his hand." }
+        ]
+      },
+      {
+        "id": "scene_05_secretariat_manifest",
+        "order": 5,
+        "when": "2 March 1948 — after midnight",
+        "where": "Victoriaborg lane — rain on corrugated iron",
+        "characters": ["kojo", "araba", "kofi", "kwesi"],
+        "unlockCharacter": "kwesi",
+        "mood": "trust tested, intel offered",
+        "lines": [
+          { "speaker": "Kwesi", "text": "Don't step into the light." },
+          { "speaker": "Kojo", "text": "Yaw said you'd come alone." },
+          { "speaker": "Kwesi", "text": "I came with a satchel. That's worse." },
+          { "speaker": "Araba", "text": "Show us or run back to your desk." },
+          { "speaker": "Kwesi", "text": "Private Odartey Lamptey was my father's cousin. I watched him fall on red earth I still see when I close my eyes." },
+          { "speaker": "Kofi", "text": "…I'm sorry." },
+          { "speaker": "Kwesi", "text": "Sorry doesn't read curfew times. This does." },
+          { "speaker": "Narrator", "text": "He slides out stolen pages — patrol rotations, warehouse keys, Superintendent Imray's own signature on a suppression order." },
+          { "speaker": "Kojo", "text": "You could hang for this." },
+          { "speaker": "Kwesi", "text": "I could hang for filing. I choose what I file." },
+          { "speaker": "Araba", "text": "Can you get us inside the AWAM depot on Ring Road?" },
+          { "speaker": "Kwesi", "text": "I can tell you which door the night guard forgets to lock. I will not carry a gun through it." },
+          { "speaker": "Kojo", "text": "No one asks you to. You wire the lines. You read the rooms. We move on what you know." },
+          { "speaker": "Kwesi", "text": "And when they catch me?" },
+          { "speaker": "Kojo", "text": "We come. All of us." },
+          { "speaker": "Araba", "text": "I'll come first." },
+          { "speaker": "Kofi", "text": "I'll… I'll learn to shoot straight by then." },
+          { "speaker": "Kwesi", "text": "…Then I have one condition. We document everything. Witnesses. Ledgers. Names. What Imray did at the Crossroads — the world must read it, not just hear it in market gossip." },
+          { "speaker": "Kojo", "text": "Agreed. Truth is ammunition." }
+        ]
+      },
+      {
+        "id": "scene_06_cell_formed",
+        "order": 6,
+        "when": "2 March 1948 — before sunrise",
+        "where": "Ussher Town yard — same back room, maps on crate",
+        "characters": ["kojo", "araba", "kofi", "kwesi", "yaw"],
+        "unlockCharacter": null,
+        "mood": "oath, hierarchy, purpose",
+        "lines": [
+          { "speaker": "Yaw", "text": "Four children and an old man's yard. The Watson Commission will come if you survive. Nkrumah will be arrested if you succeed. Independence is not this week — but the path starts here." },
+          { "speaker": "Kojo", "text": "We need a chain. Not a crowd." },
+          { "speaker": "Araba", "text": "Say it." },
+          { "speaker": "Kojo", "text": "I plan. I flank. I give orders. If I'm trapped, Araba breaks the line — not the other way around." },
+          { "speaker": "Araba", "text": "Second in command. The hammer. Accepted." },
+          { "speaker": "Kofi", "text": "What am I?" },
+          { "speaker": "Kojo", "text": "You learn fast or you die slow. Suppressing fire. Cover. Courage on training wheels until the wheels come off." },
+          { "speaker": "Kofi", "text": "I won't fail the three martyrs." },
+          { "speaker": "Kwesi", "text": "I don't fight. I don't run first into fire. I make fire unnecessary when I can." },
+          { "speaker": "Yaw", "text": "And I keep the yard, the tools, and the memory of my grandfather — who marched so you wouldn't have to repeat his mistakes blindly." },
+          { "speaker": "Kojo", "text": "For Adjetey. For Attipoe. For Lamptey. For every stall Bonne closed and every price AWAM raised." },
+          { "speaker": "Araba", "text": "For Kwame's leg. For the petition they never read." },
+          { "speaker": "Kwesi", "text": "For the file they thought I'd never open." },
+          { "speaker": "Kofi", "text": "For the day I stopped standing still." },
+          { "speaker": "Yaw", "text": "Then go. Missions start at dusk. You come back alive — all four — or don't come back at all." },
+          { "speaker": "Narrator", "text": "Accra burns five days. They burn with purpose." }
+        ]
+      }
+    ],
+    "bandingOrder": [
+      { "order": 1, "character": "kojo", "scene": "scene_01_crossroads_dusk", "how": "Witnesses Crossroads alone; decides organized resistance" },
+      { "order": 2, "character": "araba", "scene": "scene_02_salaga_market_night", "how": "Kojo finds her tending wounded cousin; mutual pact" },
+      { "order": 3, "character": "kofi", "scene": "scene_03_kaneshie_riot_dawn", "how": "Rescued from constables during first riot fires" },
+      { "order": 4, "character": "yaw", "scene": "scene_04_ussher_yard_safehouse", "how": "Offers yard as hub; refuses frontline; connects to Kwesi" },
+      { "order": 5, "character": "kwesi", "scene": "scene_05_secretariat_manifest", "how": "Brings stolen manifests; joins on truth condition" },
+      { "order": 6, "character": "cell", "scene": "scene_06_cell_formed", "how": "Command chain sworn — Kojo 1st, Araba 2nd" }
+    ]
+  },
+  "commanderBriefings": {
+    "mobilization": {
+      "speaker": "Dr. Kwame Nkrumah",
+      "lines": [
+        { "speaker": "Dr. Kwame Nkrumah", "text": "Brothers — we do not ask for charity. We ask for accounts." },
+        { "speaker": "Dr. Kwame Nkrumah", "text": "Gather the ledgers. Escort the organizers. Let the colony see we are disciplined, not desperate." },
+        { "speaker": "Dr. Kwame Nkrumah", "text": "Ink before iron. Every pamphlet is a witness. Every witness is a step toward self-government." }
+      ]
+    },
+    "peaceful_march": {
+      "speaker": "Dr. Kwame Nkrumah",
+      "lines": [
+        { "speaker": "Dr. Kwame Nkrumah", "text": "Twenty-eighth of February. Christ Church at dawn. Two thousand unarmed veterans." },
+        { "speaker": "Dr. Kwame Nkrumah", "text": "We march with dignity. We present a petition — loyal in tone, uncompromising in demand." },
+        { "speaker": "Dr. Kwame Nkrumah", "text": "If they strike, let the world see who struck first. Protect the speakers. Protect the truth." }
+      ]
+    },
+    "crossroads": {
+      "speaker": "Dr. Kwame Nkrumah",
+      "lines": [
+        { "speaker": "Dr. Kwame Nkrumah", "text": "Christiansborg Crossroads. Governor Creasy will not come down. Superintendent Imray blocks the gate." },
+        { "speaker": "Dr. Kwame Nkrumah", "text": "You cannot rewrite what history will record — but you can get the witnesses out alive." },
+        { "speaker": "Dr. Kwame Nkrumah", "text": "Document everything. The Watson Commission will come if we survive to tell it." }
+      ]
+    },
+    "riots": {
+      "speaker": "Yaw Mensah",
+      "lines": [
+        { "speaker": "Yaw", "text": "Crossroads dust still on your boots. My yard is open — my grandfather's rule stands." },
+        { "speaker": "Yaw", "text": "Hit AWAM stores. Protect innocent stalls. Kwesi reads the rooms — Kojo moves the steel." },
+        { "speaker": "Yaw", "text": "Independence is not this week. But every manifest you steal is a page they cannot burn." }
+      ]
+    }
+  },
+  "epilogue": {
+    "id": "campaign_epilogue",
+    "title": "The Path to Independence",
+    "subtitle": "1948 — 1957",
+    "historicalNote": "Watson Commission · Nkrumah's arrest · Ghana independent 6 March 1957",
+    "lines": [
+      { "speaker": "Narrator", "text": "Five days Accra burned. The Watson Commission came. The Crown heard what Imray tried to silence." },
+      { "speaker": "Narrator", "text": "Dr. Nkrumah was arrested — and the Gold Coast did not forget Christiansborg Crossroads." },
+      { "speaker": "Dr. Kwame Nkrumah", "text": "They thought fear would end the movement. It only taught us where to stand." },
+      { "speaker": "Yaw", "text": "My yard still stands. So does my grandfather's debt — paid in witnesses, not in silence." },
+      { "speaker": "Kojo", "text": "Adjetey. Attipoe. Lamptey. We did not save them. We carried what they died proving." },
+      { "speaker": "Kwesi", "text": "Every page we filed became evidence. Every witness became a country." },
+      { "speaker": "Narrator", "text": "On the sixth of March, nineteen fifty-seven, the Gold Coast became Ghana — free at last." },
+      { "speaker": "Narrator", "text": "Sergeant Adjetey, Corporal Attipoe, Private Odartey Lamptey — martyrs of the Crossroads. Their names outlived the Empire." }
+    ]
+  },
+  "missions": {
+    "1": {
+      "start": [
+        { "speaker": "Sergeant Adjetey", "text": "Kingsway Depot before dawn. Lamptey — side gate. Attipoe — rear cover." },
+        { "speaker": "Dr. Kwame Nkrumah", "text": "Three million pounds the Treasury denies. Bring me the ledgers before they burn them." },
+        { "speaker": "Corporal Attipoe", "text": "Copy that. We move quiet — constables rotate at the hour mark." }
+      ],
+      "victory": [
+        { "speaker": "Private Odartey Lamptey", "text": "Every page accounted for. They can't say we weren't owed." },
+        { "speaker": "Sergeant Adjetey", "text": "Evidence secured. The debt is public now — whether Creasy reads it or not." }
+      ],
+      "triggers": {
+        "asareStart": [
+          { "speaker": "Kofi Asare", "text": "I clerk nights at Kingsway. Quick — before the guard returns." },
+          { "speaker": "Kofi Asare", "text": "Side gate is open. Trust me on this one, Sergeant." }
+        ]
+      }
+    },
+    "2": {
+      "start": [
+        { "speaker": "Sergeant Adjetey", "text": "Kaneshie awning — UGCC organizers under the market cloth. We escort, we don't preach." },
+        { "speaker": "Corporal Attipoe", "text": "Constabulary has two posts on the north lane. We cut east if pressed." },
+        { "speaker": "Organizer", "text": "The petition draft is in the satchel. If we fall, the words must not." }
+      ],
+      "victory": [
+        { "speaker": "Organizer", "text": "You brought us through the market alive. Nkrumah will hear of this." },
+        { "speaker": "Sergeant Adjetey", "text": "Safe house secured. The petition lives another day." }
+      ],
+      "triggers": {
+        "asareStart": [
+          { "speaker": "Kofi Asare", "text": "Forged curfew pass — show this if stopped. Trust me." }
+        ],
+        "onExtraction": [
+          { "speaker": "UGCC Organizer", "text": "We owe you more than thanks. Self-government is not a slogan anymore — it's a schedule." },
+          { "speaker": "Sergeant Adjetey", "text": "Rest tonight. Tomorrow the coast road watches everything we do." }
+        ]
+      }
+    },
+    "3": {
+      "start": [
+        { "speaker": "Private Odartey Lamptey", "text": "Two masts, two charges. Alpha first — Beta from the blind side." },
+        { "speaker": "Corporal Attipoe", "text": "Hold the arming zone or the fuse dies with us." },
+        { "speaker": "Sergeant Adjetey", "text": "Lamptey — how long on the fuse?" },
+        { "speaker": "Private Odartey Lamptey", "text": "Fifteen seconds if I do my job. Don't ask me to do it twice." }
+      ],
+      "mid": [
+        { "speaker": "Private Odartey Lamptey", "text": "Alpha's wired. Attipoe — when Beta's set, we run together." },
+        { "speaker": "Corporal Attipoe", "text": "Beta's hot. Lamptey, you're frighteningly good at this." },
+        { "speaker": "Private Odartey Lamptey", "text": "Burma taught me what steel sounds like when it falls." }
+      ],
+      "victory": [
+        { "speaker": "Sergeant Adjetey", "text": "Radio Hill silent. Colonial troop movements go blind tomorrow." },
+        { "speaker": "Private Odartey Lamptey", "text": "Both masts down. They march deaf into the twenty-eighth." }
+      ],
+      "triggers": {
+        "asareStart": [
+          { "speaker": "Kofi Asare", "text": "Patrol shift at zero-four-hundred — note on your crate. Accurate intel." }
+        ],
+        "onFirstDemolition": [
+          { "speaker": "Private Odartey Lamptey", "text": "First mast wired. One more — then we run like the hill is on fire." },
+          { "speaker": "Corporal Attipoe", "text": "Because it will be. Move." }
+        ]
+      }
+    },
+    "4": {
+      "start": [
+        { "speaker": "Sergeant Adjetey", "text": "James Town checkpoint — fish crates, not rifles. Clear one hour for the pamphlets." },
+        { "speaker": "Corporal Attipoe", "text": "Fishermen are waiting on the beach road. Don't spook the cart." }
+      ],
+      "victory": [
+        { "speaker": "Fisherman", "text": "Crates through. The coast will read what the Castle won't." },
+        { "speaker": "Sergeant Adjetey", "text": "Checkpoint open. Pamphlets flow — quietly." }
+      ],
+      "triggers": {
+        "asareStart": [
+          { "speaker": "Kofi Asare", "text": "Special patrol tonight — so they say. It never arrives. Was I wrong, Sergeant?" }
+        ]
+      }
+    },
+    "5": {
+      "start": [
+        { "speaker": "Sergeant Adjetey", "text": "Ring Road intercept. Wound the courier — seal intact. We need what Creasy signed." },
+        { "speaker": "Corporal Attipoe", "text": "One shot to the leg if you must. Not the chest." }
+      ],
+      "victory": [
+        { "speaker": "Sergeant Adjetey", "text": "Orders intercepted — but one page is missing. Asare's eyes didn't meet mine." },
+        { "speaker": "Private Odartey Lamptey", "text": "Something doesn't add up. Keep the satchel close." }
+      ],
+      "triggers": {
+        "onHandoff": [
+          { "speaker": "Kofi Asare", "text": "Satchel received. One page is missing — you noticed." },
+          { "speaker": "Kofi Asare", "text": "…Not everything I copy goes to the same desk. Not yet." }
+        ]
+      }
+    },
+    "6": {
+      "start": [
+        { "speaker": "Sergeant Adjetey", "text": "Makola corridor — Asare's route. Move the press plates before curfew." },
+        { "speaker": "Corporal Attipoe", "text": "Cart stays between us. Lamptey — rear guard." }
+      ],
+      "mid": [
+        { "speaker": "Colonial Radio", "text": "Wrong corridor — false corridor. Intercept at Makola east." },
+        { "speaker": "Kofi Asare", "text": "Only I knew this route… Sergeant, I did not call that in." },
+        { "speaker": "Sergeant Adjetey", "text": "Attipoe — get the cart out! Lamptey — suppressing fire!" }
+      ],
+      "victory": [
+        { "speaker": "Corporal Attipoe", "text": "Still breathing. Barely. Cart saved." },
+        { "speaker": "Sergeant Adjetey", "text": "Asare's name burns in my memory — betrayal or misdirection, we'll know." }
+      ],
+      "triggers": {
+        "ambush": [
+          { "speaker": "Colonial Radio", "text": "Wrong corridor — false corridor. Intercept at Makola east." },
+          { "speaker": "Kofi Asare", "text": "Only Asare knew this route. Sergeant — I swear on the petition I didn't—" },
+          { "speaker": "Sergeant Adjetey", "text": "Save the speech. Save the cart." }
+        ],
+        "onWoundAttipoe": [
+          { "speaker": "Corporal Attipoe", "text": "Round through the shoulder — still fighting! Don't stop for me!" },
+          { "speaker": "Sergeant Adjetey", "text": "Attipoe takes a hit — still moving. Get the cart out!" }
+        ]
+      }
+    },
+    "7": {
+      "start": [
+        { "speaker": "Sergeant Adjetey", "text": "I no longer know whose desk Asare serves. Shadow him — don't alert the Castle gate." },
+        { "speaker": "Private Odartey Lamptey", "text": "Stay within a hundred twenty paces. Close enough to see, far enough to deny." }
+      ],
+      "victory": [
+        { "speaker": "Dr. Kwame Nkrumah", "text": "Some lies protect true marchers. Asare was always Gold Coast." },
+        { "speaker": "Kofi Asare", "text": "I burned the real troop map. The sergeant got the fake. Trust restored — barely." },
+        { "speaker": "Sergeant Adjetey", "text": "The Clerk serves the Coast. We march with clearer eyes." }
+      ],
+      "triggers": {
+        "witness": [
+          { "speaker": "Witness", "text": "Asare burns a real map — hands a fake to the colonial sergeant." },
+          { "speaker": "Dr. Kwame Nkrumah", "text": "Some lies protect true marchers. Remember that at the Crossroads." }
+        ]
+      }
+    },
+    "8": {
+      "start": [
+        { "speaker": "Sergeant Adjetey", "text": "Christ Church — dawn. Thousands gather. Hold the square until the petition is read." },
+        { "speaker": "Corporal Attipoe", "text": "Speakers on the steps. We protect — we do not provoke." }
+      ],
+      "victory": [
+        { "speaker": "Crowd", "text": "Self-government now! Self-government now!" },
+        { "speaker": "Sergeant Adjetey", "text": "Petition read. The crowd swells toward the coast road." }
+      ],
+      "triggers": {
+        "asareStart": [
+          { "speaker": "Wanted Poster", "text": "Kofi Asare — reward for arrest. He is gone. For now." }
+        ],
+        "intel": {
+          "Petition Read": [
+            { "speaker": "Speaker", "text": "We, the ex-servicemen of the Gold Coast, present this petition in peace and loyalty—" },
+            { "speaker": "Crowd", "text": "…demanding self-government now! Not next year. Now!" },
+            { "speaker": "Speaker", "text": "We march unarmed. Let the Governor hear us — or let the world hear his silence." }
+          ]
+        }
+      }
+    },
+    "9": {
+      "start": [
+        { "speaker": "Sergeant Adjetey", "text": "Coast road column. Unarmed. Disciplined. Visible. The world is watching." },
+        { "speaker": "Corporal Attipoe", "text": "Escorts in formation. No weapons among us — only dignity." }
+      ],
+      "victory": [
+        { "speaker": "Sergeant Adjetey", "text": "Crossroads approach. The Castle wall ahead. History holds its breath." },
+        { "speaker": "Dr. Kwame Nkrumah", "text": "You marched as I asked. Whatever comes at the gate — you did not strike first." }
+      ],
+      "triggers": {
+        "radio": [
+          { "speaker": "Dr. Kwame Nkrumah", "text": "Comrades — discipline is your weapon today. Ink before iron." },
+          { "speaker": "Dr. Kwame Nkrumah", "text": "Hold the line with dignity. Let them be the ones who strike first." }
+        ],
+        "onWaypoint": [
+          { "speaker": "Kofi Asare", "text": "Smoke signal on the Castle wall — my mark. Gate counts were falsified." },
+          { "speaker": "Sergeant Adjetey", "text": "He still serves us. Eyes up — Crossroads ahead." }
+        ]
+      }
+    },
+    "10": {
+      "start": [
+        { "speaker": "Sergeant Adjetey", "text": "Christiansborg Crossroads. Present the petition. Do not provoke." },
+        { "speaker": "Superintendent Imray", "text": "Halt! You will not pass. Disperse or face consequences." },
+        { "speaker": "Sergeant Adjetey", "text": "We are unarmed. We demand the Governor receive our petition." }
+      ],
+      "victory": [
+        { "speaker": "Narrator", "text": "Accra will remember. The Watson Commission will come." },
+        { "speaker": "Dr. Kwame Nkrumah", "text": "Independence is inevitable — not today, but because of today." },
+        { "speaker": "Witness", "text": "Three martyrs at the gate. The petition never reached Creasy — but the truth escaped." }
+      ],
+      "triggers": {
+        "witness": [
+          { "speaker": "Kofi Asare", "text": "They'll arrest me at dawn. The petition copy is safe. I was always Gold Coast." }
+        ]
+      }
+    },
+    "11": {
+      "start": [
+        { "speaker": "Kojo", "text": "Crossroads dust on my boots. Constables sweep Makola — we slip alleys, not main roads." },
+        { "speaker": "Araba", "text": "Salaga tonight. I know a fishmonger who won't swallow what Imray did." }
+      ],
+      "victory": [
+        { "speaker": "Kojo", "text": "James Town exit clear. Salaga Market — find Araba's contact before the cordon closes." },
+        { "speaker": "Yaw", "text": "Radio crackle from my yard: all four still breathing. Don't waste it." }
+      ],
+      "triggers": {
+        "cellStart": [
+          { "speaker": "Kojo", "text": "They expect a riot. I give them a route." }
+        ]
+      }
+    },
+    "12": {
+      "start": [
+        { "speaker": "Araba", "text": "AWAM shuttered their store — hired constables to guard hunger. We hit the warehouse." },
+        { "speaker": "Kojo", "text": "Not Auntie Esi's fish table. Yaw's rule — every time." },
+        { "speaker": "Kofi", "text": "I'll cover the stalls. I know which awning is innocent." }
+      ],
+      "mid": [
+        { "speaker": "Araba", "text": "You shot the men who wore your khaki. You do not get to sell us hunger anymore." },
+        { "speaker": "Market Woman", "text": "AWAM's shutters fall — our prices stay honest!" }
+      ],
+      "victory": [
+        { "speaker": "Araba", "text": "AWAM burns. Kaneshie smokes at dawn — a boy runs toward the fire." },
+        { "speaker": "Kojo", "text": "That's Kofi before we pulled him out. Next mission — we don't leave him standing still." }
+      ],
+      "triggers": {
+        "cellStart": [
+          { "speaker": "Araba", "text": "You shot the men who wore your khaki. You do not get to sell us hunger anymore." }
+        ]
+      }
+    },
+    "13": {
+      "start": [
+        { "speaker": "Kojo", "text": "First riot fires at Kaneshie AWAM warehouse. Pull Kofi from the constables — drainage cut east." },
+        { "speaker": "Araba", "text": "Constables at the corner. Grab his arm, not his chest." }
+      ],
+      "mid": [
+        { "speaker": "Kofi", "text": "I didn't know how to hold a rifle yesterday. I will learn today." },
+        { "speaker": "Kojo", "text": "You run today. You learn tomorrow. Move on my count." }
+      ],
+      "victory": [
+        { "speaker": "Kofi", "text": "I ran when you said run. I won't stand still again." },
+        { "speaker": "Yaw", "text": "Ussher Town yard tonight. Roofs, tools, and rules — if you make it alive." }
+      ],
+      "triggers": {
+        "cellStart": [
+          { "speaker": "Kofi", "text": "I didn't know how to hold a rifle yesterday. I will learn today." }
+        ]
+      }
+    },
+    "14": {
+      "start": [
+        { "speaker": "Kwesi", "text": "Don't step into the light. Satchel has four pages — patrol times, keys, Imray's signature." },
+        { "speaker": "Kojo", "text": "You read the rooms. We move on what you know. No firing — that's your rule." },
+        { "speaker": "Kwesi", "text": "And when they catch me?" },
+        { "speaker": "Kojo", "text": "We come. All of us." }
+      ],
+      "victory": [
+        { "speaker": "Kwesi", "text": "Every manifest accounted for. Truth is ammunition." },
+        { "speaker": "Kojo", "text": "The cell swears its chain at Yaw's yard. Kofi — you shoot straighter tomorrow." }
+      ],
+      "triggers": {
+        "cellStart": [
+          { "speaker": "Kwesi", "text": "Sorry doesn't read curfew times. This does." }
+        ]
+      }
+    },
+    "15": {
+      "start": [
+        { "speaker": "Yaw", "text": "Fifth day. Constables sweep Ussher Town for riot organizers. Hold my yard." },
+        { "speaker": "Kojo", "text": "All four survive — or we don't come back. Watson Commission word must reach the coast." },
+        { "speaker": "Araba", "text": "Let them try the front gate." }
+      ],
+      "mid": [
+        { "speaker": "Kwesi", "text": "Witness accounts filed — AWAM price-fixing, Imray's suppression order." },
+        { "speaker": "Kofi", "text": "Innocent stalls still standing. AWAM warehouses didn't." }
+      ],
+      "victory": [
+        { "speaker": "Yaw", "text": "Four children and an old man's yard — still standing." },
+        { "speaker": "Kojo", "text": "Accra burned five days. We burned with purpose." },
+        { "speaker": "Narrator", "text": "The Watson Commission will come. Nkrumah will be arrested. Independence: 1957." }
+      ],
+      "triggers": {
+        "cellStart": [
+          { "speaker": "Yaw", "text": "Four children and an old man's yard. Independence is not this week — but the path starts here." }
+        ]
+      }
+    }
+  }
+}

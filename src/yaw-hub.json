@@ -1,0 +1,165 @@
+{
+  "title": "Yaw's Base Hub",
+  "location": "Ussher Town motor yard — back room",
+  "tagline": "My grandfather marched unarmed. I will not bury four more children in his name.",
+  "stations": {
+    "warBoard": {
+      "id": "war_board",
+      "label": "Tactical War Board",
+      "manager": "kojo",
+      "managerName": "Kojo — Cell Leader",
+      "description": "Select the next district to liberate. Pin routes, timing, and extraction on the Accra Freedom Grid."
+    },
+    "workshop": {
+      "id": "workshop",
+      "label": "Workshop Station",
+      "manager": "yaw",
+      "managerName": "Yaw Mensah — Veteran Advisor",
+      "description": "Upgrade Kofi's gear and repair the cell's tools. Oil, bolts, and patience — not martyrdom."
+    },
+    "registry": {
+      "id": "registry",
+      "label": "Registry Desk",
+      "manager": "kwesi",
+      "managerName": "Kwesi — Clerk",
+      "description": "Review intercepted colonial documents. Truth is ammunition — file what the world must read."
+    }
+  },
+  "warBoardDistricts": [
+    {
+      "id": "makola_routes",
+      "label": "Makola / James Town Routes",
+      "sectorId": "sector_1",
+      "missionId": 11,
+      "gridNodeId": "salaga_uprising",
+      "summary": "Sector 1 slums — slip constable cordons after Crossroads."
+    },
+    {
+      "id": "salaga_market",
+      "label": "Salaga Market Uprising",
+      "sectorId": "sector_2",
+      "missionId": 12,
+      "gridNodeId": "salaga_uprising",
+      "summary": "Sector 2 markets — AWAM demolition, protect stalls."
+    },
+    {
+      "id": "kaneshie_lines",
+      "label": "Kaneshie Lines",
+      "sectorId": "sector_2",
+      "missionId": 13,
+      "gridNodeId": "kaneshie_fires",
+      "summary": "Sector 2 warehouse fires — escort Kofi, collect evidence."
+    },
+    {
+      "id": "secretariat",
+      "label": "Victoriaborg Infiltration",
+      "sectorId": "sector_3",
+      "missionId": 14,
+      "gridNodeId": "victoriaborg_infiltration",
+      "summary": "Sector 3 admin zone — Rowe Road corridor, Kwesi's manifests."
+    },
+    {
+      "id": "ussher_stand",
+      "label": "Ussher Yard Stand",
+      "sectorId": "sector_1",
+      "missionId": 15,
+      "gridNodeId": "ussher_stand",
+      "summary": "Sector 1 hub — hold Yaw's yard; all four must survive."
+    }
+  ],
+  "workshopUpgrades": [
+    {
+      "id": "recoil_brace",
+      "name": "Recoil Brace",
+      "cost": 5,
+      "description": "Yaw fits a strap from spare belt webbing — Kofi's aim steadies.",
+      "effect": { "kofiRecoilPenalty": -0.12 },
+      "yawLine": "Hold the rifle like you carry loads — against your bone, not your fear."
+    },
+    {
+      "id": "market_bandolier",
+      "name": "Market Bandolier",
+      "cost": 8,
+      "description": "Extra pouches from mammy-truck canvas — faster follow-up shots.",
+      "effect": { "kofiShootRateMult": 0.88 },
+      "requires": ["recoil_brace"],
+      "yawLine": "My grandfather carried ammunition he was never allowed to fire. You will learn faster."
+    },
+    {
+      "id": "field_roll_kit",
+      "name": "Field Roll Kit",
+      "cost": 10,
+      "description": "Oil the hinges on Kofi's dodges — tighter rolls under constable fire.",
+      "effect": { "kofiDodgeQuality": 0.12 },
+      "yawLine": "Roll small. The yard taught me that."
+    },
+    {
+      "id": "tool_repair",
+      "name": "Oil & Bolt Repair",
+      "cost": 6,
+      "description": "Restore wirecutters, satchel clasps, and Araba's iron rod wrap.",
+      "effect": { "toolsRepaired": true },
+      "once": true,
+      "yawLine": "Tools don't march. They keep marchers alive."
+    }
+  ],
+  "registryDocuments": [
+    {
+      "id": "route_sketch",
+      "title": "Makola Alley Sketch",
+      "unlockMission": 11,
+      "category": "tactical",
+      "text": "Kojo's hand-drawn drainage cuts from Makola to James Town — constable blind spots marked in charcoal."
+    },
+    {
+      "id": "boycott_ledger",
+      "title": "AWAM Boycott Ledger",
+      "unlockMission": 12,
+      "category": "economic",
+      "text": "Stall closures under Nii Kwabena Bonne III's boycott — proof AWAM monopoly strangled Salaga before the Crossroads shots."
+    },
+    {
+      "id": "warehouse_seal",
+      "title": "Kaneshie Warehouse Seal",
+      "unlockMission": 13,
+      "category": "economic",
+      "text": "Colonial import stamp from AWAM depot — Crown-backed price gouging in black ink."
+    },
+    {
+      "id": "patrol_rotation",
+      "title": "Patrol Rotation — Ring Road",
+      "unlockMission": 14,
+      "category": "intelligence",
+      "text": "Kwesi's stolen page: constables thin on Ring Road after midnight. Curfew window extended for extraction."
+    },
+    {
+      "id": "warehouse_keys",
+      "title": "AWAM Depot Lock Codes",
+      "unlockMission": 14,
+      "category": "intelligence",
+      "text": "Night guard forgets the third lock on the side door — structural weak points noted for squad assault."
+    },
+    {
+      "id": "suppression_order",
+      "title": "Imray Suppression Order",
+      "unlockMission": 14,
+      "category": "legal",
+      "text": "Superintendent Colin Imray's signature on an order to block the veterans' petition — witness ammunition for the Watson Commission."
+    },
+    {
+      "id": "prison_transport",
+      "title": "Arrest Schedule — UGCC",
+      "unlockMission": 14,
+      "category": "intelligence",
+      "text": "Dr. Kwame Nkrumah's name circled in red. They will arrest leadership if the riots succeed."
+    },
+    {
+      "id": "yard_witness_record",
+      "title": "Ussher Yard Witness Record",
+      "unlockMission": 15,
+      "category": "legal",
+      "text": "Documented: youth cell preserved innocent stalls, targeted AWAM, and preserved Imray's suppression order for inquiry."
+    }
+  ],
+  "reviewBonus": 2
+}

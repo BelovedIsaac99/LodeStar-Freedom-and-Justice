@@ -1,0 +1,228 @@
+{
+  "version": 1,
+  "pipeline": "Leonardo.ai Pro → Blender bake → assets/textures → Three.js billboards",
+  "textureFormat": ["webp", "png"],
+  "recommendedSize": { "props": 512, "environments": 1024, "hero": 2048 },
+  "missionAssets": {
+    "1": ["accra-evening-news", "veteran-marcher"],
+    "8": ["veteran-marcher", "accra-evening-news"],
+    "9": ["veteran-marcher", "crossroads-checkpoint"],
+    "10": ["crossroads-checkpoint", "lee-enfield-no4", "webley-mk4", "sten-mk2", "veteran-marcher", "curfew-broadside", "bedford-oy-truck"],
+    "11": ["salaga-market", "market-woman"],
+    "12": ["salaga-market", "awam-store-front", "hooked-iron-rod", "market-woman", "lee-enfield-no4"],
+    "13": ["kaneshie-warehouse", "dane-gun", "mammy-truck", "accra-evening-news"],
+    "14": ["colonial-secretariat", "curfew-broadside", "accra-evening-news", "yaw-toolkit"],
+    "15": ["ussher-workshop", "mammy-truck", "yaw-toolkit", "bedford-oy-truck", "austin-police-car"]
+  },
+  "assets": [
+    {
+      "id": "lee-enfield-no4",
+      "category": "weapons",
+      "faction": "british",
+      "path": "weapons/lee-enfield-no4.webp",
+      "label": "Lee-Enfield No. 4 Mk I",
+      "gameUse": "Colonial constable rifle prop; enemy weapon billboard",
+      "historicalNote": "Standard bolt-action rifle for Gold Coast police and military, 1940s.",
+      "polyBudget": "billboard",
+      "leonardoPrompt": "3D asset prop sheet, Lee-Enfield No. 4 rifle, 1940s British military bolt-action rifle, weathered wood stock, dark iron barrel, multiple angles side view, photorealistic textures, optimized for game engine asset baking, flat gray studio background --tile false"
+    },
+    {
+      "id": "sten-mk2",
+      "category": "weapons",
+      "faction": "british",
+      "path": "weapons/sten-mk2.webp",
+      "label": "Sten Mk II",
+      "gameUse": "Officer squad SMG prop; high-tier enemy zones",
+      "historicalNote": "Used by senior colonial officers and tactical squads.",
+      "polyBudget": "billboard",
+      "leonardoPrompt": "3D asset prop sheet, Sten Mk II submachine gun, 1940s British military firearm, side-loading magazine, skeleton metal stock, crude industrial design, multiple angles, realistic gun metal texture, video game asset style, flat gray studio background --tile false"
+    },
+    {
+      "id": "webley-mk4",
+      "category": "weapons",
+      "faction": "british",
+      "path": "weapons/webley-mk4.webp",
+      "label": "Webley Mk IV",
+      "gameUse": "Imray / officer sidearm prop",
+      "historicalNote": "Sidearm for British inspectors including Superintendent Imray.",
+      "polyBudget": "billboard",
+      "leonardoPrompt": "3D asset prop sheet, Webley Mk IV top-break revolver, vintage service pistol, dark blued steel finish, checkered grip, multiple angles, photorealistic weapon asset, flat gray studio background --tile false"
+    },
+    {
+      "id": "hooked-iron-rod",
+      "category": "weapons",
+      "faction": "resistance",
+      "path": "weapons/hooked-iron-rod.webp",
+      "label": "Hooked Iron Rod",
+      "gameUse": "Araba signature melee; riot rally prop",
+      "historicalNote": "Custom-forged scrap metal — Araba's enforcer weapon.",
+      "polyBudget": "billboard",
+      "leonardoPrompt": "3D asset prop sheet, heavy custom-forged steel tire iron with a rustic hooked handle, scratched and dented metal, dark industrial finish, 1940s resistance tool, weapon asset, flat gray background"
+    },
+    {
+      "id": "dane-gun",
+      "category": "weapons",
+      "faction": "resistance",
+      "path": "weapons/dane-gun.webp",
+      "label": "Dane Gun",
+      "gameUse": "Rural recruit long gun; Kaneshie riot prop",
+      "historicalNote": "Traditional flintlock hunting guns repurposed in urban resistance.",
+      "polyBudget": "billboard",
+      "leonardoPrompt": "3D asset prop sheet, West African flintlock dane gun, elongated rusted iron barrel, hand-carved dark wooden stock, vintage mechanisms, authentic historical design, game weapon asset, flat gray background"
+    },
+    {
+      "id": "yaw-toolkit",
+      "category": "weapons",
+      "faction": "resistance",
+      "path": "props/yaw-toolkit.webp",
+      "label": "Sabotage Toolkit",
+      "gameUse": "Yaw hub prop; wirecutters, powder pouches",
+      "historicalNote": "Mechanical sabotage kit — wirecutters, distraction bottles, black powder.",
+      "polyBudget": "billboard",
+      "leonardoPrompt": "3D asset prop sheet, collection of 1940s mechanical tools, vintage iron wirecutters, rusted oil cans, crude canvas tool wrap, weathered textures, game engine prop design, flat gray background"
+    },
+    {
+      "id": "accra-evening-news",
+      "category": "props",
+      "faction": "resistance",
+      "path": "props/accra-evening-news.webp",
+      "label": "Accra Evening News",
+      "gameUse": "Intel pickup texture; briefing UI art",
+      "historicalNote": "Anti-colonial press context; Nkrumah-founded paper era world-building.",
+      "polyBudget": "flat",
+      "leonardoPrompt": "High-resolution flat lay of a vintage 1948 West African newspaper, yellowed weathered newsprint, bold black headlines reading anti-colonial resistance statements, historic typography, realistic paper texture, game asset prop"
+    },
+    {
+      "id": "curfew-broadside",
+      "category": "props",
+      "faction": "british",
+      "path": "props/curfew-broadside.webp",
+      "label": "Curfew Broadside",
+      "gameUse": "Wall decal; British sector atmosphere",
+      "historicalNote": "Martial law posters by order of Governor Creasy.",
+      "polyBudget": "decal",
+      "leonardoPrompt": "Graphic design asset, vintage 1948 British colonial government official notice, bold text reading CURFEW IN FORCE BY ORDER OF THE GOVERNOR, official red crown stamp, weathered paper texture, distressed edges, game world decall asset"
+    },
+    {
+      "id": "crossroads-checkpoint",
+      "category": "environments",
+      "faction": "british",
+      "path": "environments/crossroads-checkpoint.webp",
+      "label": "Christiansborg Crossroads Checkpoint",
+      "gameUse": "M10 hero environment billboard",
+      "historicalNote": "Sandbags, barbed wire, guard post blocking coastal road to Castle.",
+      "polyBudget": "hero",
+      "leonardoPrompt": "Cinematic environment concept art, 1948 Christiansborg Crossroads in Accra Ghana, white wooden military guard shack, sandbag fortifications, coils of vintage barbed wire, dusty laterite red dirt road leading towards a distant coastal colonial castle, dramatic lighting"
+    },
+    {
+      "id": "colonial-secretariat",
+      "category": "environments",
+      "faction": "british",
+      "path": "environments/colonial-secretariat.webp",
+      "label": "Colonial Secretariat",
+      "gameUse": "M14 facade billboard; Kwesi infiltration zone",
+      "historicalNote": "Victoriaborg administration building — white stucco, verandas.",
+      "polyBudget": "hero",
+      "leonardoPrompt": "3D environment concept art, British colonial administration building facade, 1940s classic architecture, white stucco walls, long arched open verandas, dark green wooden window shutters, clean manicured lawn, architectural gaming environment"
+    },
+    {
+      "id": "salaga-market",
+      "category": "environments",
+      "faction": "resistance",
+      "path": "environments/salaga-market.webp",
+      "label": "Salaga Market Square",
+      "gameUse": "M11–M12 district backdrop",
+      "historicalNote": "Dense wooden stalls, woven baskets, narrow laterite alleys.",
+      "polyBudget": "hero",
+      "leonardoPrompt": "Cinematic environment concept art, historic Salaga Market in Accra 1948, packed wooden market stalls, clusters of woven baskets, bundles of textiles, narrow red dirt alleys, vibrant tropical sunlight cutting through canvas awnings, tactical game level layout"
+    },
+    {
+      "id": "ussher-workshop",
+      "category": "environments",
+      "faction": "resistance",
+      "path": "environments/ussher-workshop.webp",
+      "label": "Underground Workshop",
+      "gameUse": "M15 hub; Yaw safehouse interior backdrop",
+      "historicalNote": "Motor yard back room — tools, Bedford on blocks, rafters.",
+      "polyBudget": "hero",
+      "leonardoPrompt": "Interior environment concept art, hidden mechanical workshop in 1940s Accra, stone walls, hanging iron tools, grease-stained workbenches, shafts of light filtering through dusty wooden roof beams, atmospheric tactical game hideout"
+    },
+    {
+      "id": "awam-store-front",
+      "category": "environments",
+      "faction": "british",
+      "path": "environments/awam-store-front.webp",
+      "label": "AWAM Store Front",
+      "gameUse": "M12 demolition target texture",
+      "historicalNote": "Boycott-shuttered AWAM monopoly shop — valid riot target.",
+      "polyBudget": "medium",
+      "leonardoPrompt": "Environment prop, 1948 AWAM colonial import store shuttered facade, red AWAM signage, barred windows, laterite street, boycott graffiti, game demolition target asset"
+    },
+    {
+      "id": "kaneshie-warehouse",
+      "category": "environments",
+      "faction": "british",
+      "path": "environments/kaneshie-warehouse.webp",
+      "label": "Kaneshie AWAM Warehouse",
+      "gameUse": "M13 smoke and fire backdrop",
+      "historicalNote": "First riot fires — warehouse district.",
+      "polyBudget": "medium",
+      "leonardoPrompt": "Environment concept, 1948 Accra Kaneshie AWAM warehouse district, corrugated iron roofs, smoke plumes, colonial import stamps, red dirt lanes, tactical game level"
+    },
+    {
+      "id": "bedford-oy-truck",
+      "category": "vehicles",
+      "faction": "british",
+      "path": "vehicles/bedford-oy-truck.webp",
+      "label": "Bedford OY Troop Carrier",
+      "gameUse": "Colonial reinforcement spawn prop",
+      "historicalNote": "Police troop drops and patrol transport.",
+      "polyBudget": "low-poly",
+      "leonardoPrompt": "3D vehicle asset sheet, 1940s Bedford OY military truck, dark olive-drab paint, weathered canvas truck bed cover, iron wheels, multiple view angles, photorealistic low-poly vehicle asset, flat gray background"
+    },
+    {
+      "id": "austin-police-car",
+      "category": "vehicles",
+      "faction": "british",
+      "path": "vehicles/austin-police-car.webp",
+      "label": "Austin 10 Police Sedan",
+      "gameUse": "Inspector patrol vehicle prop",
+      "historicalNote": "Black authoritative sedans for city sector patrols.",
+      "polyBudget": "low-poly",
+      "leonardoPrompt": "3D vehicle asset sheet, vintage 1940s black Austin 10 sedan, glossy but dusty finish, chrome bumpers, right-hand drive, game-ready model asset sheet, multiple angles, flat gray studio background"
+    },
+    {
+      "id": "mammy-truck",
+      "category": "vehicles",
+      "faction": "resistance",
+      "path": "vehicles/mammy-truck.webp",
+      "label": "Mammy Truck",
+      "gameUse": "Yaw mobile spawn / extraction prop",
+      "historicalNote": "Civilian Bedford variant — hand-painted boards, market transport.",
+      "polyBudget": "low-poly",
+      "leonardoPrompt": "3D vehicle asset sheet, historic West African mammy truck, 1940s customized Bedford truck with an open wooden passenger chassis, hand-painted colorful local slogans on the wooden boards, heavily weathered, game asset model"
+    },
+    {
+      "id": "market-woman",
+      "category": "characters",
+      "faction": "resistance",
+      "path": "characters/market-woman.webp",
+      "label": "Market Woman",
+      "gameUse": "Civilian NPC texture; boycott crowd",
+      "historicalNote": "Wax print and Kente — masses backing AWAM boycott.",
+      "polyBudget": "billboard",
+      "leonardoPrompt": "3D character concept sheet, 1948 Ghanaian market woman civilian, traditional patterned wax print cloth wrapped around the body, matching headtie, leather sandals, neutral pose, game engine character asset, flat gray background"
+    },
+    {
+      "id": "veteran-marcher",
+      "category": "characters",
+      "faction": "resistance",
+      "path": "characters/veteran-marcher.webp",
+      "label": "Ex-Serviceman Marcher",
+      "gameUse": "M8–M10 escort NPC; unarmed petition holder",
+      "historicalNote": "Faded khaki, no weapons — rolled white petition only.",
+      "polyBudget": "billboard",
+      "leonardoPrompt": "3D character concept sheet, 1940s West African World War II veteran, faded khaki Gold Coast Regiment uniform shirt, shorts, dark woolen puttees wrapped around calves, holding a rolled white paper petition document, solemn expression, game asset sheet"
+    }
+  ]
+}

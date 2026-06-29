@@ -1,0 +1,41 @@
+{
+  "title": "LODESTAR_FREEDOM AND JUSTICE",
+  "commander": "Dr. Kwame Nkrumah",
+  "defaultBriefing": "Gather intelligence documents and prepare for the march to Christiansborg Castle.",
+  "intelDocuments": [
+    {
+      "id": "march-petition",
+      "x": 300,
+      "y": 200,
+      "meterGain": 25,
+      "title": "Intel Gathered",
+      "text": "Nationalists plan a peaceful march to present a petition to the Governor at Christiansborg Castle."
+    },
+    {
+      "id": "colonial-patrols",
+      "x": 500,
+      "y": 400,
+      "meterGain": 25,
+      "title": "Intel Gathered",
+      "text": "Colonial checkpoints report increased patrols along the Accra coastal road."
+    },
+    {
+      "id": "nkrumah-restraint",
+      "x": 700,
+      "y": 300,
+      "meterGain": 25,
+      "title": "Intel Gathered",
+      "text": "Dr. Kwame Nkrumah urges restraint — the march must remain peaceful to win international support."
+    },
+    {
+      "id": "crossroads-martyrs",
+      "x": 350,
+      "y": 500,
+      "meterGain": 25,
+      "title": "Intel Gathered",
+      "text": "Sergeant Adjetey, Corporal Attipoe, and Private Odartey Lamptey led the peaceful 28 February 1948 march. Superintendent Colin Imray's constables opened fire at Christiansborg Crossroads."
+    }
+  ],
+  "victoryMessage": "March to Christiansborg! Independence momentum secured.",
+  "defeatMessage": "The resistance continues..."
+}

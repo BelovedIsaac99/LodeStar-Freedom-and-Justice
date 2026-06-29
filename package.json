@@ -1,0 +1,11 @@
+{
+  "name": "lodestar-freedom-and-justice",
+  "private": true,
+  "scripts": {
+    "start": "serve . -p 9097",
+    "dev": "serve . -p 9097"
+  },
+  "devDependencies": {
+    "serve": "^14.2.4"
+  }
+}
